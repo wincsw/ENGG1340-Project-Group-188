@@ -13,20 +13,21 @@ On this island, there will be different **unexpected events** that may cause dan
 
 ## Rules
  - Your status represented by:
-   -**HP**: health point, drop if you are being attacked or you are hungry 
-   -**hydration**: the value that represent your thrist, it will drop everyday
-   -**mentality**: the value that represent your mental status, if it goes too low, you may do something uncontrollable, even KILL YOURSELF!
-   -**health**: the value that represent your physical health, if it goes too low, your **HP value** may drop in a high proportion
+   - **HP**: health point, drop if you are being attacked or you are hungry 
+   - **hydration**: the value that represent your thrist, it will drop everyday
+   - **mentality**: the value that represent your mental status, if it goes too low, you may do something uncontrollable, even KILL YOURSELF!
+   - **health**: the value that represent your physical health, if it goes too low, your **HP value** may drop in a high proportion
  - If **HP/hydration** go to **0** , you will die and **lose** the game 
  
  - Every day starts, you will have a chance to draw cards
-   Cards you may obtain:
+      
+      Cards you may obtain:
    - **Food card**: increase your HP value
    - **Water card**: increase your hydration value
    - **Mecidine card**: heal you if you are suffering with diseases and increase your health or mentality value
    - **Weapons card**: you can use them to protect yourself if you involve in some special events
    - AND SOME **MYSTERY CARDS**
- - After drawing cards, you will be given chances to use the cards or straightly pass to the next day
+ - After drawing cards, the cards will be saved, you can use them immediately or you can straightly pass to the next day and use them later
  - Random events may happen and they may affect your status as well
  - *Target*: Survive for **100 days** !
 
