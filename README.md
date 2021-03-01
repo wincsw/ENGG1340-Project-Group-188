@@ -2,7 +2,7 @@
 ```
 Group Members : Chan Sze Wing   (3035745063)
                 Chan Yuen Kwan  (3035781641)
-Game Idea     : Survival Simulator 
+Game Idea     : Card Based Survival Simulator 
 ```
 
 ## Game Discription
