@@ -6,9 +6,7 @@ Chan Sze Wing   (UID: 3035745063, Username: adhk852)
 Chan Yuen Kwan  (UID: 3035781641, Username: jojochan09)
 
 ## Game Description
-Our game is a text-based role-playing game that tries to simulate a person surviving on an uninhabited island. You are a passenger of a cruise ship who is stranded on an uninhabited island after the shipwreck.
-
-On this island, there will be different unexpected events that may cause danger or surprises. Random resources will be found to help maintain your life. You must survive for 100 days until the rescue team comes to save you.
+Our game is a text-based role-playing game that tries to simulate a person surviving on an uninhabited island. You are a passenger of a cruise ship who is stranded on an uninhabited island after the shipwreck. On this island, there will be different unexpected events that may cause danger or surprises. Random resources will be found to help maintain your life. You must survive for 100 days until the rescue team comes to save you.
 
 
 ## Rules
