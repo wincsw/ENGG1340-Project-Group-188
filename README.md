@@ -2,6 +2,7 @@
 
 ## Contributing
 Chan Sze Wing   (UID: 3035745063, Username: adhk852)
+
 Chan Yuen Kwan  (UID: 3035781641, Username: jojochan09)
 
 ## Game Description
