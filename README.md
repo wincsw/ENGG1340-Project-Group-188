@@ -12,9 +12,9 @@ Our game is a text-based role-playing game that tries to simulate a person survi
 ## Rules
  - Your status represented by:
    - **HP**: health point, drop if you are being attacked or you are hungry 
-   - **hydration**: the value that represents your thirst, it will drop every day
-   - **mentality**: the value that represents your mental status. If it goes too low, you may do something uncontrollable, even may kill yourself!
-   - **health**: the value that represent your physical health, if it goes too low, your **HP value** may drop in a high proportion
+   - **Hydration**: the value that represents your thirst, it will drop every day
+   - **Mentality**: the value that represents your mental status. If it goes too low, you may do something uncontrollable, even may kill yourself!
+   - **Health**: the value that represent your physical health, if it goes too low, your **HP value** may drop in a high proportion
  - If **HP/hydration** go to **0**, you will die and **lose** the game 
  
  - Every day starts, you will find some resources
