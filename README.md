@@ -22,7 +22,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
       Resources you may obtain:
    - **Food**: increase your HP value
    - **Water**: increase your hydration value
-   - **Mecidines**: heal you if you are suffering with diseases and increase your health or mentality value
+   - **Medicines**: heal you if you are suffering with diseases and increase your health or mentality value
    - **Weapons**: you can use them to protect yourself if you involve in some special events
    - And some **Mystery** items
  - After finding the resources, the resources will be saved in the Item Pack, you can use them immediately, or you can straightly pass to the next day and use them later
@@ -47,7 +47,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   
   - Program codes in multiple files
     
-    The cards' information and function will be stored in separate files (e.g. `food_card.cpp`)according to their type and access by respecting header files (e.g. `food_cards.h`). 
+    The cards' information and function will be stored in a separate file `data_items.cpp` according to their type and access by respecting header `data_items.h`. 
 
 - Random Event
 
@@ -60,7 +60,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
     
   - Program codes in multiple files
     
-    The information of the events and their effects on the player will be stored in a separate file `events.cpp`, and access by the header file `events.h`.
+    The information of the events and their effects on the player will be stored in a separate file `data_events.cpp`, and access by the header file `data_events.h`.
     
 - Save and Resume gameplay
   
