@@ -14,15 +14,15 @@ Our game is a text-based role-playing game that tries to simulate a person survi
    - **HP**: health point, drop if you are being attacked or you are hungry 
    - **Hydration**: the value that represents your thirst, it will drop every day
    - **Mentality**: the value that represents your mental status. If it goes too low, you may do something uncontrollable, even may kill yourself!
-   - **Health**: the value that represent your physical health, if it goes too low, your **HP value** may drop in a high proportion
+   - **Hunger**: the value that represent your hunger, if it goes too low, your **HP value** may drop in a high proportion
  - If **HP/hydration** go to **0**, you will die and **lose** the game 
  
  - Every day starts, you will find some resources
       
       Resources you may obtain:
-   - **Food**: increase your HP value
+   - **Food**: increase your hunger value
    - **Water**: increase your hydration value
-   - **Medicines**: heal you if you are suffering with diseases and increase your health or mentality value
+   - **Medicines**: heal you if you are suffering with diseases and increase your HP or mentality value
    - **Weapons**: you can use them to protect yourself if you involve in some special events
    - And some **Mystery** items
  - After finding the resources, the resources will be saved in the Item Pack, you can use them immediately, or you can straightly pass to the next day and use them later
