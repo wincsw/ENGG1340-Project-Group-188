@@ -32,7 +32,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
 
 ## Features 
 
-- Draw Cards
+- Draw Resource
 
   The player can draw 3 random resource cards every day, and the cards they have drawn will be stored in the Item Pack for future use.
   
@@ -51,7 +51,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
 
 - Random Event
 
-  A random event will happen every 2 or 3 days.
+  A random event will happen every 3 or 4 days.
   
   Coding element:
   - Generation of random game sets or events
