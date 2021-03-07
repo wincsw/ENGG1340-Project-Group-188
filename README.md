@@ -34,20 +34,24 @@ Our game is a text-based role-playing game that tries to simulate a person survi
 
 - Draw Resource
 
-  The player can draw 3 random resource cards every day, and the cards they have drawn will be stored in the Item Pack for future use.
+  The player can draw 3 random resource items every day, and the cards they have drawn will be stored in the Item Pack for future use.
   
   Coding element:
   - Generation of random game sets or events
     
     The cards drawn will be generated randomly using `rand()` and `srand(time(NULL))`.
     
+  - Data structures for storing game status
+
+    Self-defined data structure `item` will be used to store the infomation of the items. 
+     
   - Dynamic memory management
     
-    The drawn cards will be stored in dynamic memory by `new[]`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete[]`.
+    The drawn item will be stored in dynamic memory by `new[]`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete[]`.
   
   - Program codes in multiple files
     
-    The cards' information and function will be stored in a separate file `data_items.cpp` according to their type and access by respecting header `data_items.h`. 
+    Codes of the items' information and the drawing mechanism will be stored in separate files of `data_items.cpp` and `draw_item.cpp`. 
 
 - Random Event
 
@@ -56,12 +60,29 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   Coding element:
   - Generation of random game sets or events
   
-     The events and the number of days will be chosen randomly using `rand()` and `srand(time(NULL))`.
+    The events and the number of days will be generated randomly using `rand()` and `srand(time(NULL))`.
+  
+  - Data structures for storing game status
+
+    Self-defined data structure `event` will be used to store the infomation of the items. 
     
-  - Program codes in multiple files
+- Fighting Attackers
+  
+  The event of player being attack and need to fight back.
+  
+  Coding element:
+  - Data structures for storing game status
+
+    Self-defined data structure `item` will be used to store the infomation of the items. 
+  
+  - Dynamic memory management
+ 
+    The fighting status (e.g. the tempory HP) will be stored by `new`. The memory used to store the fighting status will be freed after the fight ends by `delete`.
     
-    The information of the events and their effects on the player will be stored in a separate file `data_events.cpp`, and access by the header file `data_events.h`.
-    
+  - Program codes in multiple file
+  
+    Codes of the fighting mechanism and the attackers are stored in seperate files of `fight.cpp` and `data_attackers.cpp`.
+
 - Save and Resume gameplay
   
   Coding element:
@@ -72,3 +93,8 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   - File input/output
     
     The user can save the game status and resume the game later. The game status will be output to a `game_status.txt` file, and the `game_status.txt` file will be inputted to the game program when the game is resumed.
+    
+
+## Inspriation
+- Game Mechanism: Draw Card Life https://www.taptap.com/app/35686
+- Item: Survive - Wilderness survival https://play.google.com/store/apps/details?id=com.sandbaygames.survive
