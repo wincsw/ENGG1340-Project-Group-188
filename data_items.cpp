@@ -256,15 +256,15 @@ struct item mystery(int x)
   struct item mystery_items[num_of_item];
   struct item choosen;
 
-  // Wilson the Volleyball
-  mystery_items[0].name = "Wilson the Volleyball";
+  // Leaf
+  mystery_items[0].name = "Leaf";
   mystery_items[0].effect[0] = 0;
   mystery_items[0].effect[1] = 0;
   mystery_items[0].effect[2] = 0;
-  mystery_items[0].effect[3] = 10;
+  mystery_items[0].effect[3] = 0;
   mystery_items[0].effect[4] = 0;
-  mystery_items[0].des = "This is your friend, Wilson the Volleyball";
- 
+  mystery_items[0].des = "This useless piece of leaf";
+
   // Newspaper
   mystery_items[1].name = "Newspaper";
   mystery_items[1].effect[0] = 0;
@@ -274,14 +274,14 @@ struct item mystery(int x)
   mystery_items[1].effect[4] = 0;
   mystery_items[1].des = "The headline of today is .....";
 
-  // Leaf
-  mystery_items[2].name = "Leaf";
+  // Wilson the Volleyball
+  mystery_items[2].name = "Wilson the Volleyball";
   mystery_items[2].effect[0] = 0;
   mystery_items[2].effect[1] = 0;
   mystery_items[2].effect[2] = 0;
-  mystery_items[2].effect[3] = 0;
+  mystery_items[2].effect[3] = 10;
   mystery_items[2].effect[4] = 0;
-  mystery_items[2].des = "This useless piece of leaf";
+  mystery_items[2].des = "This is your friend, Wilson the Volleyball";
 
   // Flashlight
   // end any fight
