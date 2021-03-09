@@ -1,3 +1,6 @@
+// data_items.h
+// Header file of data_items.cpp
+
 #ifndef ITEM_DATA
 #define ITEM_DATA
 
