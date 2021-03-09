@@ -1,3 +1,7 @@
+// data_item.cpp
+// Store all the resource item in five catagory 
+// -- water, food, medicine, weapon, mystery 
+
 # include <iostream>
 # include <string>
 # include "structures.h"
