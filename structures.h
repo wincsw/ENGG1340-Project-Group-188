@@ -15,7 +15,7 @@ struct attacker {
   int hp;             // attacker's hp
   int atk;            // reduce of player TEMP HP after each attack
   int lost;           // reduce of player HP if the player lost the fight
-  struct item;        // item given after winning
+  std::string item;        // item given after winning
   std::string des;    // attacker description
 };
 
@@ -23,7 +23,7 @@ struct event {
   std::string name;     // event name 
   int effect[4];        // effect on player status
   // [HP, Hydration, Hunger, Mentality]
-  struct item;          // item given after the event
+  std::string item;          // item given after the event
   char output[10][100]; // lines outputed 
   // max 10 lines with 100 characters
 };
