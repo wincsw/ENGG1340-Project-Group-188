@@ -11,19 +11,19 @@ using namespace std;
 
 // x = -1 --> search by name
 // string = " " --> search by number
-struct item choose(struct item list[], int len, int x, string name) {
+struct item choose(struct item category[], int len, int x, string name) {
   struct item choosen;
   if (x != -1) {
     for (int i = 0; i < len; i++) {
       if (i == x) {
-        choosen = list[i];
+        choosen = category[i];
       }
     }
   }
   else {
     for (int i = 0; i < len; i++) {
-      if (list[i].name == name) {
-        choosen = list[i];
+      if (category[i].name == name) {
+        choosen = category[i];
       }
     }
   }

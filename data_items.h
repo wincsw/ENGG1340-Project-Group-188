@@ -6,6 +6,9 @@
 
 #include "structures.h"
 
+// function for selecting 
+struct item choose(struct item category[], int len, int x, std::string name);
+
 struct item water(int x, std::string name);
 struct item food(int x, std::string name);
 struct item medicine(int x, std::string name);
