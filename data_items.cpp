@@ -12,6 +12,7 @@ using namespace std;
 // x = -1 --> search by name
 // string = " " --> search by number
 struct item choose(struct item list[], int len, int x, string name) {
+  struct item choosen;
   if (x != -1) {
     for (int i = 0; i < len; i++) {
       if (i == x) {
@@ -33,7 +34,7 @@ struct item choose(struct item list[], int len, int x, string name) {
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
 
 // Water Items
-struct item water(int x) 
+struct item water(int x, string name) 
 {
   const int num_of_item = 5;
   struct item water_items[num_of_item];
@@ -85,11 +86,11 @@ struct item water(int x)
   water_items[4].effect[4] = 0;
   water_items[4].des = "This water doesn't seem to be drinkable";
 
-  return choose(water_items, num_of_item, x, " ");
+  return choose(water_items, num_of_item, x, name);
 }
 
 // Food Items
-struct item food(int x) 
+struct item food(int x, string name) 
 {
   const int num_of_item = 5;
   struct item food_items[num_of_item];
@@ -143,11 +144,11 @@ struct item food(int x)
   food_items[4].effect[4] = 0;
   food_items[4].des = "This mushroom seems to be a bit too colorful";
 
-  return choose(food_items, num_of_item, x, " ");
+  return choose(food_items, num_of_item, x, name);
 }
 
 // Medicine Items
-struct item medicine(int x) 
+struct item medicine(int x, string name) 
 {
   const int num_of_item = 5;
   struct item medicine_items[num_of_item];
@@ -199,11 +200,11 @@ struct item medicine(int x)
   medicine_items[4].effect[4] = 0;
   medicine_items[4].des = "Sedative is useful when you are mentally unstable";
 
-  return choose(medicine_items, num_of_item, x, " ");
+  return choose(medicine_items, num_of_item, x, name);
 }
 
 // Weapon Items
-struct item weapon(int x) 
+struct item weapon(int x, string name) 
 {
   const int num_of_item = 4;
   struct item weapon_items[num_of_item];
@@ -246,11 +247,11 @@ struct item weapon(int x)
   weapon_items[3].effect[4] = -100;
   weapon_items[3].des = "This spear from the cannibals should be useful";
 
-  return choose(weapon_items, num_of_item, x, " ");
+  return choose(weapon_items, num_of_item, x, name);
 }
 
 // Mystery Items
-struct item mystery(int x) 
+struct item mystery(int x, string name) 
 {
   const int num_of_item = 6;
   struct item mystery_items[num_of_item];
@@ -311,5 +312,5 @@ struct item mystery(int x)
   mystery_items[5].effect[4] = -100;
   mystery_items[5].des = "You can hear the ocean in the Seashell";
 
-  return choose(mystery_items, num_of_item, x, " ");
+  return choose(mystery_items, num_of_item, x, name);
 }
