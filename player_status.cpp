@@ -6,7 +6,7 @@ using namespace std;
 
 // the variable of the player status will be in the main.cpp
 
-// {HP, Hydration, Health, Hunger, Mentailty}
+// HP, Hydration, Hunger, Mentailty
 void printStatus(int status[4]) {
   cout << "Player Status" << endl;
   cout.width(9);
