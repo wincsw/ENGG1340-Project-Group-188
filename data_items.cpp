@@ -8,8 +8,12 @@
 
 using namespace std;
 
+const int water_num = 5;
+const int food_num = 5;
+const int medicine_num = 5;
+const int weapon_num = 4;
+const int mystery_num = 6;
 
-// function of searching the item in a category by name or index number
 struct item choose(struct item category[], int len, int x, string name) {
   struct item choosen;
   if (x != -1) {
@@ -31,12 +35,12 @@ struct item choose(struct item category[], int len, int x, string name) {
 }
 
 // Water Items
-// index number: x; name: name --> either one 
+// int x = -1 --> choose by name
+// string name = " " --> choose by index
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
 struct item water(int x = -1, string name = " ") 
 {
-  const int num_of_item = 5;
-  struct item water_items[num_of_item];
+  struct item water_items[water_num];
   struct item choosen;
 
   // Clean Water
@@ -85,16 +89,16 @@ struct item water(int x = -1, string name = " ")
   water_items[4].effect[4] = 0;
   water_items[4].des = "This water doesn't seem to be drinkable";
 
-  return choose(water_items, num_of_item, x, name);
+  return choose(water_items, water_num, x, name);
 }
 
 // Food Items
-// index number: x; name: name --> either one 
+// int x = -1 --> choose by name
+// string name = " " --> choose by index
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
 struct item food(int x = -1, string name = " ") 
 {
-  const int num_of_item = 5;
-  struct item food_items[num_of_item];
+  struct item food_items[food_num];
   struct item choosen;
 
   // Energy Bar
@@ -145,16 +149,16 @@ struct item food(int x = -1, string name = " ")
   food_items[4].effect[4] = 0;
   food_items[4].des = "This mushroom seems to be a bit too colorful";
 
-  return choose(food_items, num_of_item, x, name);
+  return choose(food_items, food_num, x, name);
 }
 
 // Medicine Items
-// index number: x; name: name --> either one 
+// int x = -1 --> choose by name
+// string name = " " --> choose by index
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
 struct item medicine(int x = -1, string name = " ") 
 {
-  const int num_of_item = 5;
-  struct item medicine_items[num_of_item];
+  struct item medicine_items[medicine_num];
   struct item choosen;
 
   // Herb
@@ -203,16 +207,16 @@ struct item medicine(int x = -1, string name = " ")
   medicine_items[4].effect[4] = 0;
   medicine_items[4].des = "Sedative is useful when you are mentally unstable";
 
-  return choose(medicine_items, num_of_item, x, name);
+  return choose(medicine_items, medicine_num, x, name);
 }
 
 // Weapon Items
-// index number: x; name: name --> either one 
+// int x = -1 --> choose by name
+// string name = " " --> choose by index
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
 struct item weapon(int x = -1, string name = " ") 
 {
-  const int num_of_item = 4;
-  struct item weapon_items[num_of_item];
+  struct item weapon_items[weapon_num];
   struct item choosen;
 
   // Wooden Stick
@@ -252,16 +256,16 @@ struct item weapon(int x = -1, string name = " ")
   weapon_items[3].effect[4] = -100;
   weapon_items[3].des = "This spear from the cannibals should be useful";
 
-  return choose(weapon_items, num_of_item, x, name);
+  return choose(weapon_items, weapon_num, x, name);
 }
 
 // Mystery Items
-// index number: x; name: name --> either one 
+// int x = -1 --> choose by name
+// string name = " " --> choose by index
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
 struct item mystery(int x = -1, string name = " ") 
 {
-  const int num_of_item = 6;
-  struct item mystery_items[num_of_item];
+  struct item mystery_items[mystery_num];
   struct item choosen;
 
   // Leaf
@@ -319,6 +323,6 @@ struct item mystery(int x = -1, string name = " ")
   mystery_items[5].effect[4] = -100;
   mystery_items[5].des = "You can hear the ocean in the Seashell";
 
-  return choose(mystery_items, num_of_item, x, name);
+  return choose(mystery_items, mystery_num, x, name);
 }
 
