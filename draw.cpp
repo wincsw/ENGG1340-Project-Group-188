@@ -5,7 +5,7 @@
 # include "structures.h"
 # include "data_items.h"
 
-
+// general draw item
 struct item draw() 
 {
   struct item choosen; // the resturn item
@@ -54,7 +54,7 @@ struct item draw()
 }
 
 
-
+// draw 3 item every day
 struct item* dailyDraw() {
   struct item* three_item;
   three_item = new struct item [3];
