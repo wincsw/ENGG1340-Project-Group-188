@@ -3,8 +3,7 @@
 #include <iostream>
 #include "structures.h"
 
-int main()
-{
+
 attacker bear;
 bear.name = "Bear";
 bear.hp = 100;
@@ -43,4 +42,4 @@ zombie.hp = 50;
 zombie.atk = 15;
 zombie.lost = 50;
 zombie.des = "This is a zombie!";
-}
+
