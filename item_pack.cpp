@@ -1,5 +1,6 @@
 // item_pack.cpp
 // printing item pack and allow using the items
+// item_menu() can used to trigger all function
 # include <iostream>
 # include <string>
 # include <stdlib.h>     // allow to use system ("clean")
@@ -901,7 +902,3 @@ void other_menu()
   }
 }
 
-int main()
-{
-  item_menu();
-}
