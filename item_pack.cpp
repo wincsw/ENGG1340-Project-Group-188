@@ -12,42 +12,48 @@ void food_menu();
 void medicine_menu();
 void weapon_menu();
 void other_menu();
-void use_water(int x);
-void use_food(int x);
-void use_medicine(int x);
-void use_weapon(int x);
-void use_other(int x);
+void use(int list[], int x);
 
 // set the variables of items
-int cleanwater_number = 0, soda_number = 0, pee_number = 0, coconut_number = 0, dirtywater_number = 0;
-int meat_number = 0, wildberry_number = 0, worm_number = 0, mushroom_number = 0, energybar_number = 0;
-int herb_number = 0, pill_number = 0, bandage_number = 0, firstaidkit_number = 0, sedative_number = 0;
-int woodenstick_number = 0, rock_number = 0, knife_number = 0, spear_number = 0;
-int WilsontheVolleyball_number = 0, Newspaper_number = 0, Leaf_number = 0, Flashlight_number = 0, Gameboy_number = 0, Shell_number = 0;
+int water_item[5];
+int food_item[5];
+int medicine_item[5];
+int weapon_item[4];
+int other_item[6];
 
-void use_water(int x)
+// deduct 1 after the item is used
+void minus_item(int list[], int x)
 {
-  return water_menu();
+  list[x - 1] -= 1;
 }
 
-void use_food(int x)
+// print the information of the item
+void printItem(struct item object) 
 {
-  return food_menu();
-}
+  string status[] = {"HP", "Hydration", "Hunger", "Mentality", "ATK"};
+  int empty[] = {0, 0, 0, 0, 0};
+  cout << object.name << endl;
 
-void use_medicine(int x)
-{
-  return medicine_menu();
-}
+  if (object.effect == empty) {
+    cout << "USELESS" << endl;
+  }
+  else {
+    for (int i = 0; i < 4; i++) {
+      char sign;
+      if (object.effect[i] > 0) {
+        sign = '+';
+      }
+      else if (object.effect[i] < 0) {
+        sign = '\0';
+      }
+      else {
+        continue;
+      }
+      cout << sign << object.effect[i] << " " << status[i] << endl;
+    }
+  }
 
-void use_weapon(int x)
-{
-  return weapon_menu();
-}
-
-void use_other(int x)
-{
-  return other_menu();
+  cout << object.des << endl;
 }
 
 // item_menu() printing the main item menu
@@ -55,7 +61,7 @@ void item_menu()
 {
   int choice_in_mainmeun = 0;
   // printing out the meun for player to choose
-  cout << "Item Pack" << endl;
+  cout << "----------"  << endl << "Item Pack" << endl << endl;
   cout << "1. Water" << endl;
   cout << "2. Food " << endl;
   cout << "3. Medicine" << endl;
@@ -66,7 +72,8 @@ void item_menu()
   //ensure that only with input 1-6 will proceed to next stage
   while (choice_in_mainmeun > 6 | choice_in_mainmeun < 1)
   {
-    cout << "Which one do you want to choose?" << endl;
+    cout << endl;
+    cout << "Which one do you want to choose? ";
     cin >> choice_in_mainmeun;
     if (choice_in_mainmeun > 6 | choice_in_mainmeun < 1)
     {
@@ -74,28 +81,51 @@ void item_menu()
     }
   }
 
-  if (choice_in_mainmeun == 1)  water_menu();
-  if (choice_in_mainmeun == 2)  food_menu();
-  if (choice_in_mainmeun == 3)  medicine_menu();
-  if (choice_in_mainmeun == 4)  weapon_menu();
-  if (choice_in_mainmeun == 5)  other_menu();
+  switch(choice_in_mainmeun) {
+    case 1: 
+      water_menu();
+      item_menu();
+      break;
+    case 2:
+      food_menu();
+      item_menu();
+      break;
+    case 3: 
+      medicine_menu();
+      item_menu();
+      break;
+    case 4:
+      weapon_menu();
+      item_menu();
+      break;
+    case 5:
+      other_menu();
+      item_menu();
+      break;
+    //case 6:
+     // break;
+  }
 }
+
+
 
 //printing wateritem_menu, include number of card the player had and allow to proceed to use
 void water_menu()
 {
+  cout << "----------" << endl << "Water" << endl << endl;
   int choice_in_useitem = 0;
-  cout << "1. Clean Water: " << cleanwater_number << endl;
-  cout << "2. Soda: " << soda_number << endl;
-  cout << "3. Pee: " << pee_number << endl;
-  cout << "4. Coconut: " << coconut_number << endl;
-  cout << "5. Dirty water: " << dirtywater_number << endl;
-  cout << "6. Back: " << endl;
+  cout << "1. " << water(0).name << ": " << water_item[0] << endl;
+  cout << "2. " << water(1).name << ": " << water_item[1] << endl;
+  cout << "3. " << water(2).name << ": " << water_item[2] << endl;
+  cout << "4. " << water(3).name << ": " << water_item[3] << endl;
+  cout << "5. " << water(4).name << ": " << water_item[4] << endl;
+  cout << "6. Back" << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
   while (choice_in_useitem > 6 | choice_in_useitem < 1)
   {
-    cout << "Which one do you want to choose?" << endl;
+    cout << endl;
+    cout << "Which one do you want to choose? ";
     cin >> choice_in_useitem;
     if (choice_in_useitem > 6 | choice_in_useitem < 1)
     {
@@ -105,24 +135,37 @@ void water_menu()
 
   if (choice_in_useitem != 6)
   {
-    use_water(choice_in_useitem);
+    char conferm;
+    cout << endl;
+    printItem(water(choice_in_useitem - 1));
+    cout << endl;
+    cout << "Are you sure to use " << water(choice_in_useitem - 1).name << " ? [y/n] ";
+    cin >> conferm;
+    if (conferm == 'y') {
+      minus_item(water_item, choice_in_useitem );
+      
+    }
+    else {
+      water_menu();
+    }
   }
   else
   {
-    return item_menu();
+    item_menu();
   }
 }
 
 //printing fooditem_menu, include number of card the player had and allow to proceed to use
 void food_menu()
 {
+  cout << "----------" << endl << "Food" << endl << endl;
   int choice_in_useitem = 0;
-  cout << "1. Meat: " << meat_number << endl;
-  cout << "2. Wild Berry: " << wildberry_number << endl;
-  cout << "3. Worm: " << worm_number<< endl;
-  cout << "4. Unknown Mushroom: " << mushroom_number << endl;
-  cout << "5. Energy Bar: " << energybar_number << endl;
-  cout << "6. Back: " << endl;
+  cout << "1. " << food(0).name << ": " << food_item[0] << endl;
+  cout << "2. " << food(1).name << ": " << food_item[1] << endl;
+  cout << "3. " << food(2).name << ": " << food_item[2] << endl;
+  cout << "4. " << food(3).name << ": " << food_item[3] << endl;
+  cout << "5. " << food(4).name << ": " << food_item[4] << endl;
+  cout << "6. Back" << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
   while (choice_in_useitem > 6 | choice_in_useitem < 1)
@@ -137,28 +180,40 @@ void food_menu()
 
   if (choice_in_useitem != 6)
   {
-    use_food(choice_in_useitem);
+    char conferm;
+    cout << endl;
+    printItem(food(choice_in_useitem - 1));
+    cout << "Are you sure to use " << food(choice_in_useitem - 1).name << " ? [y/n] ";
+    cin >> conferm;
+    if (conferm == 'y') {
+      minus_item(food_item, choice_in_useitem);
+    }
+    else {
+      food_menu();
+    }
   }
   else
   {
-    return item_menu();
+    item_menu();
   }
 }
 
 //printing medicineitem_menu, include number of card the player had and allow to proceed to use
 void medicine_menu()
 {
+  cout << "----------" << endl << "Medicine" << endl << endl;
   int choice_in_useitem = 0;
-  cout << "1. Herb: " << herb_number << endl;
-  cout << "2. Pill: " << pill_number << endl;
-  cout << "3. Bandage: " << bandage_number<< endl;
-  cout << "4. First Aid Kit: " << firstaidkit_number << endl;
-  cout << "5. Sedative: " << sedative_number << endl;
-  cout << "6. Back: " << endl;
+  cout << "1. " << medicine(0).name << ": " << medicine_item[0] << endl;
+  cout << "2. " << medicine(1).name << ": " << medicine_item[1] << endl;
+  cout << "3. " << medicine(2).name << ": " << medicine_item[2] << endl;
+  cout << "4. " << medicine(3).name << ": " << medicine_item[3] << endl;
+  cout << "5. " << medicine(4).name << ": " << medicine_item[4] << endl;
+  cout << "6. Back" << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
   while (choice_in_useitem > 6 | choice_in_useitem < 1)
   {
+    cout << endl;
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
     if (choice_in_useitem > 6 | choice_in_useitem < 1)
@@ -169,23 +224,36 @@ void medicine_menu()
 
   if (choice_in_useitem != 6)
   {
-    use_medicine(choice_in_useitem);
+    char conferm;
+    cout << endl;
+    printItem(medicine(choice_in_useitem - 1));
+    cout << "Are you sure to use " << medicine(choice_in_useitem - 1).name << " ? [y/n] ";
+    cin >> conferm;
+    if (conferm == 'y') {
+      minus_item(medicine_item, choice_in_useitem);
+
+    }
+    else {
+      medicine_menu();
+    }
   }
   else
   {
-    return item_menu();
+    item_menu();
   }
 }
 
 //printing weapon item_menu, include number of card the player had and allow to proceed to use
 void weapon_menu()
 {
+  cout << "----------" << endl << "Weapon" << endl << endl;
   int choice_in_useitem = 0;
-  cout << "1. Wooden Stick: " << woodenstick_number << endl;
-  cout << "2. Rock: " << rock_number << endl;
-  cout << "3. Knife: " << knife_number<< endl;
-  cout << "4. Spear: " << spear_number << endl;
-  cout << "5. Back: " << endl;
+  cout << "Water" << endl;
+  cout << "1. " << weapon(0).name << ": " << weapon_item[0] << endl;
+  cout << "2. " << weapon(1).name << ": " << weapon_item[1] << endl;
+  cout << "3. " << weapon(2).name << ": " << weapon_item[2]<< endl;
+  cout << "4. " << weapon(3).name << ": " << weapon_item[3] << endl;
+  cout << "5. Back" << endl;
   cout << "You can only use the weapon during fight!"<<
            "But you can see the description of it" << endl;
 
@@ -202,7 +270,17 @@ void weapon_menu()
 
   if (choice_in_useitem != 5)
   {
-    use_weapon(choice_in_useitem);
+    char conferm;
+    cout << endl;
+    printItem(water(choice_in_useitem - 1));
+    cout << "Back to category [y/n] ";
+    cin >> conferm;
+    if (conferm == 'y') {
+      minus_item(weapon_item, choice_in_useitem);
+    }
+    else {
+      weapon_menu();
+    }
   }
   else
   {
@@ -213,14 +291,15 @@ void weapon_menu()
 //printing otheritem_menu
 void other_menu()
 {
+  cout << "----------" << endl << "Other" << endl << endl;
   int choice_in_useitem = 0;
-  cout << "1. Wilson the Volleyball: " << WilsontheVolleyball_number << endl;
-  cout << "2. Newspaper: " << Newspaper_number << endl;
-  cout << "3. Leaf: " << Leaf_number << endl;
-  cout << "4. Flashlight: " << Flashlight_number << endl;
-  cout << "5. Gameboy: " << Gameboy_number << endl;
-  cout << "6. Shell: " << Shell_number << endl;
-  cout << "7. Back: " << endl;
+  cout << "1. " << mystery(0).name << ": " << other_item[0] << endl;
+  cout << "2. " << mystery(1).name << ": " << other_item[1] << endl;
+  cout << "3. " << mystery(2).name << ": " << other_item[2] << endl;
+  cout << "4. " << mystery(3).name << ": " << other_item[3] << endl;
+  cout << "5. " << mystery(4).name << ": " << other_item[4] << endl;
+  cout << "6. " << mystery(5).name << ": " << other_item[5] << endl;
+  cout << "7. Back" << endl;
 
   //ensure that only with input 1-7 will proceed to next stage
   while (choice_in_useitem > 7 | choice_in_useitem < 1)
@@ -235,11 +314,21 @@ void other_menu()
 
   if (choice_in_useitem != 7)
   {
-    use_other(choice_in_useitem);
+    char conferm;
+    cout << endl;
+    printItem(mystery(choice_in_useitem - 1));
+    cout << "Are you sure to use " << mystery(choice_in_useitem - 1).name << " ? [y/n] ";
+    cin >> conferm;
+    if (conferm == 'y') {
+      minus_item(other_item, choice_in_useitem);
+    }
+    else {
+      other_menu();
+    }
   }
   else
   {
-    return item_menu();
+    item_menu();
   }
 }
 
@@ -247,4 +336,3 @@ int main()
 {
   item_menu();
 }
-
