@@ -1,3 +1,4 @@
+// data_attackers.cpp
 // stored datas of the attackers which will be used for fight event in the game
 #include <iostream>
 #include "structures.h"
