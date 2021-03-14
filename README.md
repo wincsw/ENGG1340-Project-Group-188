@@ -43,15 +43,15 @@ Our game is a text-based role-playing game that tries to simulate a person survi
     
   - Data structures for storing game status
 
-    Self-defined data structure `item` will be used to store the infomation of the items. 
+    Self-defined data structure `item` will be used to store the information of the items, which data structure of `array` and data types of `string` and `int` will be used in the `item` data structure. 
      
   - Dynamic memory management
     
-    The drawn item will be stored in dynamic memory by `new[]`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete[]`.
+    The drawn item will be stored in dynamic memory by `new`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete`.
   
   - Program codes in multiple files
     
-    Codes of the items' information and the drawing mechanism will be stored in separate files of `data_items.cpp` and `draw_item.cpp`. 
+    Codes of all the items' information and the drawing mechanism will be stored in separate files of `data_items.cpp` and `draw_item.cpp`. 
 
 - Random Event
 
@@ -64,7 +64,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   
   - Data structures for storing game status
 
-    Self-defined data structure `event` will be used to store the infomation of the items. 
+    Self-defined data structure `event` will be used to store the infomation of the items, which data structure of `array` and data types of `string` and `int` will be used in the `event` data structure. 
     
 - Fighting Attackers
   
@@ -73,7 +73,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   Coding element:
   - Data structures for storing game status
 
-    Self-defined data structure `item` will be used to store the infomation of the items. 
+    Self-defined data structure `attacker` will be used to store the infomation of the items, which data types of `string` and `int` will be used in the `attacker` data structure. 
   
   - Dynamic memory management
  
@@ -88,7 +88,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   Coding element:
   - Data structures for storing game status
     
-    Data structures will be used to store the game status components (e.g. the player status, the cards in the item pack).
+    Data structure of `array` will be used to store the game status components (e.g. the player status, the number of a specific item in the item pack).
     
   - File input/output
     
