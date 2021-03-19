@@ -2,9 +2,9 @@
 // Store all the resource item in five catagory 
 // -- water, food, medicine, weapon, mystery 
 
-# include <iostream>
-# include <string>
-# include "structures.h"
+#include <iostream>
+#include <string>
+#include "structures.h"
 
 using namespace std;
 
@@ -14,6 +14,7 @@ const int medicine_num = 5;
 const int weapon_num = 4;
 const int mystery_num = 6;
 
+// selecting the corrsponding item
 struct item choose(struct item category[], int len, int x, string name) {
   struct item choosen;
   if (x != -1) {
@@ -36,10 +37,9 @@ struct item choose(struct item category[], int len, int x, string name) {
 
 // Water Items
 // int x = -1 --> choose by name
-// string name = " " --> choose by index
+// string name = " " --> choose by index (default)
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
-struct item water(int x = -1, string name = " ") 
-{
+struct item water(int x, string name = " ") {
   struct item water_items[water_num];
   struct item choosen;
 
@@ -94,10 +94,9 @@ struct item water(int x = -1, string name = " ")
 
 // Food Items
 // int x = -1 --> choose by name
-// string name = " " --> choose by index
+// string name = " " --> choose by index (default)
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
-struct item food(int x = -1, string name = " ") 
-{
+struct item food(int x, string name = " ") {
   struct item food_items[food_num];
   struct item choosen;
 
@@ -154,10 +153,9 @@ struct item food(int x = -1, string name = " ")
 
 // Medicine Items
 // int x = -1 --> choose by name
-// string name = " " --> choose by index
+// string name = " " --> choose by index (default)
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
-struct item medicine(int x = -1, string name = " ") 
-{
+struct item medicine(int x, string name = " ") {
   struct item medicine_items[medicine_num];
   struct item choosen;
 
@@ -212,10 +210,9 @@ struct item medicine(int x = -1, string name = " ")
 
 // Weapon Items
 // int x = -1 --> choose by name
-// string name = " " --> choose by index
+// string name = " " --> choose by index (default)
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
-struct item weapon(int x = -1, string name = " ") 
-{
+struct item weapon(int x, string name = " ") {
   struct item weapon_items[weapon_num];
   struct item choosen;
 
@@ -248,6 +245,7 @@ struct item weapon(int x = -1, string name = " ")
   weapon_items[2].des = "This is a sharp sharp knife";
 
   // Spear
+  // only after event, cannot be drawn
   weapon_items[3].name = "Spear";
   weapon_items[3].effect[0] = 0;
   weapon_items[3].effect[1] = 0;
@@ -261,10 +259,9 @@ struct item weapon(int x = -1, string name = " ")
 
 // Mystery Items
 // int x = -1 --> choose by name
-// string name = " " --> choose by index
+// string name = " " --> choose by index (default)
 // effect --> [HP, Hydration, Hunger, Mentailty, ATK]
-struct item mystery(int x = -1, string name = " ") 
-{
+struct item mystery(int x, string name = " ") {
   struct item mystery_items[mystery_num];
   struct item choosen;
 
