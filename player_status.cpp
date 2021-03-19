@@ -1,6 +1,8 @@
-# include <iostream>
-# include <iomanip>
-# include <string>
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -17,6 +19,15 @@ void printStatus(int status[4]) {
   cout.width(9);
   cout << left << "Hunger" << ": " << status[2] << endl;
   cout.width(9);
-  cout << left <<"Mentality" << ": " << status[3] << endl;
+  cout << left << "Mentality" << ": " << status[3] << endl;
 }
 
+void dailyDrop(int status[4]) {
+  // random number generater
+  srand(time(NULL)); // set seed to time
+  int num1 = rand() % 5 + 1; // random in range [1, 5]
+  int num2 = rand() % 5 + 1; 
+
+  status[1] -= num1;  // hydration drop 
+  status[2] -= num2;  // hunger drop
+}
