@@ -5,7 +5,7 @@
 struct item draw();
 
 // draw 3 item every day
-struct item daily_draw()
+void dailyDraw(int wt[], int f[], int md[], int wp[], int my[]);
 
 #endif
 
