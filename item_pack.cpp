@@ -1,18 +1,25 @@
 // item_pack.cpp
+// item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count) to call menu
 // printing item pack and allow using the items
-// item_menu() can used to trigger all function
 # include <iostream>
 # include <string>
-# include <stdlib.h>     // allow to use system ("clean")
+# include <stdlib.h>     // allow to use system ("clear")
 # include <unistd.h>     // allow to use sleep()
 # include "data_items.h"
 # include "structures.h"
 # include "player_status.h"
 
 using namespace std;
+/* just for test
+const int water_num = 5;
+const int food_num = 5;
+const int medicine_num = 5;
+const int weapon_num = 4;
+const int mystery_num = 6;
+*/
 
 // call all the function at the beginning
-void item_menu();
+void item_menu(int water_count[], int food_count[], int medicine_count[], int weapon_count[], int other_count[]);
 void water_menu();
 void food_menu();
 void medicine_menu();
@@ -23,687 +30,441 @@ void use_food(int x);
 void use_medicine(int x);
 void use_weapon(int x);
 void use_other(int x);
+void printEffect(struct item object);
 
-// set the variables of items
-int cleanwater_number = 0, soda_number = 0, pee_number = 0, coconut_number = 0, dirtywater_number = 0;
-int meat_number = 0, wildberry_number = 0, worm_number = 0, mushroom_number = 0, energybar_number = 0;
-int herb_number = 0, pill_number = 0, bandage_number = 0, firstaidkit_number = 0, sedative_number = 0;
-int woodenstick_number = 0, rock_number = 0, knife_number = 0, spear_number = 0;
-int WilsontheVolleyball_number = 0, Newspaper_number = 0, Leaf_number = 0, Flashlight_number = 0, Gameboy_number = 0, Seashell_number = 0;
+// use arrays to store numbers of items
+// NOTE: this is tempory --> the official one should be in main.cpp
+int water_count[5] = {1};
+int food_count[5] = {1};
+int medicine_count[5] = {1};
+int weapon_count[4] = {1};
+int other_count[6] = {1};
 
-//extract datas from data_items.cpp for water
-struct item clean_water = water(0);
-struct item soda = water(1);
-struct item pee = water(2);
-struct item coconut = water(3);
-struct item dirty_water = water(4);
+// print the effect of the item
+void printEffect(struct item object)
+{
+  string status[] = {"HP", "Hydration", "Hunger", "Mentality", "ATK"};
+  int empty[] = {0, 0, 0, 0, 0};
 
-//extract datas from data_items.cpp for food
-struct item meat = food(1);
-struct item wildberry = food(2);
-struct item worm = food(3);
-struct item unknown_mushroom = food(4);
-struct item energy_bar = food(0);
+  if (object.effect == empty) {
+    cout << "USELESS" << endl;
+  }
+  else {
+    for (int i = 0; i < 4; i++) {
+      char sign;
+      if (object.effect[i] > 0) {
+        sign = '+';
+      }
+      else if (object.effect[i] < 0) {
+        sign = '-';
+      }
+      else {
+        continue;
+      }
+      cout << sign << object.effect[i] << " " << status[i] << endl;
+    }
+  }
+}
 
-//extract datas from data_items.cpp for medicine
-struct item herb = medicine(0);
-struct item pill = medicine(1);
-struct item bandage = medicine(2);
-struct item first_aid_kit = medicine(3);
-struct item sedative = medicine(4);
-
-//extract datas from data_items.cpp for weapon
-struct item wooden_stick = weapon(0);
-struct item rock = weapon(1);
-struct item knife = weapon(2);
-struct item spear = weapon(3);
-
-//extract datas from data_items.cpp for mystery item (others)
-struct item leaf = mystery(0);
-struct item newspaper = mystery(1);
-struct item wilson_the_volleyball = mystery(2);
-struct item flashlight = mystery(3);
-struct item gameboy = mystery(4);
-struct item seashell = mystery(5);
-
-// call from player_status.cpp
-//int temp_status[4];
 // show details about the items and allow to use the selected items
 void use_water(int x)
 {
   char choose_use_or_not = 'x';
-  switch (x)
-  {
-    case 1:
-    system("clear");
-    cout << clean_water.name << endl;
-    cout << clean_water.des << endl;
-    cout << "Effect: Hydration + 10" << endl;
-    cout << "Do you want to use? (You have " << cleanwater_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (cleanwater_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        cleanwater_number -= 1;
-        temp_status[1] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 2:
-    system("clear");
-    cout << soda.name << endl;
-    cout << soda.des << endl;
-    cout << "Effect: Hydration + 5 , Mental + 5" << endl;
-    cout << "Do you want to use? (You have " << soda_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (soda_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        soda_number -= 1;
-        temp_status[1] += 5;
-        temp_status[3] += 5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 3:
-    system("clear");
-    cout << pee.name << endl;
-    cout << pee.des << endl;
-    cout << "Effect: Hydration + 5 , Mental - 5" << endl;
-    cout << "Do you want to use? (You have " << pee_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (pee_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        pee_number -= 1;
-        temp_status[1] += 5;
-        temp_status[3] -=5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 4:
-    system("clear");
-    cout << coconut.name << endl;
-    cout << coconut.des << endl;
-    cout << "Effect: Hydration + 10" << endl;
-    cout << "Do you want to use? (You have " << coconut_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (coconut_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        coconut_number -= 1;
-        temp_status[1] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 5:
-    system("clear");
-    cout << dirty_water.name << endl;
-    cout << dirty_water.des << endl;
-    cout << "Effect: Hydration + 5 , HP - 5" << endl;
-    cout << "Do you want to use? (You have " << dirtywater_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (dirtywater_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        dirtywater_number -= 1;
-        temp_status[1] += 5;
-        temp_status[0] -= 5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 6:
-    return item_menu();
-    break;
-
-  }
-  cout << "Back to the menu!" << endl;
-  sleep(1);
   system("clear");
-  return water_menu();
+
+  while (true)
+  {
+    // call name and des directly by <water(x)> function
+    cout << water(x).name << endl;
+    cout << water(x).des << endl;
+    printEffect(water(x));
+    sleep(1);
+    cout << "Do you want to use? (You have " << water_count[x] << ' ' << water(x).name << ")"<< endl;
+    cout << "Y for use, other key to back" << endl;
+    cin >> choose_use_or_not;
+    if (choose_use_or_not == 'Y' || choose_use_or_not == 'y')
+    {
+      if (water_count[x] > 0)
+      {
+        sleep(1);
+        cout << water(x).name << " used!" << endl;
+        water_count[x] -= 1;
+        temp_status[0] += water(x).effect[0]; // directly use <water(x).effect>
+        temp_status[1] += water(x).effect[1];
+        temp_status[3] += water(x).effect[3];
+        // stop the loop and end this function
+        sleep(1);
+        system("clear");
+        break;
+      }// if user choose sth they don have --> let them choose again by looping
+      else
+      {
+        cout << "You do not have it!" << endl;
+        sleep(1);
+        cout << "Please choose something that you HAVE!" << endl;
+        sleep(1);
+        system("clear");
+        // back to menu
+        water_menu();
+        cin >> x;
+        continue;
+      }
+    }
+  // if input is not 'y' or 'Y':
+    cout << "Back to the menu!" << endl;
+    sleep(1);
+    system("clear");
+    // back to menu
+    water_menu();
+  }
 }
 
 
 void use_food(int x)
 {
   char choose_use_or_not = 'x';
-  switch (x)
-  {
-    case 1:
-    system("clear");
-    cout << meat.name << endl;
-    cout << meat.des << endl;
-    cout << "Effect: Hunger + 10" << endl;
-    cout << "Do you want to use? (You have " << meat_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (meat_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        meat_number -= 1;
-        temp_status[2] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 2:
-    system("clear");
-    cout << wildberry.name << endl;
-    cout << wildberry.des << endl;
-    cout << "Effect: Hunger + 5" << endl;
-    cout << "Do you want to use? (You have " << wildberry_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (wildberry_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        wildberry_number -= 1;
-        temp_status[2] += 5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 3:
-    system("clear");
-    cout << worm.name << endl;
-    cout << worm.des << endl;
-    cout << "Effect: Hunger + 10 , Mental - 10" << endl;
-    cout << "Do you want to use? (You have " << worm_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (worm_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        worm_number -= 1;
-        temp_status[2] += 10;
-        temp_status[3] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 4:
-    system("clear");
-    cout << unknown_mushroom.name << endl;
-    cout << unknown_mushroom.des << endl;
-    cout << "Effect: Hunger + 5 , HP - 5" << endl;
-    cout << "Do you want to use? (You have " << mushroom_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (mushroom_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        mushroom_number -= 1;
-        temp_status[2] += 5;
-        temp_status[0] -= 5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 5:
-    system("clear");
-    cout << energy_bar.name << endl;
-    cout << energy_bar.des << endl;
-    cout << "Effect: Hunger + 10" << endl;
-    cout << "Do you want to use? (You have " << energybar_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (energybar_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        energybar_number -= 1;
-        temp_status[2] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 6:
-    return item_menu();
-  }
-  cout << "Back to the menu!" << endl;
-  sleep(1);
   system("clear");
-  return food_menu();
+
+  while (true)
+  {
+    // call name and des directly by <food(x)> function
+    cout << food(x).name << endl;
+    cout << food(x).des << endl;
+    printEffect(food(x));
+    sleep(1);
+    cout << "Do you want to use? (You have " << food_count[x] << ' ' << food(x).name << ")"<< endl;
+    cout << "Y for use, other key to back" << endl;
+    cin >> choose_use_or_not;
+    if (choose_use_or_not == 'Y' || choose_use_or_not == 'y')
+    {
+      if (food_count[x] > 0)
+      {
+        sleep(1);
+        cout << food(x).name << " used!" << endl;
+        food_count[x] -= 1;
+        temp_status[0] += food(x).effect[0]; // directly use <water(x).effect>
+        temp_status[2] += food(x).effect[2];
+        temp_status[3] += food(x).effect[3];
+        sleep(1);
+        system("clear");
+        // stop the loop and end this function
+        break;
+      }// if user choose sth they don have --> let them choose again by looping
+      else
+      {
+        cout << "You do not have it!" << endl;
+        sleep(1);
+        cout << "Please choose something that you HAVE!" << endl;
+        sleep(1);
+        system("clear");
+        food_menu();
+        cin >> x;
+        continue;
+      }
+    }
+    cout << "Back to the menu!" << endl;
+    sleep(1);
+    system("clear");
+    // back to menu
+    food_menu();
+  }
 }
 
 void use_medicine(int x)
 {
   char choose_use_or_not = 'x';
-  switch (x)
-  {
-    case 1:
-    system("clear");
-    cout << herb.name << endl;
-    cout << herb.des << endl;
-    cout << "Effect: HP + 5" << endl;
-    cout << "Do you want to use? (You have " << herb_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (herb_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        herb_number -= 1;
-        temp_status[0] += 5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 2:
-    system("clear");
-    cout << pill.name << endl;
-    cout << pill.des << endl;
-    cout << "Effect: HP + 5" << endl;
-    cout << "Do you want to use? (You have " << pill_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (pill_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        pill_number -= 1;
-        temp_status[0] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 3:
-    system("clear");
-    cout << bandage.name << endl;
-    cout << bandage.des << endl;
-    cout << "Effect: HP + 15" << endl;
-    cout << "Do you want to use? (You have " << bandage_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (bandage_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        bandage_number -= 1;
-        temp_status[0] += 15;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 4:
-    system("clear");
-    cout << first_aid_kit.name << endl;
-    cout << first_aid_kit.des << endl;
-    cout << "Effect: HP + 50" << endl;
-    cout << "Do you want to use? (You have " << firstaidkit_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (firstaidkit_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        firstaidkit_number -= 1;
-        temp_status[0] += 50;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 5:
-    system("clear");
-    cout << sedative.name << endl;
-    cout << sedative.des << endl;
-    cout << "Effect: mental" << endl;
-    cout << "Do you want to use? (You have " << sedative_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (sedative_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        sedative_number -= 1;
-        temp_status[3] += 20;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 6:
-    return item_menu();
-  }
-  cout << "Back to the menu!" << endl;
-  sleep(1);
   system("clear");
-  return medicine_menu();
+
+  while (true)
+  {
+    // call name and des directly by <food(x)> function
+    cout << medicine(x).name << endl;
+    cout << medicine(x).des << endl;
+    printEffect(medicine(x));
+    sleep(1);
+
+    cout << "Do you want to use? (You have " << medicine_count[x] << ' ' << medicine(x).name << ")"<< endl;
+    cout << "Y for use, other key to back" << endl;
+    cin >> choose_use_or_not;
+
+    if (choose_use_or_not == 'Y' || choose_use_or_not == 'y')
+    {
+      if (medicine_count[x] > 0)
+      {
+        sleep(1);
+        cout << medicine(x).name << " used!" << endl;
+        medicine_count[x] -= 1;
+        temp_status[0] += medicine(x).effect[0]; // directly use <medicine(x).effect>
+        temp_status[3] += medicine(x).effect[3];
+        sleep(1);
+        system("clear");
+        // stop the loop and end this function
+        break;
+      }// if user choose sth they don have --> let them choose again by looping
+      else
+      {
+        cout << "You do not have it!" << endl;
+        sleep(1);
+        cout << "Please choose something that you HAVE!" << endl;
+        sleep(1);
+        system("clear");
+        // back to menu
+        medicine_menu();
+        cin >> x;
+        continue;
+      }
+    }
+    cout << "Back to the menu!" << endl;
+    sleep(1);
+    system("clear");
+    medicine_menu();
+  }
 }
 
 void use_weapon(int x)
 {
   char choose_use_or_not = 'x';
-  switch (x)
-  {
-    case 1:
-    system("clear");
-    cout << wooden_stick.name << endl;
-    cout << wooden_stick.des << endl;
-    cout << "Effect: ATK = 5" << endl;
-    cout << "You have " << woodenstick_number << endl;
-    cout << "Enter any key to back" << endl;
-
-    // allow the other to choose when to leave
-    cin >> choose_use_or_not;
-
-    break;
-
-    case 2:
-    system("clear");
-    cout << rock.name << endl;
-    cout << rock.des << endl;
-    cout << "Effect: ATK = 15" << endl;
-    cout << "You have " << rock_number << endl;
-    cout << "Enter any key to back" << endl;
-
-    // allow the other to choose when to leave
-    cin >> choose_use_or_not;
-
-    break;
-
-    case 3:
-    system("clear");
-    cout << knife.name << endl;
-    cout << knife.des << endl;
-    cout << "Effect: ATK = 15" << endl;
-    cout << "You have " << knife_number << endl;
-    cout << "Enter any key to back" << endl;
-
-    // allow the other to choose when to leave
-    cin >> choose_use_or_not;
-
-    break;
-
-    case 4:
-    system("clear");
-    cout << spear.name << endl;
-    cout << spear.des << endl;
-    cout << "Effect: ATK : 20" << endl;
-    cout << "You have " << spear_number << endl;
-    cout << "Enter any key to back" << endl;
-
-    // allow the other to choose when to leave
-    cin >> choose_use_or_not;
-
-    break;
-
-    case 5:
-    return item_menu();
-  }
   system("clear");
-  return weapon_menu();
+
+  while (true)
+  {
+    // call name and des directly by <food(x)> function
+    cout << weapon(x).name << endl;
+    cout << weapon(x).des << endl;
+    printEffect(weapon(x));
+    sleep(1);
+
+    cout << "You have " << weapon_count[x] << ' ' << weapon(x).name << endl;
+    cout << "key to back" << endl;
+    cin >> choose_use_or_not;
+    break;
+  }
+  cout << "Back to the menu!" << endl;
+  sleep(1);
+  system("clear");
 }
 
 void use_other(int x)
 {
   char choose_use_or_not = 'x';
-  switch (x)
-  {
-    case 1:
-    system("clear");
-    cout << wilson_the_volleyball.name << endl;
-    cout << wilson_the_volleyball.des << endl;
-    cout << "Effect: Mental + 5" << endl;
-    cout << "Do you want to use? (You have " << WilsontheVolleyball_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (WilsontheVolleyball_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        WilsontheVolleyball_number -= 1;
-        temp_status[3] += 5;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 2:
-    system("clear");
-    cout << newspaper.name << endl;
-    cout << newspaper.des << endl;
-    cout << "Effect: No use" << endl;
-    cout << "You have " << Newspaper_number << endl;
-    cout << "Enter any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    break;
-
-    case 3:
-    system("clear");
-    cout << leaf.name << endl;
-    cout << leaf.des << endl;
-    cout << "Effect: No use" << endl;
-    cout << "You have " << Leaf_number << endl;
-    cout << "Enter any key to back" << endl;
-
-    cin >> choose_use_or_not;
-    break;
-
-    case 4:
-    system("clear");
-    cout << flashlight.name << endl;
-    cout << flashlight.des << endl;
-    cout << "Effect: mystery" << endl;
-    cout << "You have " << Flashlight_number << endl;
-    cout << "You cannot use it right now" << endl;
-    cout << "Enter any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    break;
-
-    case 5:
-    system("clear");
-    cout << gameboy.name << endl;
-    cout << gameboy.des << endl;
-    cout << "Effect: mental + 10" << endl;
-    cout << "Do you want to use? (You have " << Gameboy_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (Gameboy_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        Gameboy_number -= 1;
-        temp_status[3] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 6:
-    system("clear");
-    cout << seashell.name << endl;
-    cout << seashell.des << endl;
-    cout << "Effect: mental + 5" << endl;
-    cout << "Do you want to use? (You have " << Seashell_number << ")"<< endl;
-    cout << "Y for use, any key to back" << endl;
-
-    cin >> choose_use_or_not;
-
-    if (choose_use_or_not == 'Y' | choose_use_or_not == 'y')
-    {
-      if (Seashell_number > 0)
-      {
-        sleep(1);
-        cout << "used!" << endl;
-        Seashell_number -= 1;
-        temp_status[3] += 10;
-      }
-      else
-      {
-        cout << "You do not have it!" << endl;
-      }
-    }
-    break;
-
-    case 7:
-    return item_menu();
-  }
-  cout << "Back to the menu!" << endl;
-  sleep(1);
   system("clear");
-  return other_menu();
+
+  while (true)
+  {
+    // call name and des directly by <food(x)> function
+    cout << mystery(x).name << endl;
+    cout << mystery(x).des << endl;
+    printEffect(mystery(x));
+    sleep(1);
+
+    cout << "Do you want to use? (You have " << other_count[x] << ' ' << mystery(x).name << ")"<< endl;
+    cout << "Y for use, other key to back" << endl;
+    cin >> choose_use_or_not;
+
+    if (choose_use_or_not == 'Y' || choose_use_or_not == 'y')
+    {
+      if (other_count[x] > 0)
+      {
+        sleep(1);
+        cout << mystery(x).name << " used!" << endl;
+        other_count[x] -= 1;
+        temp_status[3] += mystery(x).effect[3]; // directly use <medicine(x).effect>
+        sleep(1);
+        system("clear");
+        // stop the loop and end this function
+        break;
+      }// if user choose sth they don have --> let them choose again by looping
+      else
+      {
+        cout << "You do not have it!" << endl;
+        sleep(1);
+        cout << "Please choose something that you HAVE!" << endl;
+        sleep(1);
+        system("clear");
+        other_menu();
+        cin >> x;
+        continue;
+      }
+    }
+    cout << "Back to the menu!" << endl;
+    sleep(1);
+    system("clear");
+    other_menu();
+  }
 }
 
-// all the function below are for the menu
+void water_menu()
+{
+  int choice_in_useitem = 0;
+  cout << "Water Menu" << endl;
+  cout << "1. " << water(0).name << ": " << water_count[0] << endl;  // Clean Water
+  cout << "2. " << water(1).name << ": " << water_count[1] << endl;  // Soda
+  cout << "3. " << water(2).name << ": " << water_count[2] << endl;  // Pee
+  cout << "4. " << water(3).name << ": " << water_count[3] << endl;  // Cocunut
+  cout << "5. " << water(4).name << ": " << water_count[4] << endl;  // Dirty Water
+  cout << "6. Back " << endl;
+
+  //ensure that only with input 1-5 will proceed to next stage
+
+  while (choice_in_useitem > 6 | choice_in_useitem < 1)
+  {
+    cout << "Which one do you want to choose?" << endl;
+    cin >> choice_in_useitem;
+    if (choice_in_useitem > water_num + 1 || choice_in_useitem < 1)
+    {
+      cout << "Invaild input, please input again!" << endl;
+    }
+  }
+  if (choice_in_useitem != water_num + 1)
+  {
+    use_water(choice_in_useitem - 1);
+    water_menu();
+  }
+  else
+  {
+  item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+  }
+}
+
+//printing fooditem_menu, include number of card the player had and allow to proceed to use
+void food_menu()
+{
+  int choice_in_useitem = 0;
+  cout << "Food Menu" << endl;
+  cout << "1. " << food(0).name << ": " << food_count[0] << endl;  // Energy Bar
+  cout << "2. " << food(1).name << ": " << food_count[1] << endl;  // Meat
+  cout << "3. " << food(2).name << ": " << food_count[2] << endl;  // Wild Berry
+  cout << "4. " << food(3).name << ": " << food_count[3] << endl;  // Worm
+  cout << "5. " << food(4).name << ": " << food_count[4] << endl;  // Unknown Mushroom
+  cout << "6. Back " << endl;
+
+  //ensure that only with input 1-5 will proceed to next stage
+
+  while (choice_in_useitem > 6 | choice_in_useitem < 1)
+  {
+    cout << "Which one do you want to choose?" << endl;
+    cin >> choice_in_useitem;
+    if (choice_in_useitem > food_num + 1 || choice_in_useitem < 1)
+    {
+      cout << "Invaild input, please input again!" << endl;
+    }
+  }
+  if (choice_in_useitem != food_num + 1)
+  {
+    use_food(choice_in_useitem - 1);
+    food_menu();
+  }
+  else
+  {
+    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+  }
+}
+
+//printing medicineitem_menu, include number of card the player had and allow to proceed to use
+void medicine_menu()
+{
+  int choice_in_useitem = 0;
+  cout << "Medicine Menu" << endl;
+  cout << "1. " << medicine(0).name << ": " << medicine_count[0] << endl;  // Herb
+  cout << "2. " << medicine(1).name << ": " << medicine_count[1] << endl;  // Pill
+  cout << "3. " << medicine(2).name << ": " << medicine_count[2] << endl;  // Bandage
+  cout << "4. " << medicine(3).name << ": " << medicine_count[3] << endl;  // First Aid Kit
+  cout << "5. " << medicine(4).name << ": " << medicine_count[4] << endl;  // Sedative
+  cout << "6. Back " << endl;
+
+  //ensure that only with input 1-5 will proceed to next stage
+
+  while (choice_in_useitem > 6 | choice_in_useitem < 1)
+  {
+    cout << "Which one do you want to choose?" << endl;
+    cin >> choice_in_useitem;
+    if (choice_in_useitem > medicine_num + 1 || choice_in_useitem < 1)
+    {
+      cout << "Invaild input, please input again!" << endl;
+    }
+  }
+  if (choice_in_useitem != medicine_num + 1)
+  {
+    use_medicine(choice_in_useitem - 1);
+    medicine_menu();
+  }
+  else
+  {
+    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+  }
+}
+
+//printing weapon item_menu, include number of card the player had and allow to proceed to use
+void weapon_menu()
+{
+  int choice_in_useitem = 0;
+  cout << "Weapon Menu" << endl;
+  cout << "1. " << weapon(0).name << ": " << weapon_count[0] << endl;  // Wooden Stick
+  cout << "2. " << weapon(1).name << ": " << weapon_count[1] << endl;  // Rock
+  cout << "3. " << weapon(2).name << ": " << weapon_count[2] << endl;  // Knife
+  cout << "4. " << weapon(3).name << ": " << weapon_count[3] << endl;  // Spear
+  cout << "5. Back " << endl;
+
+  //ensure that only with input 1-5 will proceed to next stage
+
+  while (choice_in_useitem > 5 | choice_in_useitem < 1)
+  {
+    cout << "Weapon can only be used in fight." << endl;
+    cout << "Which one do you want to see?" << endl;
+    cin >> choice_in_useitem;
+    if (choice_in_useitem > weapon_num + 1 || choice_in_useitem < 1)
+    {
+      cout << "Invaild input, please input again!" << endl;
+    }
+  }
+  if (choice_in_useitem != weapon_num + 1)
+  {
+    use_weapon(choice_in_useitem - 1);
+    weapon_menu();
+  }
+  else
+  {
+    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+  }
+}
+
+//printing otheritem_menu
+void other_menu()
+{
+  int choice_in_useitem = 0;
+  cout << "Other Items Menu" << endl;
+  cout << "1. " << mystery(0).name << ": " << other_count[0] << endl;  // Leaf
+  cout << "2. " << mystery(1).name << ": " << other_count[1] << endl;  // Newspaper
+  cout << "3. " << mystery(2).name << ": " << other_count[2] << endl;  // Wilson the Volleyball
+  cout << "4. " << mystery(3).name << ": " << other_count[3] << endl;  // Flashlight
+  cout << "5. " << mystery(4).name << ": " << other_count[4] << endl;  // Gameboy
+  cout << "6. " << mystery(5).name << ": " << other_count[5] << endl;  // Seashell
+  cout << "7. Back " << endl;
+
+  //ensure that only with input 1-5 will proceed to next stage
+
+  while (choice_in_useitem > 7 | choice_in_useitem < 1)
+  {
+    cout << "Which one do you want to choose?" << endl;
+    cin >> choice_in_useitem;
+    if (choice_in_useitem > mystery_num + 1 || choice_in_useitem < 1)
+    {
+      cout << "Invaild input, please input again!" << endl;
+    }
+  }
+  if (choice_in_useitem != mystery_num + 1)
+  {
+    use_other(choice_in_useitem - 1);
+    other_menu();
+  }
+  else
+  {
+    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+  }
+}
+
 // item_menu() printing the main item menu
-void item_menu()
+void item_menu(int water_count[], int food_count[], int medicine_count[], int weapon_count[], int other_count[])
 {
   // clear the page first to make tidier
   system("clear");
@@ -728,177 +489,19 @@ void item_menu()
     }
   }
   system("clear");
-  if (choice_in_mainmeun == 1)  water_menu();
-  if (choice_in_mainmeun == 2)  food_menu();
-  if (choice_in_mainmeun == 3)  medicine_menu();
-  if (choice_in_mainmeun == 4)  weapon_menu();
-  if (choice_in_mainmeun == 5)  other_menu();
-}
 
-//printing wateritem_menu, include number of card the player had and allow to proceed to use
-void water_menu()
-{
-  int choice_in_useitem = 0;
-  cout << "Water Menu" << endl;
-  cout << "1. Clean Water: " << cleanwater_number << endl;
-  cout << "2. Soda: " << soda_number << endl;
-  cout << "3. Pee: " << pee_number << endl;
-  cout << "4. Coconut: " << coconut_number << endl;
-  cout << "5. Dirty water: " << dirtywater_number << endl;
-  cout << "6. Back " << endl;
+  if (choice_in_mainmeun == 1)
+    water_menu();
+  if (choice_in_mainmeun == 2)
+    food_menu();
+  if (choice_in_mainmeun == 3)
+    medicine_menu();
+  if (choice_in_mainmeun == 4)
+    weapon_menu();
+  if (choice_in_mainmeun == 5)
+    other_menu();
 
-  //ensure that only with input 1-5 will proceed to next stage
-  while (choice_in_useitem > 6 | choice_in_useitem < 1)
-  {
-    cout << "Which one do you want to choose?" << endl;
-    cin >> choice_in_useitem;
-    if (choice_in_useitem > 6 | choice_in_useitem < 1)
-    {
-    cout << "Invaild input, please input again!" << endl;
-    }
-  }
-
-  if (choice_in_useitem != 6)
-  {
-    use_water(choice_in_useitem);
-  }
-  else
-  {
-    return item_menu();
-  }
-}
-
-//printing fooditem_menu, include number of card the player had and allow to proceed to use
-void food_menu()
-{
-  int choice_in_useitem = 0;
-  cout << "Food Menu" << endl;
-  cout << "1. Meat: " << meat_number << endl;
-  cout << "2. Wild Berry: " << wildberry_number << endl;
-  cout << "3. Worm: " << worm_number<< endl;
-  cout << "4. Unknown Mushroom: " << mushroom_number << endl;
-  cout << "5. Energy Bar: " << energybar_number << endl;
-  cout << "6. Back " << endl;
-
-  //ensure that only with input 1-5 will proceed to next stage
-  while (choice_in_useitem > 6 | choice_in_useitem < 1)
-  {
-    cout << "Which one do you want to choose?" << endl;
-    cin >> choice_in_useitem;
-    if (choice_in_useitem > 6 | choice_in_useitem < 1)
-    {
-    cout << "Invaild input, please input again!" << endl;
-    }
-  }
-
-  if (choice_in_useitem != 6)
-  {
-    use_food(choice_in_useitem);
-  }
-  else
-  {
-    return item_menu();
-  }
-}
-
-//printing medicineitem_menu, include number of card the player had and allow to proceed to use
-void medicine_menu()
-{
-  int choice_in_useitem = 0;
-  cout << "Medicine Menu" << endl;
-  cout << "1. Herb: " << herb_number << endl;
-  cout << "2. Pill: " << pill_number << endl;
-  cout << "3. Bandage: " << bandage_number<< endl;
-  cout << "4. First Aid Kit: " << firstaidkit_number << endl;
-  cout << "5. Sedative: " << sedative_number << endl;
-  cout << "6. Back " << endl;
-
-  //ensure that only with input 1-5 will proceed to next stage
-  while (choice_in_useitem > 6 | choice_in_useitem < 1)
-  {
-    cout << "Which one do you want to choose?" << endl;
-    cin >> choice_in_useitem;
-    if (choice_in_useitem > 6 | choice_in_useitem < 1)
-    {
-    cout << "Invaild input, please input again!" << endl;
-    }
-  }
-
-  if (choice_in_useitem != 6)
-  {
-    use_medicine(choice_in_useitem);
-  }
-  else
-  {
-    return item_menu();
-  }
-}
-
-//printing weapon item_menu, include number of card the player had and allow to proceed to use
-void weapon_menu()
-{
-  int choice_in_useitem = 0;
-  cout << "Weapon Menu" << endl;
-  cout << "1. Wooden Stick: " << woodenstick_number << endl;
-  cout << "2. Rock: " << rock_number << endl;
-  cout << "3. Knife: " << knife_number<< endl;
-  cout << "4. Spear: " << spear_number << endl;
-  cout << "5. Back " << endl;
-  cout << "You can only use the weapon during fight!"<<
-           "But you can see the description of it" << endl;
-
-  //ensure that only with input 1-5 will proceed to next stage
-  while (choice_in_useitem > 5 | choice_in_useitem < 1)
-  {
-    cout << "Which one do you want to choose?" << endl;
-    cin >> choice_in_useitem;
-    if (choice_in_useitem > 5 | choice_in_useitem < 1)
-    {
-    cout << "Invaild input, please input again!" << endl;
-    }
-  }
-
-  if (choice_in_useitem != 5)
-  {
-    use_weapon(choice_in_useitem);
-  }
-  else
-  {
-    return item_menu();
-  }
-}
-
-//printing otheritem_menu
-void other_menu()
-{
-  int choice_in_useitem = 0;
-  cout << "Other Menu" << endl;
-  cout << "1. Wilson the Volleyball: " << WilsontheVolleyball_number << endl;
-  cout << "2. Newspaper: " << Newspaper_number << endl;
-  cout << "3. Leaf: " << Leaf_number << endl;
-  cout << "4. Flashlight: " << Flashlight_number << endl;
-  cout << "5. Gameboy: " << Gameboy_number << endl;
-  cout << "6. Seashell: " << Seashell_number << endl;
-  cout << "7. Back " << endl;
-
-  //ensure that only with input 1-7 will proceed to next stage
-  while (choice_in_useitem > 7 | choice_in_useitem < 1)
-  {
-    cout << "Which one do you want to choose?" << endl;
-    cin >> choice_in_useitem;
-    if (choice_in_useitem > 7 | choice_in_useitem < 1)
-    {
-    cout << "Invaild input, please input again!" << endl;
-    }
-  }
-
-  if (choice_in_useitem != 7)
-  {
-    use_other(choice_in_useitem);
-  }
-  else
-  {
-    return item_menu();
-  }
+  // exicute the function again for user to continue choosing untill they choose quit
+  item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
 }
 
