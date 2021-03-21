@@ -1,45 +1,78 @@
 // data_attackers.cpp
 // stored datas of the attackers which will be used for fight event in the game
 #include <iostream>
+#include <string>
 #include "structures.h"
 
+using namespace std;
 
-attacker bear;
-bear.name = "Bear";
-bear.hp = 100;
-bear.atk = 10;
-bear.lost = 25;
-bear.item = "Meat";
-bear.des = "This is a bear!";
+const int attacker_num = 5;
 
-attacker crocodile;
-crocodile.name = "Crocodile";
-crocodile.hp = 80;
-crocodile.atk = 15;
-crocodile.lost = 25;
-crocodile.item = "Meat";
-crocodile.des = "This is a crocodile!";
+// selecting the corrsponding item
+struct attacker choose(struct attacker category[], int len, int x, string name) {
+  struct attacker choosen;
+  if (x != -1) {
+    for (int i = 0; i < len; i++) {
+      if (i == x) {
+        choosen = category[i];
+      }
+    }
+  }
+  else {
+    for (int i = 0; i < len; i++) {
+      if (category[i].name == name) {
+        choosen = category[i];
+      }
+    }
+  }
 
-attacker wolf;
-wolf.name = "Wolf";
-wolf.hp = 60;
-wolf.atk = 20;
-wolf.lost = 25;
-wolf.item = "Meat";
-wolf.des = "This is a wolf!";
+  return choosen;
+}
 
-attacker cannibal;
-cannibal.name = "Cannibal";
-cannibal.hp = 100;
-cannibal.atk = 15;
-cannibal.lost = 50;
-cannibal.item = "Spear";
-cannibal.des = "This is a cannibal!";
+// changed: <struc> cannot be global variable (sorry that I didn't tell you) --> use function to access (same as the one in <data_items.cpp>)
 
-attacker zombie;
-zombie.name = "Zombie";
-zombie.hp = 50;
-zombie.atk = 15;
-zombie.lost = 50;
-zombie.des = "This is a zombie!";
+// Attackers
+// int x = -1 --> choose by name
+// string name = " " --> choose by index (default)
+// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+struct attacker attackers(int x, string name = " ") {
+  struct attacker all[attacker_num];
+  struct attacker choosen;
 
+  all[0].name = "Bear";
+  all[0].hp = 100;
+  all[0].atk = 10;
+  all[0].lost = 25;
+  all[0].item = "Meat";
+  all[0].des = "This is a bear!";
+
+  all[1].name = "Crocodile";
+  all[1].hp = 80;
+  all[1].atk = 15;
+  all[1].lost = 25;
+  all[1].item = "Meat";
+  all[1].des = "This is a crocodile!";
+
+  all[2].name = "Wolf";
+  all[2].hp = 60;
+  all[2].atk = 20;
+  all[2].lost = 25;
+  all[2].item = "Meat";
+  all[2].des = "This is a wolf!";
+
+  all[3].name = "Cannibal";
+  all[3].hp = 100;
+  all[3].atk = 15;
+  all[3].lost = 50;
+  all[3].item = "Spear";
+  all[3].des = "This is a cannibal!";
+
+  all[4].name = "Zombie";
+  all[4].hp = 50;
+  all[4].atk = 15;
+  all[4].lost = 50;
+  all[4].des = "This is a zombie!";
+
+  return choose(all, attacker_num, x, name);
+
+}
