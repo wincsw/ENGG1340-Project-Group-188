@@ -306,7 +306,7 @@ void water_menu()
 
   //ensure that only with input 1-5 will proceed to next stage
 
-  while (choice_in_useitem > 6 | choice_in_useitem < 1)
+  while (choice_in_useitem > 6 || choice_in_useitem < 1)
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
@@ -340,7 +340,7 @@ void food_menu()
 
   //ensure that only with input 1-5 will proceed to next stage
 
-  while (choice_in_useitem > 6 | choice_in_useitem < 1)
+  while (choice_in_useitem > 6 || choice_in_useitem < 1)
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
@@ -374,7 +374,7 @@ void medicine_menu()
 
   //ensure that only with input 1-5 will proceed to next stage
 
-  while (choice_in_useitem > 6 | choice_in_useitem < 1)
+  while (choice_in_useitem > 6 || choice_in_useitem < 1)
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
@@ -407,7 +407,7 @@ void weapon_menu()
 
   //ensure that only with input 1-5 will proceed to next stage
 
-  while (choice_in_useitem > 5 | choice_in_useitem < 1)
+  while (choice_in_useitem > 5 || choice_in_useitem < 1)
   {
     cout << "Weapon can only be used in fight." << endl;
     cout << "Which one do you want to see?" << endl;
@@ -443,7 +443,7 @@ void other_menu()
 
   //ensure that only with input 1-5 will proceed to next stage
 
-  while (choice_in_useitem > 7 | choice_in_useitem < 1)
+  while (choice_in_useitem > 7 || choice_in_useitem < 1)
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
@@ -479,11 +479,11 @@ void item_menu(int water_count[], int food_count[], int medicine_count[], int we
   cout << "6. Quit" << endl;
 
   //ensure that only with input 1-6 will proceed to next stage
-  while (choice_in_mainmeun > 6 | choice_in_mainmeun < 1)
+  while (choice_in_mainmeun > 6 || choice_in_mainmeun < 1)
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_mainmeun;
-    if (choice_in_mainmeun > 6 | choice_in_mainmeun < 1)
+    if (choice_in_mainmeun > 6 || choice_in_mainmeun < 1)
     {
     cout << "Invaild input, please input again!" << endl;
     }
