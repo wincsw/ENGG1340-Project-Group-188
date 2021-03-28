@@ -8,6 +8,6 @@ extern const int attacker_num;
 struct attacker choose(struct attacker category[], int len, int x, std::string name);
 
 // call attackers 
-struct item attackers(int x, std::string name = " ");
+struct attacker attackers(int x, std::string name = " ");
 
 #endif

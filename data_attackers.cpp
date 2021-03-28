@@ -43,34 +43,40 @@ struct attacker attackers(int x, string name = " ") {
   all[0].hp = 100;
   all[0].atk = 10;
   all[0].lost = 25;
-  all[0].item = "Meat";
+  all[0].item[0] = 1;
+  all[0].item[1] = 1;
   all[0].des = "This is a bear!";
 
   all[1].name = "Crocodile";
   all[1].hp = 80;
   all[1].atk = 15;
   all[1].lost = 25;
-  all[1].item = "Meat";
+  all[1].item[0] = 1;
+  all[1].item[1] = 1;
   all[1].des = "This is a crocodile!";
 
   all[2].name = "Wolf";
   all[2].hp = 60;
   all[2].atk = 20;
   all[2].lost = 25;
-  all[2].item = "Meat";
+  all[2].item[0] = 1;
+  all[2].item[1] = 1;
   all[2].des = "This is a wolf!";
 
   all[3].name = "Cannibal";
   all[3].hp = 100;
   all[3].atk = 15;
   all[3].lost = 50;
-  all[3].item = "Spear";
+  all[3].item[0] = 2;
+  all[3].item[1] = 3;
   all[3].des = "This is a cannibal!";
 
   all[4].name = "Zombie";
   all[4].hp = 50;
   all[4].atk = 15;
   all[4].lost = 50;
+  all[4].item[0] = 0;
+  all[4].item[1] = 0;
   all[4].des = "This is a zombie!";
 
   return choose(all, attacker_num, x, name);
