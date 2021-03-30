@@ -5,40 +5,12 @@
 # include <string>
 # include <stdlib.h>     // allow to use system ("clear")
 # include <unistd.h>     // allow to use sleep()
-# include "data_items.h"
-# include "structures.h"
-# include "player_status.h"
+# include "data_items.h"  // for item datas
+# include "structures.h"  // for structures
+# include "player_status.h" // for temp_status[]
 
 using namespace std;
-/* just for test
-const int water_num = 5;
-const int food_num = 5;
-const int medicine_num = 5;
-const int weapon_num = 4;
-const int mystery_num = 6;
-*/
 
-// call all the function at the beginning
-void item_menu(int water_count[], int food_count[], int medicine_count[], int weapon_count[], int other_count[]);
-void water_menu();
-void food_menu();
-void medicine_menu();
-void weapon_menu();
-void other_menu();
-void use_water(int x);
-void use_food(int x);
-void use_medicine(int x);
-void use_weapon(int x);
-void use_other(int x);
-void printEffect(struct item object);
-
-// use arrays to store numbers of items
-// NOTE: this is tempory --> the official one should be in main.cpp
-int water_count[5] = {1};
-int food_count[5] = {1};
-int medicine_count[5] = {1};
-int weapon_count[4] = {1};
-int other_count[6] = {1};
 
 // print the effect of the item
 void printEffect(struct item object)
@@ -50,13 +22,13 @@ void printEffect(struct item object)
     cout << "USELESS" << endl;
   }
   else {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       char sign;
       if (object.effect[i] > 0) {
         sign = '+';
       }
       else if (object.effect[i] < 0) {
-        sign = '-';
+        sign = '\0';
       }
       else {
         continue;
@@ -67,7 +39,7 @@ void printEffect(struct item object)
 }
 
 // show details about the items and allow to use the selected items
-void use_water(int x)
+void use_water(int x, int water_count[], int status[])
 {
   char choose_use_or_not = 'x';
   system("clear");
@@ -89,9 +61,9 @@ void use_water(int x)
         sleep(1);
         cout << water(x).name << " used!" << endl;
         water_count[x] -= 1;
-        temp_status[0] += water(x).effect[0]; // directly use <water(x).effect>
-        temp_status[1] += water(x).effect[1];
-        temp_status[3] += water(x).effect[3];
+        status[0] += water(x).effect[0]; // directly use <water(x).effect>
+        status[1] += water(x).effect[1];
+        status[3] += water(x).effect[3];
         // stop the loop and end this function
         sleep(1);
         system("clear");
@@ -105,22 +77,19 @@ void use_water(int x)
         sleep(1);
         system("clear");
         // back to menu
-        water_menu();
-        cin >> x;
-        continue;
+        return;
       }
     }
   // if input is not 'y' or 'Y':
     cout << "Back to the menu!" << endl;
     sleep(1);
     system("clear");
-    // back to menu
-    water_menu();
+    return;
   }
 }
 
 
-void use_food(int x)
+void use_food(int x, int food_count[], int status[])
 {
   char choose_use_or_not = 'x';
   system("clear");
@@ -142,9 +111,9 @@ void use_food(int x)
         sleep(1);
         cout << food(x).name << " used!" << endl;
         food_count[x] -= 1;
-        temp_status[0] += food(x).effect[0]; // directly use <water(x).effect>
-        temp_status[2] += food(x).effect[2];
-        temp_status[3] += food(x).effect[3];
+        status[0] += food(x).effect[0]; // directly use <water(x).effect>
+        status[2] += food(x).effect[2];
+        status[3] += food(x).effect[3];
         sleep(1);
         system("clear");
         // stop the loop and end this function
@@ -157,20 +126,17 @@ void use_food(int x)
         cout << "Please choose something that you HAVE!" << endl;
         sleep(1);
         system("clear");
-        food_menu();
-        cin >> x;
-        continue;
+        return;
       }
     }
     cout << "Back to the menu!" << endl;
     sleep(1);
     system("clear");
-    // back to menu
-    food_menu();
+    return;
   }
 }
 
-void use_medicine(int x)
+void use_medicine(int x, int medicine_count[], int status[])
 {
   char choose_use_or_not = 'x';
   system("clear");
@@ -194,8 +160,8 @@ void use_medicine(int x)
         sleep(1);
         cout << medicine(x).name << " used!" << endl;
         medicine_count[x] -= 1;
-        temp_status[0] += medicine(x).effect[0]; // directly use <medicine(x).effect>
-        temp_status[3] += medicine(x).effect[3];
+        status[0] += medicine(x).effect[0]; // directly use <medicine(x).effect>
+        status[3] += medicine(x).effect[3];
         sleep(1);
         system("clear");
         // stop the loop and end this function
@@ -209,19 +175,17 @@ void use_medicine(int x)
         sleep(1);
         system("clear");
         // back to menu
-        medicine_menu();
-        cin >> x;
-        continue;
+        return;
       }
     }
     cout << "Back to the menu!" << endl;
     sleep(1);
     system("clear");
-    medicine_menu();
+    return;
   }
 }
 
-void use_weapon(int x)
+void use_weapon(int x, int weapon_count[], int status[])
 {
   char choose_use_or_not = 'x';
   system("clear");
@@ -235,7 +199,7 @@ void use_weapon(int x)
     sleep(1);
 
     cout << "You have " << weapon_count[x] << ' ' << weapon(x).name << endl;
-    cout << "key to back" << endl;
+    cout << "Press any key to back" << endl;
     cin >> choose_use_or_not;
     break;
   }
@@ -244,7 +208,7 @@ void use_weapon(int x)
   system("clear");
 }
 
-void use_other(int x)
+void use_other(int x, int other_count[], int status[])
 {
   char choose_use_or_not = 'x';
   system("clear");
@@ -268,7 +232,7 @@ void use_other(int x)
         sleep(1);
         cout << mystery(x).name << " used!" << endl;
         other_count[x] -= 1;
-        temp_status[3] += mystery(x).effect[3]; // directly use <medicine(x).effect>
+        status[3] += mystery(x).effect[3]; // directly use <medicine(x).effect>
         sleep(1);
         system("clear");
         // stop the loop and end this function
@@ -281,19 +245,18 @@ void use_other(int x)
         cout << "Please choose something that you HAVE!" << endl;
         sleep(1);
         system("clear");
-        other_menu();
-        cin >> x;
-        continue;
+        return;
       }
     }
     cout << "Back to the menu!" << endl;
     sleep(1);
     system("clear");
-    other_menu();
+    return;
+    //other_menu(other_count);
   }
 }
 
-void water_menu()
+void water_menu(int water_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Water Menu" << endl;
@@ -310,24 +273,24 @@ void water_menu()
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
-    if (choice_in_useitem > water_num + 1 || choice_in_useitem < 1)
+    if (choice_in_useitem > 5 + 1 || choice_in_useitem < 1)
     {
       cout << "Invaild input, please input again!" << endl;
     }
   }
-  if (choice_in_useitem != water_num + 1)
+  if (choice_in_useitem != 5 + 1)
   {
-    use_water(choice_in_useitem - 1);
-    water_menu();
+    use_water(choice_in_useitem - 1, water_count, status);
+    water_menu(water_count, status);
   }
   else
   {
-  item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+    return;
   }
 }
 
 //printing fooditem_menu, include number of card the player had and allow to proceed to use
-void food_menu()
+void food_menu(int food_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Food Menu" << endl;
@@ -344,24 +307,24 @@ void food_menu()
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
-    if (choice_in_useitem > food_num + 1 || choice_in_useitem < 1)
+    if (choice_in_useitem > 5 + 1 || choice_in_useitem < 1)
     {
       cout << "Invaild input, please input again!" << endl;
     }
   }
-  if (choice_in_useitem != food_num + 1)
+  if (choice_in_useitem != 5 + 1)
   {
-    use_food(choice_in_useitem - 1);
-    food_menu();
+    use_food(choice_in_useitem - 1, food_count, status);
+    food_menu(food_count, status);
   }
   else
   {
-    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+    return;
   }
 }
 
 //printing medicineitem_menu, include number of card the player had and allow to proceed to use
-void medicine_menu()
+void medicine_menu(int medicine_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Medicine Menu" << endl;
@@ -378,24 +341,24 @@ void medicine_menu()
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
-    if (choice_in_useitem > medicine_num + 1 || choice_in_useitem < 1)
+    if (choice_in_useitem > 5 + 1 || choice_in_useitem < 1)
     {
       cout << "Invaild input, please input again!" << endl;
     }
   }
-  if (choice_in_useitem != medicine_num + 1)
+  if (choice_in_useitem != 5 + 1)
   {
-    use_medicine(choice_in_useitem - 1);
-    medicine_menu();
+    use_medicine(choice_in_useitem - 1, medicine_count, status);
+    medicine_menu(medicine_count, status);
   }
   else
   {
-    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+    return;
   }
 }
 
 //printing weapon item_menu, include number of card the player had and allow to proceed to use
-void weapon_menu()
+void weapon_menu(int weapon_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Weapon Menu" << endl;
@@ -412,24 +375,24 @@ void weapon_menu()
     cout << "Weapon can only be used in fight." << endl;
     cout << "Which one do you want to see?" << endl;
     cin >> choice_in_useitem;
-    if (choice_in_useitem > weapon_num + 1 || choice_in_useitem < 1)
+    if (choice_in_useitem > 4 + 1 || choice_in_useitem < 1)
     {
       cout << "Invaild input, please input again!" << endl;
     }
   }
-  if (choice_in_useitem != weapon_num + 1)
+  if (choice_in_useitem != 4 + 1)
   {
-    use_weapon(choice_in_useitem - 1);
-    weapon_menu();
+    use_weapon(choice_in_useitem - 1, weapon_count, status);
+    weapon_menu(weapon_count, status);
   }
   else
   {
-    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+    return;
   }
 }
 
 //printing otheritem_menu
-void other_menu()
+void other_menu(int other_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Other Items Menu" << endl;
@@ -447,24 +410,24 @@ void other_menu()
   {
     cout << "Which one do you want to choose?" << endl;
     cin >> choice_in_useitem;
-    if (choice_in_useitem > mystery_num + 1 || choice_in_useitem < 1)
+    if (choice_in_useitem > 6 + 1 || choice_in_useitem < 1)
     {
       cout << "Invaild input, please input again!" << endl;
     }
   }
-  if (choice_in_useitem != mystery_num + 1)
+  if (choice_in_useitem != 6 + 1)
   {
-    use_other(choice_in_useitem - 1);
-    other_menu();
+    use_other(choice_in_useitem - 1, other_count, status);
+    other_menu(other_count, status);
   }
   else
   {
-    item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+    return;
   }
 }
 
 // item_menu() printing the main item menu
-void item_menu(int water_count[], int food_count[], int medicine_count[], int weapon_count[], int other_count[])
+void item_menu(int status[], int water_count[], int food_count[], int medicine_count[], int weapon_count[], int other_count[])
 {
   // clear the page first to make tidier
   system("clear");
@@ -491,17 +454,19 @@ void item_menu(int water_count[], int food_count[], int medicine_count[], int we
   system("clear");
 
   if (choice_in_mainmeun == 1)
-    water_menu();
+    water_menu(water_count, status);
   if (choice_in_mainmeun == 2)
-    food_menu();
+    food_menu(food_count, status);
   if (choice_in_mainmeun == 3)
-    medicine_menu();
+    medicine_menu(medicine_count, status);
   if (choice_in_mainmeun == 4)
-    weapon_menu();
+    weapon_menu(weapon_count, status);
   if (choice_in_mainmeun == 5)
-    other_menu();
+    other_menu(other_count, status);
+  if (choice_in_mainmeun == 6)
+    return;
 
   // exicute the function again for user to continue choosing untill they choose quit
-  item_menu(water_count, food_count, medicine_count ,weapon_count ,other_count);
+  item_menu(status, water_count, food_count, medicine_count ,weapon_count ,other_count);
 }
 
