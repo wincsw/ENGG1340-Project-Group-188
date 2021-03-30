@@ -1,14 +1,21 @@
 // data_attackers.cpp
 // stored datas of the attackers which will be used for fight event in the game
+// and access attackers by struct attacker attackers(index, [name = " "])
 #include <iostream>
 #include <string>
 #include "structures.h"
 
 using namespace std;
 
+// total number of attackers
 const int attacker_num = 5;
 
-// selecting the corrsponding item
+// Function: choose attacker according to the attacker index or name
+// Input: struct attacker category[]: array of attacker
+//        int len: lenght of the array
+//        int x: attacker index
+//        string name: attacker name
+// Output: struct attacker: choosen attacker
 struct attacker choose(struct attacker category[], int len, int x, string name) {
   struct attacker choosen;
   if (x != -1) {
@@ -29,12 +36,11 @@ struct attacker choose(struct attacker category[], int len, int x, string name) 
   return choosen;
 }
 
-// changed: <struc> cannot be global variable (sorry that I didn't tell you) --> use function to access (same as the one in <data_items.cpp>)
-
-// Attackers
-// int x = -1 --> choose by name
-// string name = " " --> choose by index (default)
-// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+// Function: choose attacker (default choose by index)
+// Input: int x: attacker index (-1 --> choose by name)
+//        string name = " ": attacker name, (" "--> choose by index)
+// Output: struct attacker: choosen attacker
+// NOTE: 0: Bear; 1: Crocodile; 2: Wolf; 3: Cannibal; 4: Zombie
 struct attacker attackers(int x, string name = " ") {
   struct attacker all[attacker_num];
   struct attacker choosen;
