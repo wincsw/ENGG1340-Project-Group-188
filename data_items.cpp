@@ -1,5 +1,5 @@
 // data_item.cpp
-// Store all the resource item in five catagory 
+// all data of the resource item in five catagory 
 // -- water, food, medicine, weapon, mystery 
 
 #include <iostream>
@@ -8,13 +8,19 @@
 
 using namespace std;
 
-const int water_num = 5;
-const int food_num = 5;
-const int medicine_num = 5;
-const int weapon_num = 4;
-const int mystery_num = 6;
+// number of items in each catagory
+const int water_num = 5;    // Water
+const int food_num = 5;     // Food
+const int medicine_num = 5; // Medicine
+const int weapon_num = 4;   // Weapon
+const int mystery_num = 6;  // Mystery
 
-// selecting the corrsponding item
+// Function: choose item according to the item index or item name
+// Input: struct item category[]: array of items in that catagory
+//        int len: lenght of the array
+//        int x: item index
+//        string name: item name
+// Output: struct item: choosen item
 struct item choose(struct item category[], int len, int x, string name) {
   struct item choosen;
   if (x != -1) {
@@ -35,10 +41,11 @@ struct item choose(struct item category[], int len, int x, string name) {
   return choosen;
 }
 
-// Water Items
-// int x = -1 --> choose by name
-// string name = " " --> choose by index (default)
-// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+// Function: choose Water item (default choose by index)
+// Input: int x: item index (-1 --> choose by name)
+//        string name = " ": item name, (" "--> choose by index)
+// Output: struct item: choosen item
+// NOTE: 0: Clean Water; 1: Soda/Pepsi; 2: Pee; 3: Cocount; 4: Dirty Water
 struct item water(int x, string name = " ") {
   struct item water_items[water_num];
   struct item choosen;
@@ -92,10 +99,11 @@ struct item water(int x, string name = " ") {
   return choose(water_items, water_num, x, name);
 }
 
-// Food Items
-// int x = -1 --> choose by name
-// string name = " " --> choose by index (default)
-// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+// Function: choose Food item (default choose by index)
+// Input: int x: item index (-1 --> choose by name)
+//        string name = " ": item name, (" "--> choose by index)
+// Output: struct item: choosen item
+// NOTE: 0: Energy Bar; 1: Meat; 2: Wild Berry; 3: Worm; 4: Unknown Mushroom
 struct item food(int x, string name = " ") {
   struct item food_items[food_num];
   struct item choosen;
@@ -151,10 +159,11 @@ struct item food(int x, string name = " ") {
   return choose(food_items, food_num, x, name);
 }
 
-// Medicine Items
-// int x = -1 --> choose by name
-// string name = " " --> choose by index (default)
-// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+// Function: choose Medicine item (default choose by index)
+// Input: int x: item index (-1 --> choose by name)
+//        string name = " ": item name, (" "--> choose by index)
+// Output: struct item: choosen item
+// NOTE: 0: Herb; 1: Pill; 2: Bandage; 3: First Aid Kit; 4: Sedative
 struct item medicine(int x, string name = " ") {
   struct item medicine_items[medicine_num];
   struct item choosen;
@@ -208,10 +217,11 @@ struct item medicine(int x, string name = " ") {
   return choose(medicine_items, medicine_num, x, name);
 }
 
-// Weapon Items
-// int x = -1 --> choose by name
-// string name = " " --> choose by index (default)
-// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+// Function: choose Weapon item (default choose by index)
+// Input: int x: item index (-1 --> choose by name)
+//        string name = " ": item name, (" "--> choose by index)
+// Output: struct item: choosen item
+// NOTE: 0: Wooden Stick; 1: Rock; 2: Knife; 3: Spear
 struct item weapon(int x, string name = " ") {
   struct item weapon_items[weapon_num];
   struct item choosen;
@@ -257,10 +267,11 @@ struct item weapon(int x, string name = " ") {
   return choose(weapon_items, weapon_num, x, name);
 }
 
-// Mystery Items
-// int x = -1 --> choose by name
-// string name = " " --> choose by index (default)
-// effect --> [HP, Hydration, Hunger, Mentailty, ATK]
+// Function: choose Mystery item (default choose by index)
+// Input: int x: item index (-1 --> choose by name)
+//        string name = " ": item name, (" "--> choose by index)
+// Output: struct item: choosen item
+// NOTE: 0: Leaf; 1: Newspaper; 2: Wilson the Volleyball; 3: Flashlight; 4: Gameboy; 5: Seashell
 struct item mystery(int x, string name = " ") {
   struct item mystery_items[mystery_num];
   struct item choosen;
