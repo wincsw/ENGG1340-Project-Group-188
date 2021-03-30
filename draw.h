@@ -1,10 +1,11 @@
+// draw.h
+// header file of draw.cpp
+
 #ifndef DRAW
 #define DRAW
 
-// general draw item
-struct item draw(int &catagory, int &item_index);
+struct item draw(int &catagory, int &item_index, int num);
 
-// draw 3 item every day
 void dailyDraw(int water_count[], int food_count[], int medicine_count[], 
                   int weapon_count[], int mystery_count[]);
 
