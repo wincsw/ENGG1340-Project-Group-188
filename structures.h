@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+// struct for resource items
 struct item {
   // item name
   std::string name;
@@ -13,6 +14,7 @@ struct item {
   std::string des;  
 };
 
+// struct for attacker in fighting events
 struct attacker {
   // attacker name
   std::string name;
@@ -30,6 +32,7 @@ struct attacker {
   std::string des;    
 };
 
+// struct for random events
 struct event {
   std::string name;     // event name 
   int effect[4];        // effect on player status
