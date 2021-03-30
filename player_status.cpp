@@ -9,11 +9,12 @@
 
 using namespace std;
 
-int temp_status[4] = {100, 100, 100, 100};
+//int temp_status[4] = {100, 100, 100, 100};
 // the official of the player status will be in the main.cpp
 
-// print the player's status
-// --> HP, Hydration, Hunger, Mentailty
+// Function: print out player status
+// Input: int status[4]: player status
+// NOTE: 0: HP; 1: Hydration; 2: Hunger; 3: Mentailty
 void printStatus(int status[4]) {
   cout << "Player Status" << endl;
   cout.width(9);
@@ -26,7 +27,9 @@ void printStatus(int status[4]) {
   cout << left << "Mentality" << ": " << status[3] << endl;
 }
 
-// the daily drop of Hydration and Hunger
+// Function: exicute the daily deduction of hydration and hunger 
+//           and HP deduction if mental is below 50
+// Input: int status[4]: player status
 void dailyDrop(int status[4]) {
   // random number generater
   srand(time(NULL)); // set seed to time
@@ -35,4 +38,9 @@ void dailyDrop(int status[4]) {
 
   status[1] -= hydration_drop;  // hydration drop 
   status[2] -= hunger_drop;  // hunger drop
+
+  // mental < 50 --> HP deduct 5 per day
+  if (status[3] < 50) {
+    status[0] -= 5;
+  }
 }
