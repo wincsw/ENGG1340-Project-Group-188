@@ -2,13 +2,13 @@
 #define FIGHT
 
 // Function: generate a random attacker
-struct attacker rand_attacker();
+struct attacker randAttacker();
 
 // Function: print out the weapons the player have
 // Input: int weapon_count[]: quanity of each weapon item
 //        int index_to_weapon[]: linking display index to weapon index
 // Output: int: total number of weapon types allowed to choose
-int print_weapon(int weapon_count[], int index_to_weapon[]);
+int printWeapon(int weapon_count[], int index_to_weapon[]);
 
 // Function: exicute the fighting event
 // Input: int weapon_count[]: quanity of each weapon item

@@ -20,7 +20,7 @@ int other_count[6] = {1, 0, 0, 1};
 using namespace std;
 
 // Function: generate a random attacker
-struct attacker rand_attacker() {
+struct attacker randAttacker() {
 
   // random number generater
   srand(time(NULL)); // set seed to time
@@ -34,7 +34,7 @@ struct attacker rand_attacker() {
 // Input: int weapon_count[]: quanity of each weapon item
 //        int index_to_weapon[]: linking display index to weapon index
 // Output: int: total number of weapon types allowed to choose
-int print_weapon(int weapon_count[], int * &index_to_weapon) {
+int printWeapon(int weapon_count[], int * &index_to_weapon) {
   // display index - 1 and the total number of usable weapons
   int index = 0;
 
@@ -63,7 +63,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
             int player_status[]) {
 
   // randonly choose an attacker 
-  struct attacker opponent = rand_attacker();
+  struct attacker opponent = randAttacker();
 
   cout << opponent.des << endl;
   sleep(1);
@@ -124,7 +124,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     cout << "Choose a weapon" << endl;
 
     // print out usable weapons
-    len = print_weapon(weapon_count, index_to_weapon);
+    len = printWeapon(weapon_count, index_to_weapon);
 
     cin >> weapon_choice;
 
