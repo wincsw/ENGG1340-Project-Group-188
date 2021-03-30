@@ -154,15 +154,5 @@ void dailyDraw(int water_count[], int food_count[], int medicine_count[],
 
   return;
 }
-/*
-int main() {
-  //tempory quantity of items
-int water_count[5];
-int food_count[5];
-int medicine_count[5];
-int weapon_count[4];
-int other_count[6];
-  
-  dailyDraw(water_count, food_count, medicine_count, weapon_count, other_count);
-}*/
+
  
