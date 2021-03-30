@@ -10,6 +10,7 @@
 #include "data_items.h"
 #include "player_status.h"
 
+// tempory --> will be in main.cpp
 int water_count[5] = {1};
 int food_count[5] = {1};
 int medicine_count[5] = {1};
@@ -18,7 +19,7 @@ int other_count[6] = {1, 0, 0, 1};
 
 using namespace std;
 
-// generate the attacker randomly
+// Function: generate a random attacker
 struct attacker rand_attacker() {
 
   // random number generater
@@ -29,9 +30,11 @@ struct attacker rand_attacker() {
   return attackers(num);
 }
 
-// print out the weapon that the player have 
-//  and link the weapon index to the display index
-int print_weapon(int weapon_count[], int index_to_weapon[]) {
+// Function: print out the weapons the player have
+// Input: int weapon_count[]: quanity of each weapon item
+//        int index_to_weapon[]: linking display index to weapon index
+// Output: int: total number of weapon types allowed to choose
+int print_weapon(int weapon_count[], int * &index_to_weapon) {
   // display index - 1 and the total number of usable weapons
   int index = 0;
 
@@ -51,7 +54,11 @@ int print_weapon(int weapon_count[], int index_to_weapon[]) {
 }
 
 
-// the fight event 
+// Function: exicute the fighting event
+// Input: int weapon_count[]: quanity of each weapon item
+//        int other_count[]: quanity of each mystery item (for Flashlight)
+//        int food_count[]: quanity of each food item
+//        int player_status[]: player status
 void fight(int weapon_count[], int other_count[], int food_count[], 
             int player_status[]) {
 
@@ -91,8 +98,6 @@ void fight(int weapon_count[], int other_count[], int food_count[],
   int temp_hp = 100;
   // the attacker's HP
   int opponent_hp = opponent.hp;
-  // the linkage between the displayed index and weapon index
-  int index_to_weapon[4];
   // the number of usable weapon
   int len = 4;
 
@@ -103,39 +108,52 @@ void fight(int weapon_count[], int other_count[], int food_count[],
 
   // fight end when the player's or attacker's reach 0
   while (temp_hp > 0 && opponent_hp > 0) {
+
+    // the linkage between the displayed index and weapon index
+    int * index_to_weapon = new int [len];
+
     // players weapon choice in display index
     int weapon_choice = 0;
 
+    // display player and attacker's hp
     cout << "Your fighting HP: " << temp_hp << endl;
     cout << opponent.name << " HP:" << opponent_hp << endl;
     sleep(1);
+    
+    cout << endl;
+    cout << "Choose a weapon" << endl;
 
-    // make sure's input is in the range of 1~number of usable weapona
+    // print out usable weapons
+    len = print_weapon(weapon_count, index_to_weapon);
+
+    cin >> weapon_choice;
+
+    // make sure input is in range of 1~number of usable weapon
     while (weapon_choice < 1 || weapon_choice > len) {
-      cout << endl;
-      cout << "Choose a weapon" << endl;
-
-      len = print_weapon(weapon_count, index_to_weapon);
-
-      cin >> weapon_choice;
-
-      if (weapon_choice < 1 || weapon_choice > len) {
         cout << "Invaild input, please input again!" << endl;
-      }
+        cin >> weapon_choice;
     }
+
     
     sleep(1);
     system("clear");
 
+    // link player's choice from display index to weapon index
+    weapon_choice = index_to_weapon[weapon_choice - 1];
+
+    delete[] index_to_weapon; // free out memory
+
     cout << "You attack " << opponent.name << " with "
-          << weapon(index_to_weapon[weapon_choice - 1]).name << endl;
-    cout << opponent.name << " -" 
-        << weapon(index_to_weapon[weapon_choice - 1]).effect[4] << "HP" << endl;
-    opponent_hp -= weapon(index_to_weapon[weapon_choice - 1]).effect[4];
+          << weapon(weapon_choice).name << endl;
+    cout << opponent.name << " -" << weapon(weapon_choice).effect[4] << "HP" 
+          << endl;
+    
+    // deduct attacker's hp
+    opponent_hp -= weapon(weapon_choice).effect[4];
     
     // minus 1 for the weapon used --> except Wooden Stick
-    if (weapon_choice != 1) {
-      weapon_count[weapon_choice - 1]--;
+    if (weapon_choice != 0) {
+      weapon_count[weapon_choice]--;
     }
 
     sleep(2);
@@ -147,7 +165,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
       cout << "You -" << opponent.atk << "HP" << endl;
       temp_hp -= opponent.atk;
     }
-
+    
     sleep(2);
     system("clear");
   }
@@ -187,4 +205,8 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     sleep(1);
   }
 
+}
+
+int main() {
+  fight(weapon_count, other_count, food_count, temp_status);
 }
