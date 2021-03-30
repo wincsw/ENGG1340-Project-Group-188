@@ -1,5 +1,6 @@
 // fight.cpp
-// fighting events 
+// fight(weapon_count, other_count, food_count, status) 
+// to call fighting events 
 
 #include <iostream>
 #include <string>
@@ -9,6 +10,7 @@
 #include "data_attackers.h"
 #include "data_items.h"
 #include "player_status.h"
+#include "item_pack.h"
 
 // tempory --> will be in main.cpp
 int water_count[5] = {1};
@@ -58,9 +60,9 @@ int printWeapon(int weapon_count[], int * &index_to_weapon) {
 // Input: int weapon_count[]: quanity of each weapon item
 //        int other_count[]: quanity of each mystery item (for Flashlight)
 //        int food_count[]: quanity of each food item
-//        int player_status[]: player status
+//        int status[]: player status
 void fight(int weapon_count[], int other_count[], int food_count[], 
-            int player_status[]) {
+            int status[]) {
 
   // randonly choose an attacker 
   struct attacker opponent = randAttacker();
@@ -177,18 +179,23 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     // reward for winning the fight 
     int reward_catagory = opponent.item[0];
 
+    cout << "Reward" << endl;
+    cout << "---------------------------" << endl;
+
     switch (reward_catagory) {
       // no reward
       case 0:
         break;
       // food reward
       case 1:
-        cout << food(opponent.item[1]).name << " +1" << endl;
+        cout << food(opponent.item[1]).name << endl;
+        printEffect(food(opponent.item[1]));
         food_count[opponent.item[1]] += 1;
         break;
       // weapon reward
       case 2:
-        cout << weapon(opponent.item[1]).name << " +1" << endl;
+        cout << weapon(opponent.item[1]).name << endl;
+        printEffect(weapon(opponent.item[1]));
         weapon_count[opponent.item[1]] += 1;
         break;
     }
@@ -199,14 +206,10 @@ void fight(int weapon_count[], int other_count[], int food_count[],
   else {
     cout << "You LOSE the fight!!!" << endl;
     // losing the fight --> lose HP
-    cout << "HP -" << opponent.lost << endl;
-    player_status[0] -= opponent.lost;
+    cout << "-" << opponent.lost << " HP" << endl;
+    status[0] -= opponent.lost;
 
     sleep(1);
   }
 
-}
-
-int main() {
-  fight(weapon_count, other_count, food_count, temp_status);
 }
