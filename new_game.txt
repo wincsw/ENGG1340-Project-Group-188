@@ -1,45 +1,37 @@
 day
-0
-
+1
 status
-HP 100
-Hydration 100
-Hunger 100
-Mentality 100
-
-item
-
+100
+100
+100
+100
 water
-Clean Water 3
-Soda 0
-Pee 0
-Cocunut 0
-Dirty Water 0
-
+1
+0
+0
+0
+0
 food
-Energy bar 2
-Meat 0
-Wild Berry 0
-Worm 0
-Unknown Mushroom 0
-
+1
+0
+0
+0
+0
 medicine
-Herb 0
-Pill 0
-Bandage 0
-First Aid Kit 0
-Sedative 0
-
+0
+0
+0
+0
+0
 weapon
-Wooden Stick 1
-Rock 0
-Knife 0
-Spear 0
-
+1
+0
+0
+0
 mystery
-Leaf 0
-Newspaper 0
-Wilson the Volleyball 0
-Flashlight 0
-Gameboy 0
-Seashell 0
+0
+0
+0
+0
+0
+0
