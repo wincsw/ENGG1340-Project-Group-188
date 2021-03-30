@@ -1,3 +1,6 @@
+// structures.h
+// all self defined structures
+
 #ifndef STRUCTS
 #define STRUCTS
 
