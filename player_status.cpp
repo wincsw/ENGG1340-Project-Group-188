@@ -6,6 +6,7 @@
 #include <cstdlib>  // for random number generater
 #include <ctime>  // for the seed of random number generater
 #include <string>
+#include "player_status.h"
 
 using namespace std;
 
