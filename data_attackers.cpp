@@ -3,6 +3,7 @@
 // and access attackers by struct attacker attackers(index, [name = " "])
 #include <iostream>
 #include <string>
+#include "data_attackers.h"
 #include "structures.h"
 
 using namespace std;
