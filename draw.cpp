@@ -7,6 +7,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include "draw.h"
 #include "structures.h"
 #include "data_items.h"
 #include "item_pack.h" // for printEffect()
