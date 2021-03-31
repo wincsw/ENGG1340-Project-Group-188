@@ -6,6 +6,7 @@
 #include <string>
 #include <stdlib.h>     // allow to use system ("clear")
 #include <unistd.h>     // allow to use sleep()
+#include "fight.h"
 #include "structures.h"
 #include "data_attackers.h"
 #include "data_items.h"
