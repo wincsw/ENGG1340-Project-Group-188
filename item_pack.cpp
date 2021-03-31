@@ -5,6 +5,7 @@
 # include <string>
 # include <stdlib.h>     // allow to use system ("clear")
 # include <unistd.h>     // allow to use sleep()
+# include "item_pack.h"
 # include "data_items.h"  // for item datas
 # include "structures.h"  // for structures
 # include "player_status.h" // for temp_status[]
