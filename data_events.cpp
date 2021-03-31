@@ -18,13 +18,6 @@ using namespace std;
 
 const int event_num = 5;
 
-int water_count[5] = {1};
-int food_count[5] = {1};
-int medicine_count[5] = {1};
-int weapon_count[5] = {1};
-int other_count[5] = {1};
-int status[4] = {100};
-
 // print the effect of the event
 void printEffect(struct event object)
 {
