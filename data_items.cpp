@@ -47,7 +47,7 @@ struct item choose(struct item category[], int len, int x, string name) {
 //        string name = " ": item name, (" "--> choose by index)
 // Output: struct item: choosen item
 // NOTE: 0: Clean Water; 1: Soda/Pepsi; 2: Pee; 3: Cocount; 4: Dirty Water
-struct item water(int x, string name = " ") {
+struct item water(int x, string name) {
   struct item water_items[water_num];
   struct item choosen;
 
@@ -105,7 +105,7 @@ struct item water(int x, string name = " ") {
 //        string name = " ": item name, (" "--> choose by index)
 // Output: struct item: choosen item
 // NOTE: 0: Energy Bar; 1: Meat; 2: Wild Berry; 3: Worm; 4: Unknown Mushroom
-struct item food(int x, string name = " ") {
+struct item food(int x, string name) {
   struct item food_items[food_num];
   struct item choosen;
 
@@ -165,7 +165,7 @@ struct item food(int x, string name = " ") {
 //        string name = " ": item name, (" "--> choose by index)
 // Output: struct item: choosen item
 // NOTE: 0: Herb; 1: Pill; 2: Bandage; 3: First Aid Kit; 4: Sedative
-struct item medicine(int x, string name = " ") {
+struct item medicine(int x, string name) {
   struct item medicine_items[medicine_num];
   struct item choosen;
 
@@ -223,7 +223,7 @@ struct item medicine(int x, string name = " ") {
 //        string name = " ": item name, (" "--> choose by index)
 // Output: struct item: choosen item
 // NOTE: 0: Wooden Stick; 1: Rock; 2: Knife; 3: Spear
-struct item weapon(int x, string name = " ") {
+struct item weapon(int x, string name) {
   struct item weapon_items[weapon_num];
   struct item choosen;
 
@@ -273,7 +273,7 @@ struct item weapon(int x, string name = " ") {
 //        string name = " ": item name, (" "--> choose by index)
 // Output: struct item: choosen item
 // NOTE: 0: Leaf; 1: Newspaper; 2: Wilson the Volleyball; 3: Flashlight; 4: Gameboy; 5: Seashell
-struct item mystery(int x, string name = " ") {
+struct item mystery(int x, string name) {
   struct item mystery_items[mystery_num];
   struct item choosen;
 
