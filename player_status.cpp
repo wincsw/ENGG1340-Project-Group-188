@@ -37,11 +37,18 @@ void dailyDrop(int status[4]) {
   int hydration_drop = rand() % 5 + 1; // random in range [1, 5]
   int hunger_drop = rand() % 5 + 1; 
 
+  cout << "Daily Drop" << endl;
+  cout << "---------------------------" << endl;
+
   status[1] -= hydration_drop;  // hydration drop 
+  cout << "-" << hydration_drop << " Hydration" << endl;
+  
   status[2] -= hunger_drop;  // hunger drop
+  cout << "-" << hunger_drop << " Hunger" << endl;
 
   // mental < 50 --> HP deduct 5 per day
-  if (status[3] < 50) {
+  if (status[3] < 50 || status[2] < 50) {
     status[0] -= 5;
+    cout << "-5 HP" << endl;
   }
 }
