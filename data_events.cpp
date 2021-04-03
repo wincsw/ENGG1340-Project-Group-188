@@ -19,7 +19,7 @@ using namespace std;
 const int event_num = 5;
 
 // print the effect of the event
-void printEffect(struct event object)
+void printEventEffect(struct event object)
 {
   string status[] = {"HP", "Hydration", "Hunger", "Mentality", "ATK"};
   int empty[] = {0, 0, 0, 0, 0};
@@ -178,7 +178,7 @@ void call_event(int weapon_count[], int other_count[], int food_count[],
       cout << current_event.output[i] << endl;
       sleep(1);
     }
-    printEffect(events(num));
+    printEventEffect(events(num));
     if ( current_event.item != "no")
     {
       // the event can only gain clean water or nothing

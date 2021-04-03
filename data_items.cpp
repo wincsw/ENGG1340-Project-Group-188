@@ -113,8 +113,8 @@ struct item food(int x, string name = " ") {
   // initial, can't be drawn
   food_items[0].name = "Energy Bar";
   food_items[0].effect[0] = 0;
-  food_items[0].effect[1] = 10;
-  food_items[0].effect[2] = 0;
+  food_items[0].effect[1] = 0;
+  food_items[0].effect[2] = 10;
   food_items[0].effect[3] = 0;
   food_items[0].effect[4] = 0;
   food_items[0].des = "Well, this is the only thing on your body that is still \

@@ -8,7 +8,7 @@
 
 extern const int event_num;
 
-void printEffect(struct event object);
+void printEventEffect(struct event object);
 
 struct item choose(struct item category[], int len, int x, std::string name);
 
