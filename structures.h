@@ -41,8 +41,8 @@ struct event {
   int effect[4];        // effect on player status
   // [HP, Hydration, Hunger, Mentality]
   std::string item;          // item given after the event
-  char output[10][100]; // lines outputed 
-  // max 10 lines with 100 characters
+  std:: output[10]; // lines outputed 
+  // max 10 lines
 };
 
 #endif 
