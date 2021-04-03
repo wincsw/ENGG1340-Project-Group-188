@@ -151,8 +151,8 @@ struct event events(int x, string name = " ")
 }
 
 // call event randomly
-void call_event(int weapon_count[], int other_count[], int food_count[],
-            int status[] )
+void call_event(int water_count[], int weapon_count[], int other_count[], 
+            int food_count[], int status[])
 {
   // randonly choose an event
   srand(time(NULL)); // set seed to time
@@ -165,7 +165,7 @@ void call_event(int weapon_count[], int other_count[], int food_count[],
     struct event current_event = events(num);
 
     system("clear");
-    cout << "Random Event"
+    cout << "Random Event: ";
     cout << current_event.name << endl;
 
     sleep(1);
