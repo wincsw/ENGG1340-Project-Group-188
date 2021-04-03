@@ -4,21 +4,15 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip> // for format layout
 #include <stdlib.h>     // allow to use system ("clear")
 #include <unistd.h>     // allow to use sleep()
 #include "fight.h"
 #include "structures.h"
 #include "data_attackers.h"
 #include "data_items.h"
-#include "player_status.h"
 #include "item_pack.h"
 
-// tempory --> will be in main.cpp
-int water_count[5] = {1};
-int food_count[5] = {1};
-int medicine_count[5] = {1};
-int weapon_count[4] = {1, 2, 1};
-int other_count[6] = {1, 0, 0, 1};
 
 using namespace std;
 
@@ -44,8 +38,12 @@ int printWeapon(int weapon_count[], int * &index_to_weapon) {
   for (int i = 0; i < 4; i++) {
     if (weapon_count[i] > 0) {
       // print out the name, quanity and ATK of the weapon
-      cout << index + 1 << ". " << weapon(i).name << ' ' << weapon_count[i] 
-              << " ATK: " << weapon(i).effect[4] <<endl;
+      cout << index + 1 << ". ";
+      cout << setw(13);
+      cout << left << weapon(i).name;
+      cout << setw(3);
+      cout << weapon_count[i];
+      cout << " ATK: " << weapon(i).effect[4] <<endl;
       // link the display index to the weapon index
       index_to_weapon[index] = i;
       index++;
@@ -148,7 +146,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
 
     cout << "You attack " << opponent.name << " with "
           << weapon(weapon_choice).name << endl;
-    cout << opponent.name << " -" << weapon(weapon_choice).effect[4] << "HP" 
+    cout << opponent.name << " HP -" << weapon(weapon_choice).effect[4] 
           << endl;
     
     // deduct attacker's hp
@@ -165,7 +163,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     // if attacker is not dead --> attacks player
     if (opponent_hp > 0) {
       cout << opponent.name << " attack you!" << endl;
-      cout << "You -" << opponent.atk << "HP" << endl;
+      cout << "You HP -" << opponent.atk << endl;
       temp_hp -= opponent.atk;
     }
     
@@ -180,21 +178,22 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     // reward for winning the fight 
     int reward_catagory = opponent.item[0];
 
-    cout << "Reward" << endl;
-    cout << "---------------------------" << endl;
-
     switch (reward_catagory) {
       // no reward
       case 0:
         break;
       // food reward
       case 1:
+        cout << "Reward" << endl;
+        cout << "---------------------------" << endl;
         cout << food(opponent.item[1]).name << endl;
         printEffect(food(opponent.item[1]));
         food_count[opponent.item[1]] += 1;
         break;
       // weapon reward
       case 2:
+        cout << "Reward" << endl;
+        cout << "---------------------------" << endl;
         cout << weapon(opponent.item[1]).name << endl;
         printEffect(weapon(opponent.item[1]));
         weapon_count[opponent.item[1]] += 1;
