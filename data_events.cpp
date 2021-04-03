@@ -10,7 +10,6 @@
 #include "structures.h"
 #include "item_pack.h"
 #include "data_items.h"
-#include "player_status.h"
 #include "fight.h"
 
 using namespace std;
@@ -74,7 +73,7 @@ struct event choose(struct event category[], int len, int x, string name) {
 //        string name = " ": event name, (" "--> choose by index)
 // Output: struct event: choosen event
 // NOTE: 0: Raining; 1: Thunderstorm; 2: Find Dead Body; 3: Find the remains; 4: Bird Poop
-struct event events(int x, string name = " ")
+struct event events(int x, string name)
 {
     struct event all[event_num];
     struct event choosen;
@@ -145,7 +144,11 @@ struct event events(int x, string name = " ")
     return choose(all, event_num, x, name);
 }
 
-// call event randomly
+// Function: call event randomly
+// Input: int water_count[]: quantity of water items
+//        int weapon_count[]: quantity of weapon items
+//        int other_count[]: quantity of other items 
+//        int status[]: player status
 void call_event(int water_count[], int weapon_count[], int other_count[], 
             int food_count[], int status[])
 {
@@ -157,11 +160,12 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
   // num 0 - 4 for the normal events, num from 5-9 is for fight events
   if (num < 5)
   {
-    struct event current_event = events(num);
+    struct event current_event = events(num, " ");
 
     system("clear");
     cout << "Random Event: ";
     cout << current_event.name << endl;
+    cout << "---------------------------" << endl;
 
     sleep(1);
 
@@ -171,7 +175,7 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
       cout << current_event.output[i] << endl;
       sleep(1);
     }
-    printEventEffect(events(num));
+    printEventEffect(events(num, " "));
     if ( current_event.item != "no")
     {
       // the event can only gain clean water or nothing
@@ -181,8 +185,14 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
     }
 
     // adding the effect of the event to player status
-    status[0] += current_event.effect[0];
-    status[3] += current_event.effect[3];
+    status[0] += current_event.effect[0]; // HP
+    if (current_event.effect[0] != 0) {
+      cout << "HP " << current_event.effect[0] << endl;
+    }
+    status[3] += current_event.effect[3]; // Mentality
+    if (current_event.effect[3] != 0) {
+      cout << "Mentality " << current_event.effect[3] << endl;
+    }
 
     sleep(2);
     system("clear");
