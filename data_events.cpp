@@ -1,6 +1,6 @@
 // data_events.cpp
 // include all the events effects
-// call_event(weapon_count, other_count, food_count, status) to call the events randonly
+// call_event(water_count, weapon_count, other_count, food_count, status) to call the events randonly
 // also include the
 
 #include <iostream>
@@ -20,14 +20,14 @@ const int event_num = 5;
 // print the effect of the event
 void printEventEffect(struct event object)
 {
-  string status[] = {"HP", "Hydration", "Hunger", "Mentality", "ATK"};
-  int empty[] = {0, 0, 0, 0, 0};
+  string status[] = {"HP", "Hydration", "Hunger", "Mentality"};
+  int empty[] = {0, 0, 0, 0};
 
   if (object.effect == empty) {
     cout << "Nothing happened." << endl;
   }
   else {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
       char sign;
       if (object.effect[i] > 0) {
         sign = '+';
@@ -84,7 +84,6 @@ struct event events(int x, string name = " ")
     all[0].effect[1] = 0;
     all[0].effect[2] = 0;
     all[0].effect[3] = 0;
-    all[0].effect[4] = 0;
     all[0].item = "Clean Water";
     all[0].output[0] = "Oh, there is raining!";
     all[0].output[1] = "You can get some clear water!";
@@ -98,7 +97,6 @@ struct event events(int x, string name = " ")
     all[1].effect[1] = 0;
     all[1].effect[2] = 0;
     all[1].effect[3] = -5;
-    all[1].effect[4] = 0;
     all[1].item = "Clean Water";
     all[1].output[0] = "Oh, the weather is too bad.";
     all[1].output[1] = "There is thunderstorm.";
@@ -111,7 +109,6 @@ struct event events(int x, string name = " ")
     all[2].effect[1] = 0;
     all[2].effect[2] = 0;
     all[2].effect[3] = -10;
-    all[2].effect[4] = 0;
     all[2].item = "no";
     all[2].output[0] = "You walk through the path.";
     all[2].output[1] = "Seem peaceful. Oh, what's that?";
@@ -124,7 +121,6 @@ struct event events(int x, string name = " ")
     all[3].effect[1] = 0;
     all[3].effect[2] = 0;
     all[3].effect[3] = -10;
-    all[3].effect[4] = 0;
     all[3].item = "no";
     all[3].output[0] = "You walk through the path.";
     all[3].output[1] = "Oh! what's that? A remain?";
@@ -138,7 +134,6 @@ struct event events(int x, string name = " ")
     all[4].effect[1] = 0;
     all[4].effect[2] = 0;
     all[4].effect[3] = -5;
-    all[4].effect[4] = 0;
     all[4].item = "no";
     all[4].output[0] = "You walk through the path.";
     all[4].output[1] = "You look up the sky. Sky is blue, it seems a good day today.";
@@ -180,6 +175,8 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
     if ( current_event.item != "no")
     {
       // the event can only gain clean water or nothing
+      sleep(1);
+      cout << "Clean Water + 1" << endl; 
       water_count[0] += 1;
     }
 
@@ -187,7 +184,7 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
     status[0] += current_event.effect[0];
     status[3] += current_event.effect[3];
 
-    sleep(1);
+    sleep(2);
     system("clear");
   }
 
@@ -197,6 +194,6 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
   {
     system("clear");
     cout << "Random Event" << endl; 
-    fight(weapon_count, other_count, food_count, status);
+    fight( weapon_count, other_count, food_count, status );
   }
 }
