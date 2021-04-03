@@ -8,7 +8,7 @@ struct attacker randAttacker();
 // Input: int weapon_count[]: quanity of each weapon item
 //        int index_to_weapon[]: linking display index to weapon index
 // Output: int: total number of weapon types allowed to choose
-int printWeapon(int weapon_count[], int index_to_weapon[]);
+int printWeapon(int weapon_count[], int * &index_to_weapon);
 
 // Function: exicute the fighting event
 // Input: int weapon_count[]: quanity of each weapon item
