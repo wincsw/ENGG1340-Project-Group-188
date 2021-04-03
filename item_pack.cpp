@@ -8,7 +8,6 @@
 # include "item_pack.h"
 # include "data_items.h"  // for item datas
 # include "structures.h"  // for structures
-# include "player_status.h" // for temp_status[]
 
 using namespace std;
 
