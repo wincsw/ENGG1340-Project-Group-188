@@ -42,7 +42,7 @@ struct attacker choose(struct attacker category[], int len, int x, string name) 
 //        string name = " ": attacker name, (" "--> choose by index)
 // Output: struct attacker: choosen attacker
 // NOTE: 0: Bear; 1: Crocodile; 2: Wolf; 3: Cannibal; 4: Zombie
-struct attacker attackers(int x, string name = " ") {
+struct attacker attackers(int x, string name) {
   struct attacker all[attacker_num];
   struct attacker choosen;
 
