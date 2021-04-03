@@ -12,7 +12,6 @@
 #include "data_items.h"
 #include "player_status.h"
 #include "fight.h"
-#include "data_events.h"
 
 using namespace std;
 
@@ -166,11 +165,10 @@ void call_event(int weapon_count[], int other_count[], int food_count[],
     struct event current_event = events(num);
 
     system("clear");
-
+    cout << "Random Event"
     cout << current_event.name << endl;
 
     sleep(1);
-    system("clear");
 
     // printing the output text
     for ( int i = 0 ; i < 5 ; i++ )
