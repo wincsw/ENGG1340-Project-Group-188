@@ -1,3 +1,6 @@
+// main.cpp
+// file for eixcution 
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,6 +13,9 @@
 #include "item_pack.h"
 #include "data_items.h"
 #include "draw.h"
+#include "data_attackers.h"
+#include "fight.h"
+#include "data_events.h"
 
 using namespace std;
 
@@ -152,7 +158,7 @@ void newStatus(int &day, int status[], int water_count[], int food_count[],
   }
 
   // close file
-  fin.close()
+  fin.close();
 
 }
 
@@ -227,15 +233,89 @@ void resumeStatus(int &day, int status[], int water_count[], int food_count[],
   }
 
   // close file
-  fin.close()
+  fin.close();
 }
 
-// Function: execute win and lose
+// Function execute win
+void win() {
+  cout << "The rescue team FINALLY arrived" << endl;
+  sleep(1);
+  cout << "After you got rescued" << endl;
+  sleep(1);
+  cout << "You made a game base on your experience" << endl;
+  sleep(1);
+  cout << "And you earn a lot of money by this game" << endl;
+  sleep(1);
+  cout << "You spend those money by going on a cruise ship trip" << endl;
+  sleep(1);
+  cout << "I wonder what will happen next..." << endl;
+  sleep(1);
+  cout << "The End" << endl;
+  sleep(2);
+
+}
+
+// Function: execute lose
+void lose() {
+  cout << "You DIE" << endl;
+  sleep(2);
+}
+
+// Function: determine win and lose
 // Input: int &day: day number
 //        int status[]: player status
 void winLose(int day, int status[]) {
   // win
+  if (day == 50 && status[0] > 0 && status[1] > 0) {
+    remove("game_status.txt");
+    win();
+    exit(1);
+  }
   // lose
+  else if (status[0] == 0 || status[1] == 0) {
+    remove("game_status.txt");
+    lose();
+    exit(1);
+  }
+  else {
+    return;
+  }
+}
+
+// Function: print out the credit and allow win/lose shortcut
+// Output: bool: used shortcut or not
+void credit() {
+  // credit text
+  cout << "Producer/Designer/Programmer" << endl;
+  cout << "---------------------------" << endl;
+  cout << "Chan Sze Wing" << endl;
+  cout << "Chan Yuen Kwan" << endl;
+  cout << endl;
+  cout << "Sponser" << endl;
+  cout << "---------------------------" << endl;
+  cout << "ENGG1340" << endl;
+  cout << endl;
+  cout << "Special Thanks to all the professors and TAs" << endl;
+  cout << endl;
+
+  string shortcut;
+
+  cout << "Press any key to return" << endl;
+  cin >> shortcut;
+  /*
+  // win/lose shortcut
+  if (shortcut == "This game worth an A") {
+    win();
+    exit(1);
+  }
+  else if (shortcut == "I don't like this game") {
+    lose();
+    exit(1);
+  }
+  else {
+    return;
+  }
+  */
 }
 
 // Function: display game play menu
@@ -265,13 +345,26 @@ void playMenu(int &day, int status[], int water_count[], int food_count[],
     // Next Day
     case 1:
       day++;
-      // event
+    
+      // random event every 3 days
+      if (day % 3 == 0) {
+        call_event(water_count, weapon_count, other_count, food_count, status);
+      }
+
+      sleep(1);
+      system("clear");
+      
       dailyDrop(status);  // daily drop of Hydration and Hunger (and maybe HP)
 
+      sleep(1);
       system("clear");
+
+      
+
       dailyDraw(water_count, food_count, medicine_count, weapon_count, 
         other_count); // daily draw for 3 items
       break;
+      
     // Item Pack
     case 2:
       item_menu(status, water_count, food_count, medicine_count, weapon_count, 
@@ -288,9 +381,35 @@ void playMenu(int &day, int status[], int water_count[], int food_count[],
       cout << "Invalid input, please input again!" << endl;
       
   }
-
+  winLose(day, status);
   system("clear");
   playMenu(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
+}
+
+// Function: print out the intro story of the game
+void intro() {
+  cout << "You are a passenger of a cruise ship" << endl;
+  sleep(1);
+  cout << "However you're SO unlucky that you went into a shipwreck" << endl;
+  sleep(1);
+  cout << "Now you are on this uninhabited island" << endl;
+  sleep(1);
+  cout << "In your bag, there are some water and an energy bar" << endl;
+  sleep(1);
+  cout << "You pick up a wooden stick that will forever belongs to you" << endl;
+  sleep(1);
+  cout << "Try your best to survive for 50 days" << endl;
+  sleep(1);
+  cout << "Then the rescue team will come and save you" << endl;
+  sleep(1);
+  cout << endl;
+
+  char * temp = new char;
+  cout << "Press any key to start game" << endl;
+  cin >> *temp;
+  delete temp;
+  *temp = 0;
+  return;
 }
 
 // Function: print out the start page of the game
@@ -372,14 +491,14 @@ void startPage(int &day, int status[], int water_count[], int food_count[],
     case 3:
       system("clear");
       credit();
-
       system("clear");
       // back to start page
       startPage(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
       break;
     // Quit Game
     case 4:
-      quitGame(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
+      //quitGame(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
+      exit(1);
       break;
     // invalid input
     default:
@@ -390,18 +509,6 @@ void startPage(int &day, int status[], int water_count[], int food_count[],
   }
 }
 
-// Function: print out the intro story of the game
-void intro() {
-  // intro text
-  return;
-}
-
-// Function: print out the credit and allow win/lose shortcut
-void credit() {
-  // credit text
-  // win/lose shortcut
-  return;
-}
 
 int main() {
   // variables for game play data
@@ -418,4 +525,4 @@ int main() {
   startPage(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
 
 }
-g++ -pedantic-errors -std=c++11 main.cpp player_status.cpp draw.cpp item_pack.cpp data_items.cpp -o main
+//g++ -pedantic-errors -std=c++11 main.cpp player_status.cpp fight.cpp data_attackers.cpp data_events.cpp draw.cpp item_pack.cpp data_items.cpp -o main
