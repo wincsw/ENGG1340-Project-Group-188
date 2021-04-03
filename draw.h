@@ -4,7 +4,7 @@
 #ifndef DRAW
 #define DRAW
 
-struct item draw(int &catagory, int &item_index, int num);
+void draw(int &catagory, int &item_index, int num);
 
 void dailyDraw(int water_count[], int food_count[], int medicine_count[], 
                   int weapon_count[], int mystery_count[]);
