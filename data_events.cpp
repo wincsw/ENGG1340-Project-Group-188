@@ -195,6 +195,8 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
   // call function from fight.cpp
   else
   {
+    system("clear");
+    cout << "Random Event" << endl; 
     fight(weapon_count, other_count, food_count, status);
   }
 }
