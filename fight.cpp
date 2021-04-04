@@ -17,7 +17,7 @@
 using namespace std;
 
 // Function: generate a random attacker
-struct attacker randAttacker() {
+struct Attacker randAttacker() {
 
   // random number generater
   srand(time(NULL)); // set seed to time
@@ -64,7 +64,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
             int status[]) {
 
   // randonly choose an attacker 
-  struct attacker opponent = randAttacker();
+  Attacker opponent = randAttacker();
 
   cout << opponent.des << endl;
   sleep(1);
@@ -123,6 +123,8 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     
     cout << endl;
     cout << "Choose a weapon" << endl;
+    cout << "Remember: Wooden Stick will always be with you" << endl;
+    cout << "---------------------------" << endl;
 
     // print out usable weapons
     len = printWeapon(weapon_count, index_to_weapon);
@@ -146,8 +148,8 @@ void fight(int weapon_count[], int other_count[], int food_count[],
 
     cout << "You attack " << opponent.name << " with "
           << weapon(weapon_choice).name << endl;
-    cout << opponent.name << " HP -" << weapon(weapon_choice).effect[4] 
-          << endl;
+    cout << opponent.name << " -" << weapon(weapon_choice).effect[4] 
+          << " HP" << endl;
     
     // deduct attacker's hp
     opponent_hp -= weapon(weapon_choice).effect[4];
@@ -163,7 +165,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     // if attacker is not dead --> attacks player
     if (opponent_hp > 0) {
       cout << opponent.name << " attack you!" << endl;
-      cout << "You HP -" << opponent.atk << endl;
+      cout << "You -" << opponent.atk << " HP" << endl;
       temp_hp -= opponent.atk;
     }
     
@@ -200,7 +202,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
         break;
     }
 
-    sleep(1);
+    sleep(2);
   }
   // player lose
   else {
@@ -209,7 +211,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     cout << "-" << opponent.lost << " HP" << endl;
     status[0] -= opponent.lost;
 
-    sleep(1);
+    sleep(2);
   }
-
 }
+
