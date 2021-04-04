@@ -32,7 +32,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
 
 ## Features 
 
-- Draw Resource
+- Draw Resource (dynamic)
 
   The player can draw 3 random resource items every day, and the cards they have drawn will be stored in the Item Pack for future use.
   
@@ -66,7 +66,7 @@ Our game is a text-based role-playing game that tries to simulate a person survi
 
     Self-defined data structure `event` will be used to store the infomation of the items, which data structure of `array` and data types of `string` and `int` will be used in the `event` data structure. 
     
-- Fighting Attackers
+- Fighting Attackers (dynamic)
   
   The event of player being attack and need to fight back.
   
@@ -83,7 +83,9 @@ Our game is a text-based role-playing game that tries to simulate a person survi
   
     Codes of the fighting mechanism and the attackers are stored in seperate files of `fight.cpp` and `data_attackers.cpp`.
 
-- Save and Resume gameplay
+- Daily Decreas in Player Status
+
+- Save and Resume gameplay (dynamic)
   
   Coding element:
   - Data structures for storing game status
