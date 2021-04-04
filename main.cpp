@@ -19,15 +19,42 @@
 
 using namespace std;
 
+// Function: free the memory storing game data
+// Input: int *day: day count
+//        int status[]: player status
+//        int water_count[]: quantity of water items
+//        int food_count[]: quantity of food items
+//        int medicine_count[]: quantity of medicine items
+//        int weapon_count[]: quantity of weapon items
+//        int other_count[]: quantity of other items  
+void freeMemory(int * day, int status[], int water_count[], int food_count[],
+  int medicine_count[], int weapon_count[], int other_count[]) {
+  delete day;
+  day = 0;
+  delete [] status;
+  status = 0;
+  delete [] water_count;
+  water_count = 0;
+  delete [] food_count;
+  food_count = 0;
+  delete [] medicine_count;
+  medicine_count = 0;
+  delete [] weapon_count;
+  weapon_count = 0;
+  delete [] other_count;
+  other_count = 0;
+    
+  }
+
 // Function: save game status and quit game
-// Input: int day: day number
+// Input: int *day: day count
 //        int status[]: player status
 //        int water_count[]: quantity of water items
 //        int food_count[]: quantity of food items
 //        int medicine_count[]: quantity of medicine items
 //        int weapon_count[]: quantity of weapon items
 //        int other_count[]: quantity of other items    
-void quitGame(int day, int status[], int water_count[], int food_count[],
+void quitGame(int *day, int status[], int water_count[], int food_count[],
   int medicine_count[], int weapon_count[], int other_count[]) {
   
   // open "game_status.txt" for output
@@ -40,7 +67,7 @@ void quitGame(int day, int status[], int water_count[], int food_count[],
   }
 
   // output day
-  fout << "day" << endl << day << endl;
+  fout << "day" << endl << *day << endl;
   
   // output status value line by line
   fout << "status" << endl;
@@ -79,20 +106,24 @@ void quitGame(int day, int status[], int water_count[], int food_count[],
 
   system("clear");
 
+  freeMemory(day, status, water_count, food_count, medicine_count, weapon_count, 
+        other_count);
+
+
   // exit program
   exit(1);
 
 }
 
 // Function: extract game status for new game
-// Input: int &day: day number
+// Input: int *day: day count
 //        int status[]: player status
 //        int water_count[]: quantity of water items
 //        int food_count[]: quantity of food items
 //        int medicine_count[]: quantity of medicine items
 //        int weapon_count[]: quantity of weapon items
 //        int other_count[]: quantity of other items 
-void newStatus(int &day, int status[], int water_count[], int food_count[],
+void newStatus(int *day, int status[], int water_count[], int food_count[],
   int medicine_count[], int weapon_count[], int other_count[]) {
   // open "new_game.txt" for input
   ifstream fin("new_game.txt");
@@ -111,7 +142,7 @@ void newStatus(int &day, int status[], int water_count[], int food_count[],
     // read day
     if (line == "day") {
       getline(fin, line);
-      day = stoi(line);
+      *day = stoi(line);
     }
     // read status
     else if (line == "status") {
@@ -163,14 +194,14 @@ void newStatus(int &day, int status[], int water_count[], int food_count[],
 }
 
 // Function: extract game status for continuig previous game
-// Input: int &day: day number
+// Input: int *day: day count
 //        int status[]: player status
 //        int water_count[]: quantity of water items
 //        int food_count[]: quantity of food items
 //        int medicine_count[]: quantity of medicine items
 //        int weapon_count[]: quantity of weapon items
 //        int other_count[]: quantity of other items 
-void resumeStatus(int &day, int status[], int water_count[], int food_count[],
+void resumeStatus(int *day, int status[], int water_count[], int food_count[],
   int medicine_count[], int weapon_count[], int other_count[]) {
   // open "resume_game.txt" for input
   ifstream fin("game_status.txt");
@@ -186,7 +217,7 @@ void resumeStatus(int &day, int status[], int water_count[], int food_count[],
     // read day
     if (line == "day") {
       getline(fin, line);
-      day = stoi(line);
+      *day = stoi(line);
     }
     // read player status
     else if (line == "status") {
@@ -250,30 +281,44 @@ void win() {
   sleep(1);
   cout << "I wonder what will happen next..." << endl;
   sleep(1);
-  cout << "The End" << endl;
+  cout << "You WIN" << endl;
   sleep(2);
 
 }
 
 // Function: execute lose
 void lose() {
-  cout << "You DIE" << endl;
+  cout << "You LOSE" << endl;
   sleep(2);
 }
 
 // Function: determine win and lose
-// Input: int &day: day number
+// Input: int *day: day count
 //        int status[]: player status
-void winLose(int day, int status[]) {
+void winLose(int *day, int status[], int water_count[], int food_count[],
+  int medicine_count[], int weapon_count[], int other_count[]) {
   // win
-  if (day == 50 && status[0] > 0 && status[1] > 0) {
+  if (*day == 50 && status[0] > 0 && status[1] > 0) {
+    freeMemory(day, status, water_count, food_count, medicine_count, weapon_count, 
+        other_count);
     remove("game_status.txt");
     win();
     exit(1);
   }
   // lose
   else if (status[0] == 0 || status[1] == 0) {
+    freeMemory(day, status, water_count, food_count, medicine_count, weapon_count, 
+        other_count);
     remove("game_status.txt");
+    
+    if (status[0] == 0) {
+      cout << "Hydration 0" << endl;
+      cout << "You thrist to death" << endl;
+    }
+    else {
+      cout << "HP 0" << endl;
+      cout << "You life comes to the end" << endl;
+    }
     lose();
     exit(1);
   }
@@ -298,41 +343,41 @@ void credit() {
   cout << "Special Thanks to all the professors and TAs" << endl;
   cout << endl;
 
-  string shortcut;
+  char shortcut;
 
   cout << "Press any key to return" << endl;
   cin >> shortcut;
-  /*
-  // win/lose shortcut
-  if (shortcut == "This game worth an A") {
+
+  // winshortcut
+  if (shortcut == 'W') {
+    system("clear");
+    cout << "Developer shortcut: Win Ending" << endl;
+    cout << "---------------------------" << endl;
+    sleep(1);
     win();
-    exit(1);
-  }
-  else if (shortcut == "I don't like this game") {
-    lose();
     exit(1);
   }
   else {
     return;
   }
-  */
+
 }
 
 // Function: display game play menu
-// Input: int &day: day number
+// Input: int *day: day count
 //        int status[]: player status
 //        int water_count[]: quantity of water items
 //        int food_count[]: quantity of food items
 //        int medicine_count[]: quantity of medicine items
 //        int weapon_count[]: quantity of weapon items
 //        int other_count[]: quantity of other items 
-void playMenu(int &day, int status[], int water_count[], int food_count[],
+void playMenu(int *day, int status[], int water_count[], int food_count[],
   int medicine_count[], int weapon_count[], int other_count[]) {
   
   int choose;
 
   // print out game play menu
-  cout << "Day " << day << endl;
+  cout << "Day " << *day << endl;
   cout << "---------------------------" << endl;
   printStatus(status);  // print out player status
   cout << "---------------------------" << endl;
@@ -344,22 +389,23 @@ void playMenu(int &day, int status[], int water_count[], int food_count[],
   switch (choose) {
     // Next Day
     case 1:
-      day++;
-    
+      // transfer to next day
+      *day = *day + 1;
+
       // random event every 3 days
-      if (day % 3 == 0) {
+      if (*day % 3 == 0) {
         call_event(water_count, weapon_count, other_count, food_count, status);
+        winLose(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
       }
 
-      sleep(1);
+      //sleep(1);
       system("clear");
       
       dailyDrop(status);  // daily drop of Hydration and Hunger (and maybe HP)
+      winLose(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
 
-      sleep(1);
+      sleep(2);
       system("clear");
-
-      
 
       dailyDraw(water_count, food_count, medicine_count, weapon_count, 
         other_count); // daily draw for 3 items
@@ -381,8 +427,8 @@ void playMenu(int &day, int status[], int water_count[], int food_count[],
       cout << "Invalid input, please input again!" << endl;
       
   }
-  winLose(day, status);
   system("clear");
+  winLose(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
   playMenu(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
 }
 
@@ -413,14 +459,14 @@ void intro() {
 }
 
 // Function: print out the start page of the game
-// Input: int &day: day number
+// Input: int *day: day count
 //        int status[]: player status
 //        int water_count[]: quantity of water items
 //        int food_count[]: quantity of food items
 //        int medicine_count[]: quantity of medicine items
 //        int weapon_count[]: quantity of weapon items
 //        int other_count[]: quantity of other items 
-void startPage(int &day, int status[], int water_count[], int food_count[],
+void startPage(int *day, int status[], int water_count[], int food_count[],
   int medicine_count[], int weapon_count[], int other_count[]) {
 
   // check are there a previous game
@@ -511,14 +557,14 @@ void startPage(int &day, int status[], int water_count[], int food_count[],
 
 
 int main() {
-  // variables for game play data
-  int day;
-  int status[4];
-  int water_count[5];
-  int food_count[5];
-  int medicine_count[5];
-  int weapon_count[4];
-  int other_count[6];
+  // dynamic variables for game play data
+  int * day = new int;
+  int * status = new int[4];
+  int * water_count = new int[water_num];
+  int * food_count = new int[food_num];
+  int * medicine_count = new int[medicine_num];
+  int * weapon_count = new int[weapon_num];
+  int * other_count = new int[mystery_num];
 
   system("clear");
   // call start page
