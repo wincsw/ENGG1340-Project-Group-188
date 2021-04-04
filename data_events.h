@@ -8,11 +8,11 @@
 
 extern const int event_num;
 
-void printEventEffect(struct event object);
+void printEventEffect(struct Event object);
 
-struct event choose(struct event category[], int len, int x, std::string name);
+struct Event choose(struct Event category[], int len, int x, std::string name);
 
-struct event events(int x);
+struct Event events(int x);
 
 void call_event(int water_count[], int weapon_count[], int other_count[], 
             int food_count[], int status[]);

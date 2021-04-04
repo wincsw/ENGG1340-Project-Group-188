@@ -16,8 +16,9 @@ using namespace std;
 
 const int event_num = 5;
 
-// print the effect of the event
-void printEventEffect(struct event object)
+// Function: print out the effect of the event
+// Input: struct Event object: printed event
+void printEventEffect(struct Event object)
 {
   string status[] = {"HP", "Hydration", "Hunger", "Mentality"};
   int empty[] = {0, 0, 0, 0};
@@ -42,41 +43,13 @@ void printEventEffect(struct event object)
   }
 }
 
-// Function: choose event according to the attacker index or name
-// Input: struct event category[]: array of attacker
-//        int len: lenght of the array
-//        int x: event index
-//        string name: event name
-// Output: struct event: choosen event
-struct event choose(struct event category[], int len, int x, string name) {
-  struct event choosen;
-  if (x != -1) {
-    for (int i = 0; i < len; i++) {
-      if (i == x) {
-        choosen = category[i];
-      }
-    }
-  }
-  else {
-    for (int i = 0; i < len; i++) {
-      if (category[i].name == name) {
-        choosen = category[i];
-      }
-    }
-  }
-
-  return choosen;
-}
-
 // Function: choose event (default choose by index)
-// Input: int x: event index (-1 --> choose by name)
-//        string name = " ": event name, (" "--> choose by index)
-// Output: struct event: choosen event
+// Input: int x: event index
+// Output: struct Event: choosen event
 // NOTE: 0: Raining; 1: Thunderstorm; 2: Find Dead Body; 3: Find the remains; 4: Bird Poop
-struct event events(int x, string name)
+struct Event events(int x, string name)
 {
-    struct event all[event_num];
-    struct event choosen;
+    struct Event all[event_num];
 
     all[0].name = "Raining";
     all[0].effect[0] = -10;
@@ -141,7 +114,7 @@ struct event events(int x, string name)
     all[4].output[4] = "It's that poop?";
 
 
-    return choose(all, event_num, x, name);
+    return all[x];
 }
 
 // Function: call event randomly
@@ -160,7 +133,7 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
   // num 0 - 4 for the normal events, num from 5-9 is for fight events
   if (num < 5)
   {
-    struct event current_event = events(num, " ");
+    struct Event current_event = events(num, " ");
 
     system("clear");
     cout << "Random Event: ";
@@ -186,15 +159,9 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
 
     // adding the effect of the event to player status
     status[0] += current_event.effect[0]; // HP
-    if (current_event.effect[0] != 0) {
-      cout << "HP " << current_event.effect[0] << endl;
-    }
     status[3] += current_event.effect[3]; // Mentality
-    if (current_event.effect[3] != 0) {
-      cout << "Mentality " << current_event.effect[3] << endl;
-    }
 
-    sleep(2);
+    sleep(3);
     system("clear");
   }
 
@@ -203,7 +170,8 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
   else
   {
     system("clear");
-    cout << "Random Event" << endl; 
+    cout << "Random Event: Attack" << endl; 
+    cout << "---------------------------" << endl;
     fight( weapon_count, other_count, food_count, status );
   }
 }
