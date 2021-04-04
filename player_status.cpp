@@ -31,7 +31,8 @@ void printStatus(int status[4]) {
 void dailyDrop(int status[4]) {
   // random number generater
   srand(time(NULL)); // set seed to time
-  int * hydration_drop = new int (rand() % 10 + 1); // random in range [1, 10]
+  // random in range [1, 10] 
+  int * hydration_drop = new int (rand() % 10 + 1); 
   int * hunger_drop = new int(rand() % 10 + 1); 
 
   cout << "Daily Drop" << endl;
@@ -48,4 +49,10 @@ void dailyDrop(int status[4]) {
     status[0] -= 10;
     cout << "-5 HP" << endl;
   }
+
+  // free out memory
+  delete hydration_drop;
+  hydration_drop = 0;
+  delete hunger_drop;
+  hunger_drop = 0;
 }

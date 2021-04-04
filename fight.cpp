@@ -145,6 +145,7 @@ void fight(int weapon_count[], int other_count[], int food_count[],
     weapon_choice = index_to_weapon[weapon_choice - 1];
 
     delete[] index_to_weapon; // free out memory
+    index_to_weapon = 0;
 
     cout << "You attack " << opponent.name << " with "
           << weapon(weapon_choice).name << endl;
