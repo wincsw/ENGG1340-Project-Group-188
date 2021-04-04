@@ -17,7 +17,7 @@ using namespace std;
 
 
 
-// Function: general one draw item
+// Function: general one draw item and set item probability 
 // Input: int catagory: use to indicate the catagory
 //        int item_index: index of the item 
 //        int num: random value
@@ -110,32 +110,42 @@ void dailyDraw(int water_count[], int food_count[], int medicine_count[],
     // draw the item
     draw(draw_item[i][0], draw_item[i][1], num);
     
-    // add 1 to the drawn item
+    // add 1 to the item quanity and print item name and effect 
     switch(draw_item[i][0]) {
       case 1:
         water_count[draw_item[i][1]]++;
+
         cout << water(draw_item[i][1]).name << endl;
         printEffect(water(draw_item[i][1]));
+
         break;
       case 2:
         food_count[draw_item[i][1]]++;
+
         cout << food(draw_item[i][1]).name << endl;
         printEffect(food(draw_item[i][1]));
+
         break;
       case 3:
         medicine_count[draw_item[i][1]]++;
+
         cout << medicine(draw_item[i][1]).name << endl;
         printEffect(medicine(draw_item[i][1]));
+
         break;
       case 4:
         weapon_count[draw_item[i][1]]++;
+
         cout << weapon(draw_item[i][1]).name << endl;
         printEffect(weapon(draw_item[i][1]));
+
         break;
       case 5:
         other_count[draw_item[i][1]]++;
+
         cout << mystery(draw_item[i][1]).name << endl;
         printEffect(mystery(draw_item[i][1]));
+
         break;
     }
     cout << "---------------------------" << endl;
