@@ -5,8 +5,6 @@
 #define ITEM_DATA
 
 
-#include <string.h>
-#include <iostream>
 #include "structures.h"
 
 
@@ -16,16 +14,14 @@ extern const int medicine_num;
 extern const int weapon_num;   
 extern const int mystery_num;   
 
-struct item choose(struct item category[], int len, int x, std::string name);
+Item water(int x);
 
-struct item water(int x, std::string name = " ");
+Item food(int x);
 
-struct item food(int x, std::string name = " ");
+Item medicine(int x);
 
-struct item medicine(int x, std::string name = " ");
+Item weapon(int x);
 
-struct item weapon(int x, std::string name = " ");
-
-struct item mystery(int x, std::string name = " ");
+Item mystery(int x);
 
 #endif

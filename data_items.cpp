@@ -1,6 +1,6 @@
 // data_item.cpp
 // all data of the resource item in five catagory 
-// -- water, food, medicine, weapon, mystery 
+// anc call the data
 
 #include <iostream>
 #include <string>
@@ -16,40 +16,12 @@ const int medicine_num = 5; // Medicine
 const int weapon_num = 4;   // Weapon
 const int mystery_num = 6;  // Mystery
 
-// Function: choose item according to the item index or item name
-// Input: struct item category[]: array of items in that catagory
-//        int len: lenght of the array
-//        int x: item index
-//        string name: item name
-// Output: struct item: choosen item
-struct item choose(struct item category[], int len, int x, string name) {
-  struct item choosen;
-  if (x != -1) {
-    for (int i = 0; i < len; i++) {
-      if (i == x) {
-        choosen = category[i];
-      }
-    }
-  }
-  else {
-    for (int i = 0; i < len; i++) {
-      if (category[i].name == name) {
-        choosen = category[i];
-      }
-    }
-  }
-
-  return choosen;
-}
-
 // Function: choose Water item (default choose by index)
-// Input: int x: item index (-1 --> choose by name)
-//        string name = " ": item name, (" "--> choose by index)
-// Output: struct item: choosen item
+// Input: int x: item index 
+// Output: Item: choosen item
 // NOTE: 0: Clean Water; 1: Soda/Pepsi; 2: Pee; 3: Cocount; 4: Dirty Water
-struct item water(int x, string name) {
-  struct item water_items[water_num];
-  struct item choosen;
+Item water(int x) {
+  Item water_items[water_num];
 
   // Clean Water
   // initial, can't be drawn
@@ -97,17 +69,15 @@ struct item water(int x, string name) {
   water_items[4].effect[4] = 0;
   water_items[4].des = "This water doesn't seem to be drinkable";
 
-  return choose(water_items, water_num, x, name);
+  return water_items[x];
 }
 
 // Function: choose Food item (default choose by index)
-// Input: int x: item index (-1 --> choose by name)
-//        string name = " ": item name, (" "--> choose by index)
-// Output: struct item: choosen item
+// Input: int x: item index 
+// Output: Item: choosen item
 // NOTE: 0: Energy Bar; 1: Meat; 2: Wild Berry; 3: Worm; 4: Unknown Mushroom
-struct item food(int x, string name) {
-  struct item food_items[food_num];
-  struct item choosen;
+Item food(int x) {
+  Item food_items[food_num];
 
   // Energy Bar
   // initial, can't be drawn
@@ -157,17 +127,15 @@ struct item food(int x, string name) {
   food_items[4].effect[4] = 0;
   food_items[4].des = "This mushroom seems to be a bit too colorful";
 
-  return choose(food_items, food_num, x, name);
+  return food_items[x];
 }
 
 // Function: choose Medicine item (default choose by index)
-// Input: int x: item index (-1 --> choose by name)
-//        string name = " ": item name, (" "--> choose by index)
-// Output: struct item: choosen item
+// Input: int x: item index 
+// Output: Item: choosen item
 // NOTE: 0: Herb; 1: Pill; 2: Bandage; 3: First Aid Kit; 4: Sedative
-struct item medicine(int x, string name) {
-  struct item medicine_items[medicine_num];
-  struct item choosen;
+Item medicine(int x) {
+  Item medicine_items[medicine_num];
 
   // Herb
   medicine_items[0].name = "Herb";
@@ -203,8 +171,7 @@ struct item medicine(int x, string name) {
   medicine_items[3].effect[2] = 0;
   medicine_items[3].effect[3] = 0;
   medicine_items[3].effect[4] = 0;
-  medicine_items[3].des = "First Aid Kit that can save your life. \
-  At least this is what video game taught me";
+  medicine_items[3].des = "This can save your life";
 
   // Sedative
   medicine_items[4].name = "Sedative";
@@ -213,19 +180,19 @@ struct item medicine(int x, string name) {
   medicine_items[4].effect[2] = 0;
   medicine_items[4].effect[3] = 20;
   medicine_items[4].effect[4] = 0;
-  medicine_items[4].des = "Sedative is useful when you are mentally unstable";
+  medicine_items[4].des = "Useful when you are mentally unstable";
 
-  return choose(medicine_items, medicine_num, x, name);
+  //return choose(medicine_items, medicine_num, x);
+  return medicine_items[x];
 }
 
 // Function: choose Weapon item (default choose by index)
-// Input: int x: item index (-1 --> choose by name)
-//        string name = " ": item name, (" "--> choose by index)
-// Output: struct item: choosen item
+// Input: int x: item index 
+// Output: Item: choosen item
 // NOTE: 0: Wooden Stick; 1: Rock; 2: Knife; 3: Spear
-struct item weapon(int x, string name) {
-  struct item weapon_items[weapon_num];
-  struct item choosen;
+Item weapon(int x) {
+  Item weapon_items[weapon_num];
+  Item choosen;
 
   // Wooden Stick
   // initial, can't be drawn, forever
@@ -235,7 +202,7 @@ struct item weapon(int x, string name) {
   weapon_items[0].effect[2] = 0;
   weapon_items[0].effect[3] = 0;
   weapon_items[0].effect[4] = 5;
-  weapon_items[0].des = "The best (most usless) weapon ever";
+  weapon_items[0].des = "The weapon that forever belongs to you";
  
   // Rock
   weapon_items[1].name = "Rock";
@@ -262,20 +229,19 @@ struct item weapon(int x, string name) {
   weapon_items[3].effect[1] = 0;
   weapon_items[3].effect[2] = 0;
   weapon_items[3].effect[3] = 0;
-  weapon_items[3].effect[4] = -100;
+  weapon_items[3].effect[4] = 100;
   weapon_items[3].des = "This spear from the cannibals should be useful";
 
-  return choose(weapon_items, weapon_num, x, name);
+  return weapon_items[x];
 }
 
 // Function: choose Mystery item (default choose by index)
-// Input: int x: item index (-1 --> choose by name)
-//        string name = " ": item name, (" "--> choose by index)
-// Output: struct item: choosen item
+// Input: int x: item index 
+// Output: Item: choosen item
 // NOTE: 0: Leaf; 1: Newspaper; 2: Wilson the Volleyball; 3: Flashlight; 4: Gameboy; 5: Seashell
-struct item mystery(int x, string name) {
-  struct item mystery_items[mystery_num];
-  struct item choosen;
+Item mystery(int x) {
+  Item mystery_items[mystery_num];
+  Item choosen;
 
   // Leaf
   mystery_items[0].name = "Leaf";
@@ -319,8 +285,8 @@ struct item mystery(int x, string name) {
   mystery_items[4].effect[0] = 0;
   mystery_items[4].effect[1] = 0;
   mystery_items[4].effect[2] = 0;
-  mystery_items[4].effect[3] = 0;
-  mystery_items[4].effect[4] = 10;
+  mystery_items[4].effect[3] = 10;
+  mystery_items[4].effect[4] = 0;
   mystery_items[4].des = "Forever a GAMER";
 
   // Seashell
@@ -328,10 +294,10 @@ struct item mystery(int x, string name) {
   mystery_items[5].effect[0] = 0;
   mystery_items[5].effect[1] = 0;
   mystery_items[5].effect[2] = 0;
-  mystery_items[5].effect[3] = 0;
-  mystery_items[5].effect[4] = -100;
+  mystery_items[5].effect[3] = 5;
+  mystery_items[5].effect[4] = 0;
   mystery_items[5].des = "You can hear the ocean in the Seashell";
 
-  return choose(mystery_items, mystery_num, x, name);
+  return mystery_items[x];
 }
 
