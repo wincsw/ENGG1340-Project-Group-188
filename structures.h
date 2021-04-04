@@ -7,7 +7,7 @@
 #include <iostream>
 
 // struct for resource items
-struct item {
+struct Item {
   // item name
   std::string name;
   // effect on player status and ATK (weapon only)
@@ -18,7 +18,7 @@ struct item {
 };
 
 // struct for attacker in fighting events
-struct attacker {
+struct Attacker {
   // attacker name
   std::string name;
   // attacker's hp   
@@ -36,7 +36,7 @@ struct attacker {
 };
 
 // struct for random events
-struct event {
+struct Event {
   std::string name;     // event name 
   int effect[4];        // effect on player status
   // [HP, Hydration, Hunger, Mentality]
