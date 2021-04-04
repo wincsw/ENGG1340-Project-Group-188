@@ -3,6 +3,7 @@
 // printing item pack and allow using the items
 # include <iostream>
 # include <string>
+# include <iomanip>
 # include <stdlib.h>     // allow to use system ("clear")
 # include <unistd.h>     // allow to use sleep()
 # include "item_pack.h"
@@ -12,8 +13,9 @@
 using namespace std;
 
 
-// print the effect of the item
-void printEffect(struct item object)
+// Function: print the effect of the item
+// Input: struct Item object: printed item
+void printEffect(struct Item object)
 {
   string status[] = {"HP", "Hydration", "Hunger", "Mentality", "ATK"};
   int empty[] = {0, 0, 0, 0, 0};
@@ -38,7 +40,10 @@ void printEffect(struct item object)
   }
 }
 
-// show details about the items and allow to use the selected items
+// Function: show details of water items and allow player to use selected items
+// Input: int x: item index
+//        int water_count[]: quanity of water item
+//        int status[]: player status
 void use_water(int x, int water_count[], int status[])
 {
   char choose_use_or_not = 'x';
@@ -88,7 +93,10 @@ void use_water(int x, int water_count[], int status[])
   }
 }
 
-
+// Function: show details of food items and allow player to use selected items
+// Input: int x: item index
+//        int food_count[]: quanity of food item
+//        int status[]: player status
 void use_food(int x, int food_count[], int status[])
 {
   char choose_use_or_not = 'x';
@@ -136,6 +144,10 @@ void use_food(int x, int food_count[], int status[])
   }
 }
 
+// Function: show details of medicine items and allow player to use selected items
+// Input: int x: item index
+//        int medicine_count[]: quanity of medicine item
+//        int status[]: player status
 void use_medicine(int x, int medicine_count[], int status[])
 {
   char choose_use_or_not = 'x';
@@ -185,6 +197,10 @@ void use_medicine(int x, int medicine_count[], int status[])
   }
 }
 
+// Function: show details of food items but NOT allow player to use items
+// Input: int x: item index
+//        int weapon_count[]: quanity of weapon item
+//        int status[]: player status
 void use_weapon(int x, int weapon_count[], int status[])
 {
   char choose_use_or_not = 'x';
@@ -208,6 +224,10 @@ void use_weapon(int x, int weapon_count[], int status[])
   system("clear");
 }
 
+// Function: show details of mystery items and allow player to use selected items
+// Input: int x: item index
+//        int other_count[]: quanity of mystery item
+//        int status[]: player status
 void use_other(int x, int other_count[], int status[])
 {
   char choose_use_or_not = 'x';
@@ -252,19 +272,21 @@ void use_other(int x, int other_count[], int status[])
     sleep(1);
     system("clear");
     return;
-    //other_menu(other_count);
   }
 }
 
+// Function: print out the menu of all water items including item quanity
+// Input: int water_count[]: quanity of water item
+//        int status[]: player status
 void water_menu(int water_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Water Menu" << endl;
-  cout << "1. " << water(0).name << ": " << water_count[0] << endl;  // Clean Water
-  cout << "2. " << water(1).name << ": " << water_count[1] << endl;  // Soda
-  cout << "3. " << water(2).name << ": " << water_count[2] << endl;  // Pee
-  cout << "4. " << water(3).name << ": " << water_count[3] << endl;  // Cocunut
-  cout << "5. " << water(4).name << ": " << water_count[4] << endl;  // Dirty Water
+  cout << "1. " << setw(13) << left << water(0).name << water_count[0] << endl;  // Clean Water
+  cout << "2. " << setw(13) << left << water(1).name << water_count[1] << endl;  // Soda
+  cout << "3. " << setw(13) << left << water(2).name << water_count[2] << endl;  // Pee
+  cout << "4. " << setw(13) << left << water(3).name << water_count[3] << endl;  // Cocunut
+  cout << "5. " << setw(13) << left << water(4).name << water_count[4] << endl;  // Dirty Water
   cout << "6. Back " << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
@@ -289,16 +311,18 @@ void water_menu(int water_count[], int status[])
   }
 }
 
-//printing fooditem_menu, include number of card the player had and allow to proceed to use
+// Function: print out the menu of all food items including item quanity
+// Input: int food_count[]: quanity of food item
+//        int status[]: player status
 void food_menu(int food_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Food Menu" << endl;
-  cout << "1. " << food(0).name << ": " << food_count[0] << endl;  // Energy Bar
-  cout << "2. " << food(1).name << ": " << food_count[1] << endl;  // Meat
-  cout << "3. " << food(2).name << ": " << food_count[2] << endl;  // Wild Berry
-  cout << "4. " << food(3).name << ": " << food_count[3] << endl;  // Worm
-  cout << "5. " << food(4).name << ": " << food_count[4] << endl;  // Unknown Mushroom
+  cout << "1. " << setw(18) << left << food(0).name << food_count[0] << endl;  // Energy Bar
+  cout << "2. " << setw(18) << left << food(1).name << food_count[1] << endl;  // Meat
+  cout << "3. " << setw(18) << left << food(2).name << food_count[2] << endl;  // Wild Berry
+  cout << "4. " << setw(18) << left << food(3).name << food_count[3] << endl;  // Worm
+  cout << "5. " << setw(18) << left << food(4).name << food_count[4] << endl;  // Unknown Mushroom
   cout << "6. Back " << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
@@ -323,16 +347,18 @@ void food_menu(int food_count[], int status[])
   }
 }
 
-//printing medicineitem_menu, include number of card the player had and allow to proceed to use
+// Function: print out the menu of all medicine items including item quanity
+// Input: int medicine_count[]: quanity of medicine item
+//        int status[]: player status
 void medicine_menu(int medicine_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Medicine Menu" << endl;
-  cout << "1. " << medicine(0).name << ": " << medicine_count[0] << endl;  // Herb
-  cout << "2. " << medicine(1).name << ": " << medicine_count[1] << endl;  // Pill
-  cout << "3. " << medicine(2).name << ": " << medicine_count[2] << endl;  // Bandage
-  cout << "4. " << medicine(3).name << ": " << medicine_count[3] << endl;  // First Aid Kit
-  cout << "5. " << medicine(4).name << ": " << medicine_count[4] << endl;  // Sedative
+  cout << "1. " << setw(15) << left << medicine(0).name << medicine_count[0] << endl;  // Herb
+  cout << "2. " << setw(15) << left << medicine(1).name << medicine_count[1] << endl;  // Pill
+  cout << "3. " << setw(15) << left << medicine(2).name << medicine_count[2] << endl;  // Bandage
+  cout << "4. " << setw(15) << left << medicine(3).name << medicine_count[3] << endl;  // First Aid Kit
+  cout << "5. " << setw(15) << left << medicine(4).name << medicine_count[4] << endl;  // Sedative
   cout << "6. Back " << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
@@ -357,15 +383,17 @@ void medicine_menu(int medicine_count[], int status[])
   }
 }
 
-//printing weapon item_menu, include number of card the player had and allow to proceed to use
+// Function: print out the menu of all weapon items including item quanity
+// Input: int weapon_count[]: quanity of weapon item
+//        int status[]: player status
 void weapon_menu(int weapon_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Weapon Menu" << endl;
-  cout << "1. " << weapon(0).name << ": " << weapon_count[0] << endl;  // Wooden Stick
-  cout << "2. " << weapon(1).name << ": " << weapon_count[1] << endl;  // Rock
-  cout << "3. " << weapon(2).name << ": " << weapon_count[2] << endl;  // Knife
-  cout << "4. " << weapon(3).name << ": " << weapon_count[3] << endl;  // Spear
+  cout << "1. " << setw(14) << left << weapon(0).name << weapon_count[0] << endl;  // Wooden Stick
+  cout << "2. " << setw(14) << left << weapon(1).name << weapon_count[1] << endl;  // Rock
+  cout << "3. " << setw(14) << left << weapon(2).name << weapon_count[2] << endl;  // Knife
+  cout << "4. " << setw(14) << left << weapon(3).name << weapon_count[3] << endl;  // Spear
   cout << "5. Back " << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
@@ -391,17 +419,19 @@ void weapon_menu(int weapon_count[], int status[])
   }
 }
 
-//printing otheritem_menu
+// Function: print out the menu of all mystery items including item quanity
+// Input: int other_count[]: quanity of mystery item
+//        int status[]: player status
 void other_menu(int other_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Other Items Menu" << endl;
-  cout << "1. " << mystery(0).name << ": " << other_count[0] << endl;  // Leaf
-  cout << "2. " << mystery(1).name << ": " << other_count[1] << endl;  // Newspaper
-  cout << "3. " << mystery(2).name << ": " << other_count[2] << endl;  // Wilson the Volleyball
-  cout << "4. " << mystery(3).name << ": " << other_count[3] << endl;  // Flashlight
-  cout << "5. " << mystery(4).name << ": " << other_count[4] << endl;  // Gameboy
-  cout << "6. " << mystery(5).name << ": " << other_count[5] << endl;  // Seashell
+  cout << "1. " << setw(23) << left << mystery(0).name << other_count[0] << endl;  // Leaf
+  cout << "2. " << setw(23) << left << mystery(1).name << other_count[1] << endl;  // Newspaper
+  cout << "3. " << setw(23) << left << mystery(2).name << other_count[2] << endl;  // Wilson the Volleyball
+  cout << "4. " << setw(23) << left << mystery(3).name << other_count[3] << endl;  // Flashlight
+  cout << "5. " << setw(23) << left << mystery(4).name << other_count[4] << endl;  // Gameboy
+  cout << "6. " << setw(23) << left << mystery(5).name << other_count[5] << endl;  // Seashell
   cout << "7. Back " << endl;
 
   //ensure that only with input 1-5 will proceed to next stage
@@ -426,7 +456,13 @@ void other_menu(int other_count[], int status[])
   }
 }
 
-// item_menu() printing the main item menu
+// Funtion: print out the main item menu for different item catagory
+// Input: int status[]: player status
+//        int water_count[]: quantity of water items
+//        int food_count[]: quantity of food items
+//        int medicine_count[]: quantity of medicine items
+//        int weapon_count[]: quantity of weapon items
+//        int other_count[]: quantity of other items
 void item_menu(int status[], int water_count[], int food_count[], int medicine_count[], int weapon_count[], int other_count[])
 {
   // clear the page first to make tidier
@@ -465,6 +501,13 @@ void item_menu(int status[], int water_count[], int food_count[], int medicine_c
     other_menu(other_count, status);
   if (choice_in_mainmeun == 6)
     return;
+
+  // set the upper limit of the status to 100
+  for (int i = 0; i < 4; i++) {
+    if (status[i] > 100) {
+      status[i] = 100;
+    }
+  }
 
   // exicute the function again for user to continue choosing untill they choose quit
   item_menu(status, water_count, food_count, medicine_count ,weapon_count ,other_count);

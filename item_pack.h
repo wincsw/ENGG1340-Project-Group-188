@@ -23,6 +23,6 @@ void use_weapon(int x, int weapon_count[], int status[]);
 
 void use_other(int x, int other_count[], int status[]);
 
-void printEffect(struct item object);
+void printEffect(struct Item object);
 
 #endif
