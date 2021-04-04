@@ -1,6 +1,6 @@
 // data_attackers.cpp
 // stored datas of the attackers which will be used for fight event in the game
-// and access attackers by struct attacker attackers(index, [name = " "])
+// and access attackers by Attacker attackers(index, [name = " "])
 #include <iostream>
 #include <string>
 #include "data_attackers.h"
@@ -11,40 +11,14 @@ using namespace std;
 // total number of attackers
 const int attacker_num = 5;
 
-// Function: choose attacker according to the attacker index or name
-// Input: struct attacker category[]: array of attacker
-//        int len: lenght of the array
-//        int x: attacker index
-//        string name: attacker name
-// Output: struct attacker: choosen attacker
-struct attacker choose(struct attacker category[], int len, int x, string name) {
-  struct attacker choosen;
-  if (x != -1) {
-    for (int i = 0; i < len; i++) {
-      if (i == x) {
-        choosen = category[i];
-      }
-    }
-  }
-  else {
-    for (int i = 0; i < len; i++) {
-      if (category[i].name == name) {
-        choosen = category[i];
-      }
-    }
-  }
-
-  return choosen;
-}
 
 // Function: choose attacker (default choose by index)
 // Input: int x: attacker index (-1 --> choose by name)
 //        string name = " ": attacker name, (" "--> choose by index)
-// Output: struct attacker: choosen attacker
+// Output: Attacker: choosen attacker
 // NOTE: 0: Bear; 1: Crocodile; 2: Wolf; 3: Cannibal; 4: Zombie
-struct attacker attackers(int x, string name) {
-  struct attacker all[attacker_num];
-  struct attacker choosen;
+Attacker attackers(int x) {
+  Attacker all[attacker_num];
 
   all[0].name = "Bear";
   all[0].hp = 100;
@@ -86,6 +60,6 @@ struct attacker attackers(int x, string name) {
   all[4].item[1] = 0;
   all[4].des = "This is a zombie!";
 
-  return choose(all, attacker_num, x, name);
+  return all[x];
 
 }
