@@ -4,7 +4,7 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
-# include <stdlib.h>     // allow to use system ("clear")
+# include <cstdlib>     // allow to use system ("clear")
 # include <unistd.h>     // allow to use sleep()
 # include "item_pack.h"
 # include "data_items.h"  // for item datas
