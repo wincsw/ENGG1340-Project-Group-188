@@ -555,7 +555,7 @@ void startPage(int *day, int status[], int water_count[], int food_count[],
   }
 }
 
-
+// Function: main function
 int main() {
   // dynamic variables for game play data
   int * day = new int;
@@ -569,6 +569,7 @@ int main() {
   system("clear");
   // call start page
   startPage(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
-
+  
+  return 0;
 }
 //g++ -pedantic-errors -std=c++11 main.cpp player_status.cpp fight.cpp data_attackers.cpp data_events.cpp draw.cpp item_pack.cpp data_items.cpp -o main
