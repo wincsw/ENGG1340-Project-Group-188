@@ -6,7 +6,7 @@
 #include <sstream>
 #include <cstdio> // for remove file
 #include <string>
-#include <stdlib.h>   // for system("clear")
+#include <cstdlib>   // for system("clear")
 #include <unistd.h>     // for sleep()
 #include "structures.h"
 #include "player_status.h"
