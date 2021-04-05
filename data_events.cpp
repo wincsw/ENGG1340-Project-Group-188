@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <string>
-#include <stdlib.h>     // allow to use system ("clear")
+#include <cstdlib>     // allow to use system ("clear")
 #include <unistd.h>     // allow to use sleep()
 #include "structures.h"
 #include "item_pack.h"
