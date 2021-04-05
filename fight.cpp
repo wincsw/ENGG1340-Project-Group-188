@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip> // for format layout
-#include <stdlib.h>     // allow to use system ("clear")
+#include <cstdlib>     // allow to use system ("clear")
 #include <unistd.h>     // allow to use sleep()
 #include "fight.h"
 #include "structures.h"
