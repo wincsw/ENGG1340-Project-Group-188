@@ -6,56 +6,61 @@ Chan Sze Wing   (UID: 3035745063, Username: adhk852)
 Chan Yuen Kwan  (UID: 3035781641, Username: jojochan09)
 
 ## Game Description
-Our game is a text-based role-playing game that tries to simulate a person surviving on an uninhabited island. You are a passenger of a cruise ship who is stranded on an uninhabited island after the shipwreck. On this island, there will be different unexpected events that may cause danger or surprises. Random resources will be found to help maintain your life. You must survive for 50 days until the rescue team comes to save you.
+This is a text-based role-playing game which simulate a person surviving on an uninhabited island. You are a passenger of a cruise ship, due to a shipwreck you are now stranded this unknown island. On this island, you will collect resources that can help maintain your life. Meanwhile, different events may happen and can cause danger or bring surprises. In this game, everything is random, so good luck.
 
 
 ## Rules
  - Your status represented by:
-   - **HP**: health point, drop if you are being attacked or you are hungry 
+   - **HP**: the value that represents health point, drop if you are 
+     1. being attacked or getting hurt
+     2. too hungry (*Hunger below 50*)
+     3. mentally unstable (*Mental  below 50*)
    - **Hydration**: the value that represents your thirst, it will drop every day
-   - **Mentality**: the value that represents your mental status. If it goes too low, you may do something uncontrollable, even may kill yourself!
-   - **Hunger**: the value that represent your hunger, if it goes too low, your **HP value** may drop in a high proportion
+   - **Hunger**: the value that represent your hunger, it will drop every day
+   - **Mentality**: the value that represents your mental status
  - If **HP/hydration** go to **0**, you will die and **lose** the game 
  
- - Every day starts, you will find some resources
+ - Every day starts, you will find **3 resource item**
       
       Resources you may obtain:
-   - **Food**: increase your hunger value
-   - **Water**: increase your hydration value
-   - **Medicines**: heal you if you are suffering with diseases and increase your HP or mentality value
-   - **Weapons**: you can use them to protect yourself if you involve in some special events
-   - And some **Mystery** items
- - After finding the resources, the resources will be saved in the Item Pack, you can use them immediately, or you can straightly pass to the next day and use them later
- - Random events may happen, and they may affect your status as well
- - *How to Win*: Survive for **50 days** 
+   - **Food**: increase your Hunger value
+   - **Water**: increase your Hydration value
+   - **Medicines**: increase your HP or Mentality value
+   - **Weapons**: for fighting against attackers 
+   - And some **Mystery** items 
+ - All resources will be saved in the Item Pack, you can use them on the same day or later
+ - Random events will happen every 3 days, which may affect your status
+ - **How to Win**
+   1. Survive for **50 days**, and
+   2. Maintain your **HP** and **Hydration** **above 0**
 
 
 ## Features 
 
-- Draw Resource (dynamic)
+- Draw Resource
 
   The player can draw 3 random resource items every day, and the cards they have drawn will be stored in the Item Pack for future use.
   
   Coding element:
   - Generation of random game sets or events
     
-    The cards drawn will be generated randomly using `rand()` and `srand(time(NULL))`.
+    The 3 cards drawn will be generated randomly using `rand()` and `srand(time(NULL))`.
     
   - Data structures for storing game status
 
-    Self-defined data structure `item` will be used to store the information of the items, which data structure of `array` and data types of `string` and `int` will be used in the `item` data structure. 
+    Self-defined data structure `Item` will be used to store the information of the items, while data structure of `array` and data types of `string` and `int` will be used in the `Item` data structure. Note that data structure `Item` is stored in `structures.h`.
      
   - Dynamic memory management
     
-    The drawn item will be stored in dynamic memory by `new`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete`.
+    The 3 drawn items will be stored in a dynamic array by `new[]`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete[]`.
   
   - Program codes in multiple files
     
-    Codes of all the items' information and the drawing mechanism will be stored in separate files of `data_items.cpp` and `draw_item.cpp`. 
+    Codes of all the items' information and the drawing mechanism will be stored in files of `data_items.cpp` and `draw_item.cpp` respectively, seperated from `main.cpp`. 
 
 - Random Event
 
-  A random event will happen every 3 or 4 days.
+  A random event will happen every 3 days.
   
   Coding element:
   - Generation of random game sets or events
