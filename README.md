@@ -22,7 +22,7 @@ This is a text-based role-playing game which simulate a person surviving on an u
  
  - Every day starts, you will find **3 resource item**
       
-      Resources you may obtain:
+      Categories if resources you may obtain:
    - **Food**: increase your Hunger value
    - **Water**: increase your Hydration value
    - **Medicines**: increase your HP or Mentality value
@@ -34,6 +34,7 @@ This is a text-based role-playing game which simulate a person surviving on an u
    1. Survive for **50 days**, and
    2. Maintain your **HP** and **Hydration** **above 0**
 
+## Quick Start
 
 ## Features 
 
@@ -48,15 +49,15 @@ This is a text-based role-playing game which simulate a person surviving on an u
     
   - Data structures for storing game status
 
-    Self-defined data structure `Item` will be used to store the information of the items, while data structure of `array` and data types of `string` and `int` will be used in the `Item` data structure. Note that data structure `Item` is stored in `structures.h`.
+    Self-defined data structure `Item` will be used to store the information of the items, while data structure `array` and data types `string` and `int` will be used in the data structure. Note that data structure `Item` is stored in `structures.h`.
      
   - Dynamic memory management
     
-    The 3 drawn items will be stored in a dynamic array by `new[]`. The memory used to store the drawn cards will be freed after the cards are saved in the Item Pack by `delete[]`.
+    The 3 drawn items will be stored in a dynamic array by `new[]`. The memory will then be freed after the cards are saved in the Item Pack by `delete[]`.
   
   - Program codes in multiple files
     
-    Codes of all the items' information and the drawing mechanism will be stored in files of `data_items.cpp` and `draw_item.cpp` respectively, seperated from `main.cpp`. 
+    Codes of all the items' information and the drawing mechanism will be stored in files `data_items.cpp` and `draw_item.cpp` respectively, seperated from `main.cpp`. Which `draw.cpp` will call the informations of the items from `data_items.cpp`.
 
 - Random Event
 
@@ -65,42 +66,60 @@ This is a text-based role-playing game which simulate a person surviving on an u
   Coding element:
   - Generation of random game sets or events
   
-    The events and the number of days will be generated randomly using `rand()` and `srand(time(NULL))`.
+    The events will be generated randomly using `rand()` and `srand(time(NULL))`.
   
   - Data structures for storing game status
 
-    Self-defined data structure `event` will be used to store the infomation of the items, which data structure of `array` and data types of `string` and `int` will be used in the `event` data structure. 
+    Self-defined data structure `Event` will be used to store the infomation of the events, which data structure `array` and data types `string` and `int` will be used in the data structure. Note that data structure `Event` is stored in `structures.h`.
     
-- Fighting Attackers (dynamic)
+- Fighting Attackers 
   
   The event of player being attack and need to fight back.
   
   Coding element:
   - Data structures for storing game status
 
-    Self-defined data structure `attacker` will be used to store the infomation of the items, which data types of `string` and `int` will be used in the `attacker` data structure. 
+    Self-defined data structure `Attacker` and `Item` will be used to store the infomation of the attackers and weapons, which data structure `array` data types `string` and `int` will be used in the data structures. Note that data structure `Attacker` and `Item` are stored in `structures.h`.
   
   - Dynamic memory management
  
-    The fighting status (e.g. the tempory HP) will be stored by `new`. The memory used to store the fighting status will be freed after the fight ends by `delete`.
+    The quantity of weapons the player has will be stored in a dynamic array by `new[]`. The memory will then be freed after the fight ends by `delete[]`.
     
   - Program codes in multiple file
   
-    Codes of the fighting mechanism and the attackers are stored in seperate files of `fight.cpp` and `data_attackers.cpp`.
+    Codes of the fighting mechanism and the attackers are stored in files `fight.cpp` and `data_attackers.cpp` respectively, seperated from `main.cpp`. Which `fight.cpp` will call the informations of attackers from `data_attacker.cpp`.
 
-- Daily Decreas in Player Status
+- Daily Decrease in Hydration and Hunger value
+
+  The player's Hydration and Hunger value will decrease a certain amount when a new day started
+  
+  - Generation of random game sets or events
+  
+    The amount of decreation will be generated randomly using `rand()` and `srand(time(NULL))`.
+    
+  - Program codes in multiple files
+    
+    Codes of the function for reducing Hydration and Hunger value will be stored in file `player_status.cpp` (also the function for printing out player status), seperated from `main.cpp`. Which `main.cpp` will call this function from `player_status.cpp`.
+  
 
 - Save and Resume gameplay (dynamic)
+  
+  Player can quit and save the game and resume it later.
   
   Coding element:
   - Data structures for storing game status
     
-    Data structure of `array` will be used to store the game status components (e.g. the player status, the number of a specific item in the item pack).
+    Data structure `array` will be used to store the game status components, including the player status and the quantity of items from different catagories in the item pack.
+  
+  - Dynamic memory management
+    
+    All the arrays used to store the game status components are dynamic arrays which are created by `new[]`. The memory will be freed after the player quit the game by `delete[]`.
     
   - File input/output
     
-    The user can save the game status and resume the game later. The game status will be output to a `game_status.txt` file, and the `game_status.txt` file will be inputted to the game program when the game is resumed.
+     When starting a new game, datas in the file `new_game.txt` will be inputed as the intial game status. After the player quit the game, `game_status.txt` file will be created (if it was a new game) and the game status will be outputed to this file. When the player resume the game, `game_status.txt` file will be loaded back to the game. If the player win/lose or started a new game, `game_status.txt` file will be removed.
     
+## Non-Standard C/C++ Libaries
 
 ## Inspriation
 - Game Mechanism: Draw Card Life https://www.taptap.com/app/35686
