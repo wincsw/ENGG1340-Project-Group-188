@@ -111,8 +111,8 @@ Item food(int x) {
   // Worm
   food_items[3].name = "Worm";
   food_items[3].effect[0] = 0;
-  food_items[3].effect[1] = 10;
-  food_items[3].effect[2] = 0;
+  food_items[3].effect[1] = 0;
+  food_items[3].effect[2] = 10;
   food_items[3].effect[3] = -10;
   food_items[3].effect[4] = 0;
   food_items[3].des = "Remember, worms are full of protein, \
