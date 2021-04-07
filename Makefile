@@ -1,4 +1,6 @@
 FLAGS = -pedantic-errors -std=c++11
+survival: data_items.o data_attackers.o player_status.o item_pack.o draw.o fight.o data_events.o structures.h main.o
+	g++ $(FLAGS) $^ -o $@
 
 data_items.o: data_items.cpp data_items.h structures.h
 	g++ $(FLAGS) -c $<
@@ -23,9 +25,6 @@ data_events.o: data_events.cpp data_events.h data_items.h item_pack.h fight.h st
 
 main.o: main.cpp data_items.h data_attackers.h player_status.h item_pack.h draw.h fight.h data_events.h structures.h
 	g++ $(FLAGS) -c $<
-
-survival: data_items.o data_attackers.o player_status.o item_pack.o draw.o fight.o data_events.o structures.h main.o
-	g++ $(FLAGS) $^ -o $@
 
 clean:
 	rm -f *.o
