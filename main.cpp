@@ -306,12 +306,12 @@ void winLose(int *day, int status[], int water_count[], int food_count[],
     exit(1);
   }
   // lose
-  else if (status[0] == 0 || status[1] == 0) {
+  else if (status[0] <= 0 || status[1] <= 0) {
     freeMemory(day, status, water_count, food_count, medicine_count, weapon_count, 
         other_count);
     remove("game_status.txt");
     
-    if (status[0] == 0) {
+    if (status[0] <= 0) {
       cout << "Hydration 0" << endl;
       cout << "You thrist to death" << endl;
     }
