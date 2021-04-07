@@ -8,7 +8,16 @@ Chan Yuen Kwan  (UID: 3035781641, Username: jojochan09)
 ## Game Description
 This is a text-based role-playing game which simulate a person surviving on an uninhabited island. You are a passenger of a cruise ship, due to a shipwreck you are now stranded this unknown island. On this island, you will collect resources that can help maintain your life. Meanwhile, different events may happen and can cause danger or bring surprises. In this game, everything is random, so good luck.
 
+## Start Game
+- Download all the file.
+- Input `make` or `make survival` in the shell.
+- After compiling, input `./survival` to start game.
 
+Look like this:
+```
+make
+./survival
+```
 ## Rules
  - Your status represented by:
    - **HP**: the value that represents health point, drop if you are 
