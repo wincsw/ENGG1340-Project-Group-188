@@ -44,9 +44,9 @@ void dailyDrop(int status[4]) {
   status[2] -= *hunger_drop;  // hunger drop
   cout << "-" << *hunger_drop << " Hunger" << endl;
 
-  // mental < 50 --> HP deduct 5 per day
+  // mental < 50 or hunger < 50 --> HP deduct 5 per day
   if (status[3] < 50 || status[2] < 50) {
-    status[0] -= 10;
+    status[0] -= 5;
     cout << "-5 HP" << endl;
   }
 
