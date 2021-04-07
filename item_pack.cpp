@@ -119,7 +119,7 @@ void use_food(int x, int food_count[], int status[])
         sleep(1);
         cout << food(x).name << " used!" << endl;
         food_count[x] -= 1;
-        status[0] += food(x).effect[0]; // directly use <water(x).effect>
+        status[0] += food(x).effect[0]; // directly use <food(x).effect>
         status[2] += food(x).effect[2];
         status[3] += food(x).effect[3];
         sleep(1);
