@@ -54,7 +54,7 @@ Attacker attackers(int x) {
 
   all[4].name = "Zombie";
   all[4].hp = 50;
-  all[4].atk = 15;
+  all[4].atk = 10;
   all[4].lost = 50;
   all[4].item[0] = 0;
   all[4].item[1] = 0;
