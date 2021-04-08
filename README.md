@@ -43,7 +43,7 @@ Look like this:
 make
 ./survival
 ```
-Another method:
+If not to download, another method to get all file in the terminal:
  - Create a directory, for example "Game"
  - Clone the Game Source to the directory
 
