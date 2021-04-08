@@ -109,6 +109,7 @@ void use_food(int x, int food_count[], int status[])
     cout << food(x).des << endl;
     printEffect(food(x));
     sleep(1);
+    cout << "---------------------------" << endl;
     cout << "Do you want to use? (You have " << food_count[x] << ' ' << food(x).name << ")"<< endl;
     cout << "Y for use, other key to back" << endl;
     cin >> choose_use_or_not;
@@ -160,7 +161,7 @@ void use_medicine(int x, int medicine_count[], int status[])
     cout << medicine(x).des << endl;
     printEffect(medicine(x));
     sleep(1);
-
+    cout << "---------------------------" << endl;
     cout << "Do you want to use? (You have " << medicine_count[x] << ' ' << medicine(x).name << ")"<< endl;
     cout << "Y for use, other key to back" << endl;
     cin >> choose_use_or_not;
@@ -213,7 +214,7 @@ void use_weapon(int x, int weapon_count[], int status[])
     cout << weapon(x).des << endl;
     printEffect(weapon(x));
     sleep(1);
-
+    cout << "---------------------------" << endl;
     cout << "You have " << weapon_count[x] << ' ' << weapon(x).name << endl;
     cout << "Press any key to back" << endl;
     cin >> choose_use_or_not;
@@ -240,7 +241,7 @@ void use_other(int x, int other_count[], int status[])
     cout << mystery(x).des << endl;
     printEffect(mystery(x));
     sleep(1);
-
+    cout << "---------------------------" << endl;
     cout << "Do you want to use? (You have " << other_count[x] << ' ' << mystery(x).name << ")"<< endl;
     cout << "Y for use, other key to back" << endl;
     cin >> choose_use_or_not;
