@@ -43,6 +43,16 @@ Look like this:
 make
 ./survival
 ```
+Another method:
+ - Create a directory, for example "Game"
+ - Clone the Game Source to the directory
+
+```
+mkdir Game
+cd Game
+git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git
+
+```
 ## Features 
 
 - Draw Resource
