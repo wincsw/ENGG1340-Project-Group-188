@@ -101,7 +101,7 @@ struct Event events(int x, string name)
     all[3].output[4] = "Your emotion get bad.";
 
 
-    all[4].name = "Bird Boop";
+    all[4].name = "Bird Poop";
     all[4].effect[0] = 0;
     all[4].effect[1] = 0;
     all[4].effect[2] = 0;
