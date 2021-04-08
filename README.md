@@ -128,6 +128,6 @@ make
     
 ## Non-Standard C/C++ Libaries
 
-## Inspriation
+## Inspiration 
 - Game Mechanism: Draw Card Life https://www.taptap.com/app/35686
 - Item: Survive - Wilderness survival https://play.google.com/store/apps/details?id=com.sandbaygames.survive
