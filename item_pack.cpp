@@ -56,6 +56,7 @@ void use_water(int x, int water_count[], int status[])
     cout << water(x).des << endl;
     printEffect(water(x));
     sleep(1);
+    cout << "---------------------------" << endl;
     cout << "Do you want to use? (You have " << water_count[x] << ' ' << water(x).name << ")"<< endl;
     cout << "Y for use, other key to back" << endl;
     cin >> choose_use_or_not;
