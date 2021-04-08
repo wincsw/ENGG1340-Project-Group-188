@@ -52,7 +52,7 @@ Item water(int x) {
   water_items[2].des = "Seriously? Pee? Ew!";
 
   // Coconut
-  water_items[3].name = "Cocunut";
+  water_items[3].name = "Coconut";
   water_items[3].effect[0] = 0;
   water_items[3].effect[1] = 10;
   water_items[3].effect[2] = 0;
