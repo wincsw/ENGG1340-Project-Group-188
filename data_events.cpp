@@ -128,9 +128,9 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
   // randonly choose an event
   srand(time(NULL)); // set seed to time
 
-  int num = (rand() % 8); // random number in range [0, 7]
+  int num = (rand() % 9); // random number in range [0, 8]
 
-  // num 0 - 4 for the normal events, num from 5-9 is for fight events
+  // num 0 - 4 for the normal events, num from 5-8 is for fight events
   if (num < 5)
   {
     struct Event current_event = events(num, " ");
@@ -165,7 +165,7 @@ void call_event(int water_count[], int weapon_count[], int other_count[],
     system("clear");
   }
 
-  // the below for the num from 5 - 7 (for fight) 
+  // the below for the num from 5 - 8 (for fight) 
   // call function from fight.cpp
   else
   {
