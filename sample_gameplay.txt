@@ -1,0 +1,486 @@
+$ make
+g++ -pedantic-errors -std=c++11 -c data_items.cpp
+g++ -pedantic-errors -std=c++11 -c data_attackers.cpp
+g++ -pedantic-errors -std=c++11 -c player_status.cpp
+g++ -pedantic-errors -std=c++11 -c item_pack.cpp
+g++ -pedantic-errors -std=c++11 -c draw.cpp
+g++ -pedantic-errors -std=c++11 -c fight.cpp
+g++ -pedantic-errors -std=c++11 -c data_events.cpp
+g++ -pedantic-errors -std=c++11 -c main.cpp
+g++ -pedantic-errors -std=c++11 data_items.o data_attackers.o player_status.o item_pack.o draw.o fight.o data_events.o structures.h main.o -o survival
+$ ./survival
+
+<clear screen>
+
+The Survival Game
+---------------------------
+1. New Game
+2. Credit
+3. Quit Game
+1
+
+<clear screen>
+
+You are a passenger of a cruise ship
+However you're SO unlucky that you went into a shipwreck
+Now you are on this uninhabited island
+In your bag, there are some water and an energy bar
+You pick up a wooden stick that will forever belongs to you
+Try your best to survive for 50 days
+Then the rescue team will come and save you
+
+Press any key to start game
+a
+
+<clear screen>
+
+Day 1
+---------------------------
+Player Status
+HP       : 100
+Hydration: 100
+Hunger   : 100
+Mentality: 100
+---------------------------
+1. Next Day
+2. Item Pack
+3. Quit Game
+1
+
+<clear screen>
+
+Daily Drop
+---------------------------
+-7 Hydration
+-8 Hunger
+
+<clear screen>
+
+Daily Draw
+---------------------------
+Rock
++15 ATK
+---------------------------
+Sedative
++20 Mentality
+---------------------------
+Unknown Mushroom
+-5 HP
++5 Hunger
+---------------------------
+Press any key to continue game
+s
+
+<clear screen>
+
+Day 2
+---------------------------
+Player Status
+HP       : 100
+Hydration: 93
+Hunger   : 92
+Mentality: 100
+---------------------------
+1. Next Day
+2. Item Pack
+3. Quit Game
+2
+
+<clear screen>
+
+Item Pack
+---------------------------
+1. Water
+2. Food 
+3. Medicine
+4. Weapon
+5. Other
+6. Quit
+Which one do you want to choose?
+1
+
+<clear screen>
+
+Water Menu
+---------------------------
+1. Clean Water  1
+2. Soda         0
+3. Pee          0
+4. Coconut      0
+5. Dirty Water  0
+6. Back 
+Which one do you want to choose?
+1
+
+<clear screen>
+
+Clean Water
+Water that is save to drink, nothing special
++10 Hydration
+---------------------------
+Do you want to use? (You have 1 Clean Water)
+Y for use, other key to back
+y
+Clean Water used!
+
+<clear screen>
+
+Water Menu
+---------------------------
+1. Clean Water  0
+2. Soda         0
+3. Pee          0
+4. Coconut      0
+5. Dirty Water  0
+6. Back 
+Which one do you want to choose?
+6
+
+<clear screen>
+
+Item Pack
+---------------------------
+1. Water
+2. Food 
+3. Medicine
+4. Weapon
+5. Other
+6. Quit
+Which one do you want to choose?
+2
+
+<clear screen>
+
+Food Menu
+---------------------------
+1. Energy Bar        1
+2. Meat              0
+3. Wild Berry        0
+4. Worm              0
+5. Unknown Mushroom  1
+6. Back 
+Which one do you want to choose?
+3
+
+<clear screen>
+
+Wild Berry
+Whooo! Berries!
++5 Hunger
+---------------------------
+Do you want to use? (You have 0 Wild Berry)
+Y for use, other key to back
+y
+You do not have it!
+Please choose something that you HAVE!
+
+<clear screen>
+
+Food Menu
+---------------------------
+1. Energy Bar        1
+2. Meat              0
+3. Wild Berry        0
+4. Worm              0
+5. Unknown Mushroom  1
+6. Back 
+Which one do you want to choose?
+6
+
+<clear screen>
+
+Item Pack
+---------------------------
+1. Water
+2. Food 
+3. Medicine
+4. Weapon
+5. Other
+6. Quit
+Which one do you want to choose?
+6
+
+<clear screen>
+
+Day 2
+---------------------------
+Player Status
+HP       : 100
+Hydration: 100
+Hunger   : 92
+Mentality: 100
+---------------------------
+1. Next Day
+2. Item Pack
+3. Quit Game
+
+<clear screen>
+
+Random Event: Attack
+---------------------------
+This is a crocodile!
+Let's fight the Crocodile!!!!
+
+<clear screen>
+
+Your fighting HP: 100
+Crocodile HP:80
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 85
+Crocodile HP:75
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 70
+Crocodile HP:70
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 55
+Crocodile HP:65
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 40
+Crocodile HP:60
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 25
+Crocodile HP:55
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 10
+Crocodile HP:50
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+Your fighting HP: 100
+Crocodile HP:80
+
+Choose a weapon
+Remember: Wooden Stick will always be with you
+---------------------------
+1. Wooden Stick 1   ATK: 5
+2. Rock         1   ATK: 15
+1
+
+<clear screen>
+
+You attack Crocodile with Wooden Stick
+Crocodile -5 HP
+
+<clear screen>
+
+Crocodile attack you!
+You -15 HP
+
+<clear screen>
+
+You LOSE the fight!!!
+-25 HP
+
+<clear screen>
+
+Daily Drop
+---------------------------
+-8 Hydration
+-1 Hunger
+
+<clear screen>
+
+Daily Draw
+---------------------------
+Rock
++15 ATK
+---------------------------
+Worm
++10 Hunger
+-10 Mentality
+---------------------------
+Pee
++5 Hydration
+-5 Mentality
+---------------------------
+Press any key to continue game
+x
+
+<clear screen>
+
+Day 3
+---------------------------
+Player Status
+HP       : 75
+Hydration: 92
+Hunger   : 91
+Mentality: 100
+---------------------------
+1. Next Day
+2. Item Pack
+3. Quit Game
+3
+
+<clear screen>
+
+$./survival
+
+<clear screen>
+
+The Survival Game
+---------------------------
+1. Resume Game
+2. New Game
+3. Credit
+4. Quit Game
+3
+
+<clear screen>
+
+Producer/Designer/Programmer
+---------------------------
+Chan Sze Wing
+Chan Yuen Kwan
+
+Sponser
+---------------------------
+ENGG1340
+
+Special Thanks to all the professors and TAs
+
+Press any key to return
+W
+
+<clear screen>
+
+Developer shortcut: Win Ending
+---------------------------
+The rescue team FINALLY arrived
+After you got rescued
+You made a game base on your experience
+And you earn a lot of money by this game
+You spend those money by going on a cruise ship trip
+I wonder what will happen next...
+You WIN
+
