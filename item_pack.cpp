@@ -282,6 +282,7 @@ void water_menu(int water_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Water Menu" << endl;
+  cout << "---------------------------" << endl;
   cout << "1. " << setw(13) << left << water(0).name << water_count[0] << endl;  // Clean Water
   cout << "2. " << setw(13) << left << water(1).name << water_count[1] << endl;  // Soda
   cout << "3. " << setw(13) << left << water(2).name << water_count[2] << endl;  // Pee
@@ -318,6 +319,7 @@ void food_menu(int food_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Food Menu" << endl;
+  cout << "---------------------------" << endl;
   cout << "1. " << setw(18) << left << food(0).name << food_count[0] << endl;  // Energy Bar
   cout << "2. " << setw(18) << left << food(1).name << food_count[1] << endl;  // Meat
   cout << "3. " << setw(18) << left << food(2).name << food_count[2] << endl;  // Wild Berry
@@ -354,6 +356,7 @@ void medicine_menu(int medicine_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Medicine Menu" << endl;
+  cout << "---------------------------" << endl;
   cout << "1. " << setw(15) << left << medicine(0).name << medicine_count[0] << endl;  // Herb
   cout << "2. " << setw(15) << left << medicine(1).name << medicine_count[1] << endl;  // Pill
   cout << "3. " << setw(15) << left << medicine(2).name << medicine_count[2] << endl;  // Bandage
@@ -390,6 +393,7 @@ void weapon_menu(int weapon_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Weapon Menu" << endl;
+  cout << "---------------------------" << endl;
   cout << "1. " << setw(14) << left << weapon(0).name << weapon_count[0] << endl;  // Wooden Stick
   cout << "2. " << setw(14) << left << weapon(1).name << weapon_count[1] << endl;  // Rock
   cout << "3. " << setw(14) << left << weapon(2).name << weapon_count[2] << endl;  // Knife
@@ -426,6 +430,7 @@ void other_menu(int other_count[], int status[])
 {
   int choice_in_useitem = 0;
   cout << "Other Items Menu" << endl;
+  cout << "---------------------------" << endl;
   cout << "1. " << setw(23) << left << mystery(0).name << other_count[0] << endl;  // Leaf
   cout << "2. " << setw(23) << left << mystery(1).name << other_count[1] << endl;  // Newspaper
   cout << "3. " << setw(23) << left << mystery(2).name << other_count[2] << endl;  // Wilson the Volleyball
@@ -470,6 +475,7 @@ void item_menu(int status[], int water_count[], int food_count[], int medicine_c
   int choice_in_mainmeun = 0;
   // printing out the meun for player to choose
   cout << "Item Pack" << endl;
+  cout << "---------------------------" << endl;
   cout << "1. Water" << endl;
   cout << "2. Food " << endl;
   cout << "3. Medicine" << endl;
