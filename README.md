@@ -53,6 +53,7 @@ cd Game
 git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git
 
 ```
+***reminder: please only input 1 key each time**
 ## Features 
 
 - Draw Resource
@@ -137,6 +138,8 @@ git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git
      When starting a new game, datas in the file `new_game.txt` will be inputed as the intial game status. After the player quit the game, `game_status.txt` file will be created (if it was a new game) and the game status will be outputed to this file. When the player resume the game, `game_status.txt` file will be loaded back to the game. If the player win/lose or started a new game, `game_status.txt` file will be removed.
     
 ## Non-Standard C/C++ Libaries
+- used <unistd.h> which allow to use sleep( ) function
+- sleep( ): printing the information with delay
 
 ## Inspiration 
 - Game Mechanism: Draw Card Life https://www.taptap.com/app/35686
