@@ -57,7 +57,7 @@ git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git
 
 ****please only input 1 key each time***
 
-****please use terminal to execute, DON'T use SSH***
+****please use X2go terminal to execute, DON'T use SSH client***
 ## Features 
 
 - Draw Resource
