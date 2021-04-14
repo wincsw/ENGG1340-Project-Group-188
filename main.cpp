@@ -374,7 +374,7 @@ void credit() {
 void playMenu(int *day, int status[], int water_count[], int food_count[],
   int medicine_count[], int weapon_count[], int other_count[]) {
   
-  int choose;
+  char choose;
 
   // print out game play menu
   cout << "Day " << *day << endl;
@@ -388,7 +388,7 @@ void playMenu(int *day, int status[], int water_count[], int food_count[],
   cin >> choose;
   switch (choose) {
     // Next Day
-    case 1:
+    case '1':
       // transfer to next day
       *day = *day + 1;
 
@@ -398,7 +398,6 @@ void playMenu(int *day, int status[], int water_count[], int food_count[],
         winLose(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
       }
 
-      //sleep(1);
       system("clear");
       
       dailyDrop(status);  // daily drop of Hydration and Hunger (and maybe HP)
@@ -412,12 +411,12 @@ void playMenu(int *day, int status[], int water_count[], int food_count[],
       break;
       
     // Item Pack
-    case 2:
+    case '2':
       item_menu(status, water_count, food_count, medicine_count, weapon_count, 
         other_count);   // access item menu
       break;
       
-    case 3:
+    case '3':
       quitGame(day, status, water_count, food_count, medicine_count, 
         weapon_count, other_count);   // save and quit game
       break;
@@ -471,7 +470,7 @@ void startPage(int *day, int status[], int water_count[], int food_count[],
 
   // check are there a previous game
   ifstream fin("game_status.txt");
-  int choose;
+  char choose;
 
   if (fin) {
     // with previous game
@@ -503,7 +502,7 @@ void startPage(int *day, int status[], int water_count[], int food_count[],
   
   switch (choose) {
     // Resume game
-    case 1:
+    case '1':
       // extract previous game status
       resumeStatus(day, status, water_count, food_count, medicine_count, 
         weapon_count, other_count);
@@ -515,7 +514,7 @@ void startPage(int *day, int status[], int water_count[], int food_count[],
 
       break;
     // New Game
-    case 2:
+    case '2':
       // remove previous game data (if exisit)
       remove("game_status.txt");
       
@@ -534,7 +533,7 @@ void startPage(int *day, int status[], int water_count[], int food_count[],
 
       break;
     // Credit
-    case 3:
+    case '3':
       system("clear");
       credit();
       system("clear");
@@ -542,7 +541,7 @@ void startPage(int *day, int status[], int water_count[], int food_count[],
       startPage(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
       break;
     // Quit Game
-    case 4:
+    case '4':
       //quitGame(day, status, water_count, food_count, medicine_count, weapon_count, other_count);
       exit(1);
       break;
@@ -572,4 +571,3 @@ int main() {
   
   return 0;
 }
-//g++ -pedantic-errors -std=c++11 main.cpp player_status.cpp fight.cpp data_attackers.cpp data_events.cpp draw.cpp item_pack.cpp data_items.cpp -o main
