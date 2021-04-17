@@ -34,8 +34,9 @@ This is a text-based role-playing game which simulate a person surviving on an u
    2. Maintain your **HP** and **Hydration** **above 0**
 
 ## Quick Start
-- Download all the file.
-- Input `make` or `make survival` in the shell.
+Dowload as Zip file:
+- Download the zip file and extract all its files.
+- Open a terminal at the extracted file and input `make` or `make survival`.
 - After compiling, input `./survival` to start game.
 
 Look like this:
@@ -43,15 +44,18 @@ Look like this:
 make
 ./survival
 ```
-If not to download, another method to get all file in the terminal:
- - Create a directory, for example "Game"
- - Clone the Game Source to the directory
+Git Clone:
+ - Open the temial and clone the game source by inputing `git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git`.
+ - Input `cd ENGG1340-Project-Group-188` to change directory.
+ - Input `make` or `make survival`.
+ - After compiling, input `./survival` to start game.
 
+Look like this:
 ```
-mkdir Game
-cd Game
 git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git
-
+cd ENGG1340-Project-Group-188
+make
+./survival
 ```
 **Reminder:** 
 
