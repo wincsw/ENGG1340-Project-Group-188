@@ -45,7 +45,7 @@ make
 ./survival
 ```
 Git Clone:
- - Open the temial and clone the game source by inputing `git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git`.
+ - Open the terminal and clone the game source by inputing `git clone https://github.com/adhk852/ENGG1340-Project-Group-188.git`.
  - Input `cd ENGG1340-Project-Group-188` to change directory.
  - Input `make` or `make survival`.
  - After compiling, input `./survival` to start game.
@@ -60,6 +60,8 @@ make
 **Reminder:** 
 
 ****please only input 1 key each time***
+
+****please input number only, no letter*** 
 
 ****please use X2go terminal to execute, DON'T use SSH client***
 ## Features 
