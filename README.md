@@ -13,7 +13,7 @@ This is a text-based role-playing game which simulate a person surviving on an u
    - **HP**: the value that represents health point, drop if you are 
      1. being attacked or getting hurt
      2. too hungry (*Hunger below 50*)
-     3. mentally unstable (*Mental  below 50*)
+     3. mentally unstable (*Mentality  below 50*)
    - **Hydration**: the value that represents your thirst, it will drop every day
    - **Hunger**: the value that represent your hunger, it will drop every day
    - **Mentality**: the value that represents your mental status
