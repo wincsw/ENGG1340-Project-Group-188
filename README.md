@@ -63,7 +63,7 @@ make
 
 ****please input number only, no letter*** 
 
-****please use X2go terminal to execute, DON'T use SSH client***
+****please use X2go academy11 server terminal to execute, do NOT use SSH client or academy21 server***
 ## Features 
 
 - Draw Resource
