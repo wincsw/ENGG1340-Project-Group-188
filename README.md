@@ -132,7 +132,7 @@ make
     Codes of the function for reducing Hydration and Hunger value will be stored in file `player_status.cpp` (also the function for printing out player status), seperated from `main.cpp`. Which `main.cpp` will call this function from `player_status.cpp`.
   
 
-- Save and Resume gameplay (dynamic)
+- Save and Resume gameplay
   
   Player can quit and save the game and resume it later.
   
