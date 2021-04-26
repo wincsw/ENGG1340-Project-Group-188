@@ -8,7 +8,7 @@ Chan Yuen Kwan  (UID: 3035781641, Username: jojochan09)
 ## Game Description
 This is a text-based role-playing game which simulate a person surviving on an uninhabited island, inspired by an existing mobile game Draw Card Life and the movie Cast Away. 
 
-You are a passenger of a cruise ship, due to a shipwreck you are now stranded this unknown island. On this island, you will collect resources that can help maintain your life. Meanwhile, different events may happen and can cause danger or bring surprises. In this game, everything is random, so good luck.
+You are a passenger of a cruise ship, due to a shipwreck you are now stranded on an unknown island. On this island, you will collect resources that can help maintain your life. Meanwhile, different events may happen and can cause danger or bring surprises. In this game, everything is random, so good luck.
 
 ## Rules
  - Your status represented by:
