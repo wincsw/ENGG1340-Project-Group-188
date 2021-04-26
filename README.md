@@ -23,7 +23,7 @@ You are a passenger of a cruise ship, due to a shipwreck you are now stranded on
  
  - Every day starts, you will find **3 resource item**
       
-      Categories if resources you may obtain:
+      Categories of resources you may obtain:
    - **Food**: increase your Hunger value
    - **Water**: increase your Hydration value
    - **Medicines**: increase your HP or Mentality value
